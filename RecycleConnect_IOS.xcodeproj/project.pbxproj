@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6AB4DDEB2B164D5C005ABB67 /* signIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB4DDEA2B164D5C005ABB67 /* signIn.swift */; };
+		6AB4DDED2B1654F6005ABB67 /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB4DDEC2B1654F6005ABB67 /* SignUp.swift */; };
+		6AB4DDF02B16641E005ABB67 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB4DDEF2B16641E005ABB67 /* UserViewModel.swift */; };
+		6AB4DDF42B16649F005ABB67 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB4DDF32B16649F005ABB67 /* UserModel.swift */; };
+		6AB4DDF72B166591005ABB67 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB4DDF62B166591005ABB67 /* UserService.swift */; };
+		6AB4DDF92B166C8F005ABB67 /* SignUpUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB4DDF82B166C8F005ABB67 /* SignUpUser.swift */; };
+		6AB4DDFB2B166CA3005ABB67 /* SignUpOrganisation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB4DDFA2B166CA3005ABB67 /* SignUpOrganisation.swift */; };
 		BB8D996C2B16337A00530D28 /* RecycleConnect_IOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8D996B2B16337A00530D28 /* RecycleConnect_IOSApp.swift */; };
 		BB8D996E2B16337A00530D28 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8D996D2B16337A00530D28 /* ContentView.swift */; };
 		BB8D99702B16337B00530D28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB8D996F2B16337B00530D28 /* Assets.xcassets */; };
@@ -41,6 +48,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6AB4DDEA2B164D5C005ABB67 /* signIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signIn.swift; sourceTree = "<group>"; };
+		6AB4DDEC2B1654F6005ABB67 /* SignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
+		6AB4DDEF2B16641E005ABB67 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		6AB4DDF32B16649F005ABB67 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		6AB4DDF62B166591005ABB67 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		6AB4DDF82B166C8F005ABB67 /* SignUpUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpUser.swift; sourceTree = "<group>"; };
+		6AB4DDFA2B166CA3005ABB67 /* SignUpOrganisation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpOrganisation.swift; sourceTree = "<group>"; };
 		BB8D99682B16337A00530D28 /* RecycleConnect_IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecycleConnect_IOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB8D996B2B16337A00530D28 /* RecycleConnect_IOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecycleConnect_IOSApp.swift; sourceTree = "<group>"; };
 		BB8D996D2B16337A00530D28 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -85,6 +99,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6AB4DDF12B166468005ABB67 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				6AB4DDEF2B16641E005ABB67 /* UserViewModel.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		6AB4DDF22B166482005ABB67 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				6AB4DDF32B16649F005ABB67 /* UserModel.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		6AB4DDF52B16655A005ABB67 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				6AB4DDF62B166591005ABB67 /* UserService.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		6AC3B29C2B1648F600F7D64E /* User */ = {
+			isa = PBXGroup;
+			children = (
+				6AB4DDEA2B164D5C005ABB67 /* signIn.swift */,
+				6AB4DDEC2B1654F6005ABB67 /* SignUp.swift */,
+				6AB4DDF82B166C8F005ABB67 /* SignUpUser.swift */,
+				6AB4DDFA2B166CA3005ABB67 /* SignUpOrganisation.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
 		BB8D995F2B16337A00530D28 = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +200,7 @@
 		BBF011712B163D3900D1287A /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				6AB4DDF52B16655A005ABB67 /* User */,
 				BBF0117A2B163DCF00D1287A /* Events */,
 			);
 			path = Services;
@@ -167,6 +217,7 @@
 		BBF011732B163D6600D1287A /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				6AB4DDF12B166468005ABB67 /* User */,
 				BBF011792B163DC800D1287A /* Events */,
 			);
 			path = ViewModels;
@@ -175,6 +226,7 @@
 		BBF011742B163D7100D1287A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				6AC3B29C2B1648F600F7D64E /* User */,
 				BBF011782B163DC400D1287A /* Events */,
 			);
 			path = Views;
@@ -183,6 +235,7 @@
 		BBF011752B163D8200D1287A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				6AB4DDF22B166482005ABB67 /* User */,
 				BBF011772B163DBB00D1287A /* Events */,
 			);
 			path = Models;
@@ -350,11 +403,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6AB4DDF72B166591005ABB67 /* UserService.swift in Sources */,
 				BB8D99752B16337B00530D28 /* Persistence.swift in Sources */,
+				6AB4DDF02B16641E005ABB67 /* UserViewModel.swift in Sources */,
 				BB8D996E2B16337A00530D28 /* ContentView.swift in Sources */,
 				BBF011842B163E8900D1287A /* Test.swift in Sources */,
+				6AB4DDED2B1654F6005ABB67 /* SignUp.swift in Sources */,
+				6AB4DDF42B16649F005ABB67 /* UserModel.swift in Sources */,
+				6AB4DDFB2B166CA3005ABB67 /* SignUpOrganisation.swift in Sources */,
+				6AB4DDEB2B164D5C005ABB67 /* signIn.swift in Sources */,
 				BBF0117C2B163DDF00D1287A /* Fonts.swift in Sources */,
 				BBF0117E2B163E1200D1287A /* TestServices.swift in Sources */,
+				6AB4DDF92B166C8F005ABB67 /* SignUpUser.swift in Sources */,
 				BBF011822B163E7200D1287A /* TestView.swift in Sources */,
 				BBF011802B163E2A00D1287A /* TestViewModel.swift in Sources */,
 				BB8D99782B16337B00530D28 /* RecycleConnect_IOS.xcdatamodeld in Sources */,
