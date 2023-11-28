@@ -1,0 +1,608 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BB8D996C2B16337A00530D28 /* RecycleConnect_IOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8D996B2B16337A00530D28 /* RecycleConnect_IOSApp.swift */; };
+		BB8D996E2B16337A00530D28 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8D996D2B16337A00530D28 /* ContentView.swift */; };
+		BB8D99702B16337B00530D28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB8D996F2B16337B00530D28 /* Assets.xcassets */; };
+		BB8D99732B16337B00530D28 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB8D99722B16337B00530D28 /* Preview Assets.xcassets */; };
+		BB8D99752B16337B00530D28 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8D99742B16337B00530D28 /* Persistence.swift */; };
+		BB8D99782B16337B00530D28 /* RecycleConnect_IOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BB8D99762B16337B00530D28 /* RecycleConnect_IOS.xcdatamodeld */; };
+		BB8D99822B16337B00530D28 /* RecycleConnect_IOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8D99812B16337B00530D28 /* RecycleConnect_IOSTests.swift */; };
+		BB8D998C2B16337B00530D28 /* RecycleConnect_IOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8D998B2B16337B00530D28 /* RecycleConnect_IOSUITests.swift */; };
+		BB8D998E2B16337B00530D28 /* RecycleConnect_IOSUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8D998D2B16337B00530D28 /* RecycleConnect_IOSUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BB8D997E2B16337B00530D28 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BB8D99602B16337A00530D28 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BB8D99672B16337A00530D28;
+			remoteInfo = RecycleConnect_IOS;
+		};
+		BB8D99882B16337B00530D28 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BB8D99602B16337A00530D28 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BB8D99672B16337A00530D28;
+			remoteInfo = RecycleConnect_IOS;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		BB8D99682B16337A00530D28 /* RecycleConnect_IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecycleConnect_IOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB8D996B2B16337A00530D28 /* RecycleConnect_IOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecycleConnect_IOSApp.swift; sourceTree = "<group>"; };
+		BB8D996D2B16337A00530D28 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		BB8D996F2B16337B00530D28 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BB8D99722B16337B00530D28 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		BB8D99742B16337B00530D28 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		BB8D99772B16337B00530D28 /* RecycleConnect_IOS.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RecycleConnect_IOS.xcdatamodel; sourceTree = "<group>"; };
+		BB8D997D2B16337B00530D28 /* RecycleConnect_IOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecycleConnect_IOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB8D99812B16337B00530D28 /* RecycleConnect_IOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecycleConnect_IOSTests.swift; sourceTree = "<group>"; };
+		BB8D99872B16337B00530D28 /* RecycleConnect_IOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecycleConnect_IOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB8D998B2B16337B00530D28 /* RecycleConnect_IOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecycleConnect_IOSUITests.swift; sourceTree = "<group>"; };
+		BB8D998D2B16337B00530D28 /* RecycleConnect_IOSUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecycleConnect_IOSUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BB8D99652B16337A00530D28 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB8D997A2B16337B00530D28 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB8D99842B16337B00530D28 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BB8D995F2B16337A00530D28 = {
+			isa = PBXGroup;
+			children = (
+				BB8D996A2B16337A00530D28 /* RecycleConnect_IOS */,
+				BB8D99802B16337B00530D28 /* RecycleConnect_IOSTests */,
+				BB8D998A2B16337B00530D28 /* RecycleConnect_IOSUITests */,
+				BB8D99692B16337A00530D28 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BB8D99692B16337A00530D28 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BB8D99682B16337A00530D28 /* RecycleConnect_IOS.app */,
+				BB8D997D2B16337B00530D28 /* RecycleConnect_IOSTests.xctest */,
+				BB8D99872B16337B00530D28 /* RecycleConnect_IOSUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BB8D996A2B16337A00530D28 /* RecycleConnect_IOS */ = {
+			isa = PBXGroup;
+			children = (
+				BB8D996B2B16337A00530D28 /* RecycleConnect_IOSApp.swift */,
+				BB8D996D2B16337A00530D28 /* ContentView.swift */,
+				BB8D996F2B16337B00530D28 /* Assets.xcassets */,
+				BB8D99742B16337B00530D28 /* Persistence.swift */,
+				BB8D99762B16337B00530D28 /* RecycleConnect_IOS.xcdatamodeld */,
+				BB8D99712B16337B00530D28 /* Preview Content */,
+			);
+			path = RecycleConnect_IOS;
+			sourceTree = "<group>";
+		};
+		BB8D99712B16337B00530D28 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				BB8D99722B16337B00530D28 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		BB8D99802B16337B00530D28 /* RecycleConnect_IOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				BB8D99812B16337B00530D28 /* RecycleConnect_IOSTests.swift */,
+			);
+			path = RecycleConnect_IOSTests;
+			sourceTree = "<group>";
+		};
+		BB8D998A2B16337B00530D28 /* RecycleConnect_IOSUITests */ = {
+			isa = PBXGroup;
+			children = (
+				BB8D998B2B16337B00530D28 /* RecycleConnect_IOSUITests.swift */,
+				BB8D998D2B16337B00530D28 /* RecycleConnect_IOSUITestsLaunchTests.swift */,
+			);
+			path = RecycleConnect_IOSUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BB8D99672B16337A00530D28 /* RecycleConnect_IOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BB8D99912B16337B00530D28 /* Build configuration list for PBXNativeTarget "RecycleConnect_IOS" */;
+			buildPhases = (
+				BB8D99642B16337A00530D28 /* Sources */,
+				BB8D99652B16337A00530D28 /* Frameworks */,
+				BB8D99662B16337A00530D28 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RecycleConnect_IOS;
+			productName = RecycleConnect_IOS;
+			productReference = BB8D99682B16337A00530D28 /* RecycleConnect_IOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BB8D997C2B16337B00530D28 /* RecycleConnect_IOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BB8D99942B16337B00530D28 /* Build configuration list for PBXNativeTarget "RecycleConnect_IOSTests" */;
+			buildPhases = (
+				BB8D99792B16337B00530D28 /* Sources */,
+				BB8D997A2B16337B00530D28 /* Frameworks */,
+				BB8D997B2B16337B00530D28 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BB8D997F2B16337B00530D28 /* PBXTargetDependency */,
+			);
+			name = RecycleConnect_IOSTests;
+			productName = RecycleConnect_IOSTests;
+			productReference = BB8D997D2B16337B00530D28 /* RecycleConnect_IOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		BB8D99862B16337B00530D28 /* RecycleConnect_IOSUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BB8D99972B16337B00530D28 /* Build configuration list for PBXNativeTarget "RecycleConnect_IOSUITests" */;
+			buildPhases = (
+				BB8D99832B16337B00530D28 /* Sources */,
+				BB8D99842B16337B00530D28 /* Frameworks */,
+				BB8D99852B16337B00530D28 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BB8D99892B16337B00530D28 /* PBXTargetDependency */,
+			);
+			name = RecycleConnect_IOSUITests;
+			productName = RecycleConnect_IOSUITests;
+			productReference = BB8D99872B16337B00530D28 /* RecycleConnect_IOSUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BB8D99602B16337A00530D28 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					BB8D99672B16337A00530D28 = {
+						CreatedOnToolsVersion = 15.0.1;
+					};
+					BB8D997C2B16337B00530D28 = {
+						CreatedOnToolsVersion = 15.0.1;
+						TestTargetID = BB8D99672B16337A00530D28;
+					};
+					BB8D99862B16337B00530D28 = {
+						CreatedOnToolsVersion = 15.0.1;
+						TestTargetID = BB8D99672B16337A00530D28;
+					};
+				};
+			};
+			buildConfigurationList = BB8D99632B16337A00530D28 /* Build configuration list for PBXProject "RecycleConnect_IOS" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BB8D995F2B16337A00530D28;
+			productRefGroup = BB8D99692B16337A00530D28 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BB8D99672B16337A00530D28 /* RecycleConnect_IOS */,
+				BB8D997C2B16337B00530D28 /* RecycleConnect_IOSTests */,
+				BB8D99862B16337B00530D28 /* RecycleConnect_IOSUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BB8D99662B16337A00530D28 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB8D99732B16337B00530D28 /* Preview Assets.xcassets in Resources */,
+				BB8D99702B16337B00530D28 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB8D997B2B16337B00530D28 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB8D99852B16337B00530D28 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BB8D99642B16337A00530D28 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB8D99752B16337B00530D28 /* Persistence.swift in Sources */,
+				BB8D996E2B16337A00530D28 /* ContentView.swift in Sources */,
+				BB8D99782B16337B00530D28 /* RecycleConnect_IOS.xcdatamodeld in Sources */,
+				BB8D996C2B16337A00530D28 /* RecycleConnect_IOSApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB8D99792B16337B00530D28 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB8D99822B16337B00530D28 /* RecycleConnect_IOSTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB8D99832B16337B00530D28 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB8D998C2B16337B00530D28 /* RecycleConnect_IOSUITests.swift in Sources */,
+				BB8D998E2B16337B00530D28 /* RecycleConnect_IOSUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BB8D997F2B16337B00530D28 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BB8D99672B16337A00530D28 /* RecycleConnect_IOS */;
+			targetProxy = BB8D997E2B16337B00530D28 /* PBXContainerItemProxy */;
+		};
+		BB8D99892B16337B00530D28 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BB8D99672B16337A00530D28 /* RecycleConnect_IOS */;
+			targetProxy = BB8D99882B16337B00530D28 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		BB8D998F2B16337B00530D28 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		BB8D99902B16337B00530D28 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BB8D99922B16337B00530D28 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"RecycleConnect_IOS/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "pdm.recycleconnect.RecycleConnect-IOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BB8D99932B16337B00530D28 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"RecycleConnect_IOS/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "pdm.recycleconnect.RecycleConnect-IOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		BB8D99952B16337B00530D28 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "pdm.recycleconnect.RecycleConnect-IOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RecycleConnect_IOS.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RecycleConnect_IOS";
+			};
+			name = Debug;
+		};
+		BB8D99962B16337B00530D28 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "pdm.recycleconnect.RecycleConnect-IOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RecycleConnect_IOS.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RecycleConnect_IOS";
+			};
+			name = Release;
+		};
+		BB8D99982B16337B00530D28 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "pdm.recycleconnect.RecycleConnect-IOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = RecycleConnect_IOS;
+			};
+			name = Debug;
+		};
+		BB8D99992B16337B00530D28 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "pdm.recycleconnect.RecycleConnect-IOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = RecycleConnect_IOS;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BB8D99632B16337A00530D28 /* Build configuration list for PBXProject "RecycleConnect_IOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB8D998F2B16337B00530D28 /* Debug */,
+				BB8D99902B16337B00530D28 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BB8D99912B16337B00530D28 /* Build configuration list for PBXNativeTarget "RecycleConnect_IOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB8D99922B16337B00530D28 /* Debug */,
+				BB8D99932B16337B00530D28 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BB8D99942B16337B00530D28 /* Build configuration list for PBXNativeTarget "RecycleConnect_IOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB8D99952B16337B00530D28 /* Debug */,
+				BB8D99962B16337B00530D28 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BB8D99972B16337B00530D28 /* Build configuration list for PBXNativeTarget "RecycleConnect_IOSUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB8D99982B16337B00530D28 /* Debug */,
+				BB8D99992B16337B00530D28 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		BB8D99762B16337B00530D28 /* RecycleConnect_IOS.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BB8D99772B16337B00530D28 /* RecycleConnect_IOS.xcdatamodel */,
+			);
+			currentVersion = BB8D99772B16337B00530D28 /* RecycleConnect_IOS.xcdatamodel */;
+			path = RecycleConnect_IOS.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = BB8D99602B16337A00530D28 /* Project object */;
+}
