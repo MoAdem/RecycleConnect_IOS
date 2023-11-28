@@ -8,10 +8,65 @@
 import SwiftUI
 
 struct categorieform: View {
+    @State private var NomCategorie: String = ""
+    @State private var NbreTotalArticles: String = ""
+    @State private var PhotoCategorie: UIImage?
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack {
+            Spacer()
+            VStack {
+                HStack {
+                    Spacer()
+                    if PhotoCategorie != nil {
+                        Image(uiImage: PhotoCategorie!)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 200, height: 200)
+                            .padding(.bottom , 50)
+                        
+                    } else {
+                        Image("addarticle")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 200, height: 200)
+                            .padding(.bottom , 50)
+                    }
+                    Spacer()
+                }
+                .onTapGesture {
+                    // Present the image picker here
+                }
+
+                TextField("Nom de la catégorie", text: $NomCategorie)
+                    .padding()
+                    .overlay(RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color(red: 0.05, green: 0.54, blue: 0.48), lineWidth: 2))
+                    .padding(.bottom , 10)
+                
+                TextField("Nombre total des articles", text: $NbreTotalArticles)
+                    .padding()
+                    .overlay(RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color(red: 0.05, green: 0.54, blue: 0.48), lineWidth: 2))
+                    .padding(.bottom , 50)
+
+                Button(action: {
+                    // Add your action here
+                }) {
+                    Text("Valider")
+                        .foregroundColor(.white)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color(red: 0.05, green: 0.54, blue: 0.48))
+                        .cornerRadius(10)
+                }
+                .padding(.top , 20)
+            }
+            Spacer()
+        }
     }
 }
+
 
 #Preview {
     categorieform()
