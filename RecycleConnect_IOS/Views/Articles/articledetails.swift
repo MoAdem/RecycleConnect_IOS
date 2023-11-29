@@ -33,7 +33,6 @@ struct articledetails: View {
                     .padding(.bottom, 50)
                 
                 Button(action: {
-                    // Request code
                 }) {
                     Text("Réserver")
                         .font(.title3)
@@ -45,7 +44,6 @@ struct articledetails: View {
                 }
                 .padding(.bottom, 100)
             }
-            
         }
     }
 
