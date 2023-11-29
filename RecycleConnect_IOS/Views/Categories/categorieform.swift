@@ -22,14 +22,14 @@ struct categorieform: View {
                         Image(uiImage: PhotoCategorie!)
                             .resizable()
                             .aspectRatio(contentMode: .fill)
-                            .frame(width: 200, height: 200)
+                            .frame(width: 300, height: 300)
                             .padding(.bottom , 50)
                         
                     } else {
                         Image("addarticle")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
-                            .frame(width: 200, height: 200)
+                            .frame(width: 300, height: 300)
                             .padding(.bottom , 50)
                     }
                     Spacer()

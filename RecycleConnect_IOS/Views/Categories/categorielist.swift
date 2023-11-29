@@ -22,6 +22,8 @@ struct categorielist: View {
                         Text("Meubles")
                             .font(.headline)
                             .foregroundColor(.primary)
+                            .padding(.top , 20)
+                            .padding(.bottom , -20)
                     }
                     .padding()
                     .background(Color(.white))
@@ -39,6 +41,8 @@ struct categorielist: View {
                         Text("Livres")
                             .font(.headline)
                             .foregroundColor(.primary)
+                            .padding(.top , 20)
+                            .padding(.bottom , -20)
                     }
                     .padding()
                     .background(Color(.white))
@@ -55,6 +59,8 @@ struct categorielist: View {
                         Text("Cuisine")
                             .font(.headline)
                             .foregroundColor(.primary)
+                            .padding(.top , 20)
+                            .padding(.bottom , -20)
                     }
                     .padding()
                     .background(Color(.white))
