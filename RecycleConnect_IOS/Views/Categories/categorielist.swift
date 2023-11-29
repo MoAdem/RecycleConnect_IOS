@@ -67,6 +67,8 @@ struct categorielist: View {
                     .cornerRadius(10)
                 }
                 
+                
+                
             }
     
                     .toolbar {
