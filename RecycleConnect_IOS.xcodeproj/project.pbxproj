@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E75D71B2B167C0E001D2D23 /* PC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E75D71A2B167C0E001D2D23 /* PC.swift */; };
+		9E75D71D2B167C2B001D2D23 /* ReservationPc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E75D71C2B167C2B001D2D23 /* ReservationPc.swift */; };
+		9E75D71F2B167CC0001D2D23 /* PcCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E75D71E2B167CC0001D2D23 /* PcCardView.swift */; };
+		9E75D7212B167D07001D2D23 /* PcListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E75D7202B167D07001D2D23 /* PcListView.swift */; };
+		9E75D7232B167D5C001D2D23 /* ReservationPcCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E75D7222B167D5C001D2D23 /* ReservationPcCardView.swift */; };
+		9E75D7252B167D8E001D2D23 /* ReservationPcListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E75D7242B167D8E001D2D23 /* ReservationPcListView.swift */; };
+		9E75D7272B167DDE001D2D23 /* Livraison.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E75D7262B167DDE001D2D23 /* Livraison.swift */; };
+		9E75D7292B167E19001D2D23 /* FormulaireView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E75D7282B167E19001D2D23 /* FormulaireView.swift */; };
+		9E75D72B2B167E9F001D2D23 /* DetailsLivCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E75D72A2B167E9E001D2D23 /* DetailsLivCardView.swift */; };
+		9E75D72D2B167F40001D2D23 /* DetailsLivListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E75D72C2B167F40001D2D23 /* DetailsLivListView.swift */; };
 		BB8D996C2B16337A00530D28 /* RecycleConnect_IOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8D996B2B16337A00530D28 /* RecycleConnect_IOSApp.swift */; };
 		BB8D996E2B16337A00530D28 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8D996D2B16337A00530D28 /* ContentView.swift */; };
 		BB8D99702B16337B00530D28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB8D996F2B16337B00530D28 /* Assets.xcassets */; };
@@ -41,6 +51,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9E75D71A2B167C0E001D2D23 /* PC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PC.swift; sourceTree = "<group>"; };
+		9E75D71C2B167C2B001D2D23 /* ReservationPc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationPc.swift; sourceTree = "<group>"; };
+		9E75D71E2B167CC0001D2D23 /* PcCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PcCardView.swift; sourceTree = "<group>"; };
+		9E75D7202B167D07001D2D23 /* PcListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PcListView.swift; sourceTree = "<group>"; };
+		9E75D7222B167D5C001D2D23 /* ReservationPcCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationPcCardView.swift; sourceTree = "<group>"; };
+		9E75D7242B167D8E001D2D23 /* ReservationPcListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationPcListView.swift; sourceTree = "<group>"; };
+		9E75D7262B167DDE001D2D23 /* Livraison.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Livraison.swift; sourceTree = "<group>"; };
+		9E75D7282B167E19001D2D23 /* FormulaireView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaireView.swift; sourceTree = "<group>"; };
+		9E75D72A2B167E9E001D2D23 /* DetailsLivCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsLivCardView.swift; sourceTree = "<group>"; };
+		9E75D72C2B167F40001D2D23 /* DetailsLivListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsLivListView.swift; sourceTree = "<group>"; };
 		BB8D99682B16337A00530D28 /* RecycleConnect_IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecycleConnect_IOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB8D996B2B16337A00530D28 /* RecycleConnect_IOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecycleConnect_IOSApp.swift; sourceTree = "<group>"; };
 		BB8D996D2B16337A00530D28 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -85,6 +105,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9E75D7172B167A9E001D2D23 /* GestionPc */ = {
+			isa = PBXGroup;
+			children = (
+				9E75D71E2B167CC0001D2D23 /* PcCardView.swift */,
+				9E75D7202B167D07001D2D23 /* PcListView.swift */,
+				9E75D7222B167D5C001D2D23 /* ReservationPcCardView.swift */,
+				9E75D7242B167D8E001D2D23 /* ReservationPcListView.swift */,
+				9E75D7282B167E19001D2D23 /* FormulaireView.swift */,
+				9E75D72A2B167E9E001D2D23 /* DetailsLivCardView.swift */,
+				9E75D72C2B167F40001D2D23 /* DetailsLivListView.swift */,
+			);
+			path = GestionPc;
+			sourceTree = "<group>";
+		};
+		9E75D7192B167B98001D2D23 /* GestionPc */ = {
+			isa = PBXGroup;
+			children = (
+				9E75D71A2B167C0E001D2D23 /* PC.swift */,
+				9E75D71C2B167C2B001D2D23 /* ReservationPc.swift */,
+				9E75D7262B167DDE001D2D23 /* Livraison.swift */,
+			);
+			path = GestionPc;
+			sourceTree = "<group>";
+		};
 		BB8D995F2B16337A00530D28 = {
 			isa = PBXGroup;
 			children = (
@@ -175,6 +219,7 @@
 		BBF011742B163D7100D1287A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9E75D7172B167A9E001D2D23 /* GestionPc */,
 				BBF011782B163DC400D1287A /* Events */,
 			);
 			path = Views;
@@ -183,6 +228,7 @@
 		BBF011752B163D8200D1287A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				9E75D7192B167B98001D2D23 /* GestionPc */,
 				BBF011772B163DBB00D1287A /* Events */,
 			);
 			path = Models;
@@ -351,14 +397,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB8D99752B16337B00530D28 /* Persistence.swift in Sources */,
+				9E75D7292B167E19001D2D23 /* FormulaireView.swift in Sources */,
+				9E75D7272B167DDE001D2D23 /* Livraison.swift in Sources */,
 				BB8D996E2B16337A00530D28 /* ContentView.swift in Sources */,
 				BBF011842B163E8900D1287A /* Test.swift in Sources */,
 				BBF0117C2B163DDF00D1287A /* Fonts.swift in Sources */,
+				9E75D7252B167D8E001D2D23 /* ReservationPcListView.swift in Sources */,
 				BBF0117E2B163E1200D1287A /* TestServices.swift in Sources */,
 				BBF011822B163E7200D1287A /* TestView.swift in Sources */,
+				9E75D7232B167D5C001D2D23 /* ReservationPcCardView.swift in Sources */,
+				9E75D71D2B167C2B001D2D23 /* ReservationPc.swift in Sources */,
 				BBF011802B163E2A00D1287A /* TestViewModel.swift in Sources */,
 				BB8D99782B16337B00530D28 /* RecycleConnect_IOS.xcdatamodeld in Sources */,
+				9E75D71B2B167C0E001D2D23 /* PC.swift in Sources */,
+				9E75D7212B167D07001D2D23 /* PcListView.swift in Sources */,
+				9E75D72B2B167E9F001D2D23 /* DetailsLivCardView.swift in Sources */,
+				9E75D72D2B167F40001D2D23 /* DetailsLivListView.swift in Sources */,
 				BB8D996C2B16337A00530D28 /* RecycleConnect_IOSApp.swift in Sources */,
+				9E75D71F2B167CC0001D2D23 /* PcCardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
