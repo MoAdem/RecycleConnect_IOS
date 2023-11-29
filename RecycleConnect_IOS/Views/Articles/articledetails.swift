@@ -47,7 +47,6 @@ struct articledetails: View {
             }
             
         }
-        .edgesIgnoringSafeArea(.all)
     }
 
 }

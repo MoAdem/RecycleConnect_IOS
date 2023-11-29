@@ -41,25 +41,25 @@ struct articleform: View {
                 }
 
                 TextField("Nom de l'article", text: $NomArticle)
-                    .padding()
+                    .padding(10)
                     .overlay(RoundedRectangle(cornerRadius: 10)
                     .stroke(Color(red: 0.05, green: 0.54, blue: 0.48), lineWidth: 2))
                     .padding(.bottom , 10)
                 
                 TextField("Description de l'article", text: $DescriptionArticle)
-                    .padding()
+                    .padding(10)
                     .overlay(RoundedRectangle(cornerRadius: 10)
-                    .stroke(Color(red: 0.05, green: 0.54, blue: 0.48), lineWidth: 2))
+                        .stroke(Color(red: 0.05, green: 0.54, blue: 0.48), lineWidth: 2))
                     .padding(.bottom , 10)
 
                 TextField("Etat de l'article", text: $EtatArticle)
-                    .padding()
+                    .padding(10)
                     .overlay(RoundedRectangle(cornerRadius: 10)
                     .stroke(Color(red: 0.05, green: 0.54, blue: 0.48), lineWidth: 2))
                     .padding(.bottom , 10)
                 
                 TextField("Catégorie de l'article", text: $CategorieArticle)
-                    .padding()
+                    .padding(10)
                     .overlay(RoundedRectangle(cornerRadius: 10)
                     .stroke(Color(red: 0.05, green: 0.54, blue: 0.48), lineWidth: 2))
                     .padding(.bottom , 20)

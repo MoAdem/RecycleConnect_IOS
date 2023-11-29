@@ -39,13 +39,13 @@ struct categorieform: View {
                 }
 
                 TextField("Nom de la catégorie", text: $NomCategorie)
-                    .padding()
+                    .padding(10)
                     .overlay(RoundedRectangle(cornerRadius: 10)
                     .stroke(Color(red: 0.05, green: 0.54, blue: 0.48), lineWidth: 2))
                     .padding(.bottom , 10)
                 
                 TextField("Nombre total des articles", text: $NbreTotalArticles)
-                    .padding()
+                    .padding(10)
                     .overlay(RoundedRectangle(cornerRadius: 10)
                     .stroke(Color(red: 0.05, green: 0.54, blue: 0.48), lineWidth: 2))
                     .padding(.bottom , 50)
