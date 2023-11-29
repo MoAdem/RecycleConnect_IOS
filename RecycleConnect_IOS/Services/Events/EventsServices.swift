@@ -6,8 +6,8 @@
 //
 
 import Foundation
-final class NetworkManager {
-    static let shared = NetworkManager()
+final class EventsServices {
+    static let shared = EventsServices()
     
     static let baseUrl = "https://recycleconnect.onrender.com/api/events"
     static let eventsUrl = baseUrl + "api/events"
@@ -15,7 +15,7 @@ final class NetworkManager {
     private init() {}
     
     func getEvents(completion: @escaping (Result<[Events], EVError>) -> Void) {
-        guard let url = URL(string: NetworkManager.baseUrl) else {
+        guard let url = URL(string: EventsServices.baseUrl) else {
             completion(.failure(.invalidURL))
             return
         }

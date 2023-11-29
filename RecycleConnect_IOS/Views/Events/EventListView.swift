@@ -32,7 +32,7 @@ struct EventListView: View {
         }
     }
     func getEvents() {
-        NetworkManager.shared.getEvents { result in
+        EventsServices.shared.getEvents { result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let events):

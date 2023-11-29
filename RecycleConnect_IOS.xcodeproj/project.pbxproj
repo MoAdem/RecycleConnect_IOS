@@ -23,7 +23,7 @@
 		BBB589FB2B1769A2005FACDC /* AppTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB589FA2B1769A2005FACDC /* AppTabView.swift */; };
 		BBB589FD2B1769C5005FACDC /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB589FC2B1769C5005FACDC /* HomeView.swift */; };
 		BBB589FF2B1769EF005FACDC /* EventListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB589FE2B1769EF005FACDC /* EventListCell.swift */; };
-		BBB58A012B176A22005FACDC /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB58A002B176A22005FACDC /* NetworkManager.swift */; };
+		BBB58A012B176A22005FACDC /* EventsServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB58A002B176A22005FACDC /* EventsServices.swift */; };
 		BBB58A032B176A3F005FACDC /* EVError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB58A022B176A3F005FACDC /* EVError.swift */; };
 		BBB58A052B176A57005FACDC /* XDismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB58A042B176A57005FACDC /* XDismissButton.swift */; };
 		BBF0117C2B163DDF00D1287A /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF0117B2B163DDF00D1287A /* Fonts.swift */; };
@@ -70,7 +70,7 @@
 		BBB589FA2B1769A2005FACDC /* AppTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabView.swift; sourceTree = "<group>"; };
 		BBB589FC2B1769C5005FACDC /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		BBB589FE2B1769EF005FACDC /* EventListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListCell.swift; sourceTree = "<group>"; };
-		BBB58A002B176A22005FACDC /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		BBB58A002B176A22005FACDC /* EventsServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsServices.swift; sourceTree = "<group>"; };
 		BBB58A022B176A3F005FACDC /* EVError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EVError.swift; sourceTree = "<group>"; };
 		BBB58A042B176A57005FACDC /* XDismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XDismissButton.swift; sourceTree = "<group>"; };
 		BBF0117B2B163DDF00D1287A /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
@@ -244,7 +244,7 @@
 			isa = PBXGroup;
 			children = (
 				BBF0117D2B163E1200D1287A /* TestServices.swift */,
-				BBB58A002B176A22005FACDC /* NetworkManager.swift */,
+				BBB58A002B176A22005FACDC /* EventsServices.swift */,
 				BBB58A022B176A3F005FACDC /* EVError.swift */,
 			);
 			path = Events;
@@ -390,7 +390,7 @@
 				BBF0117C2B163DDF00D1287A /* Fonts.swift in Sources */,
 				BBB589F32B17685A005FACDC /* Events.swift in Sources */,
 				BBF0117E2B163E1200D1287A /* TestServices.swift in Sources */,
-				BBB58A012B176A22005FACDC /* NetworkManager.swift in Sources */,
+				BBB58A012B176A22005FACDC /* EventsServices.swift in Sources */,
 				BBB58A032B176A3F005FACDC /* EVError.swift in Sources */,
 				BBF011822B163E7200D1287A /* TestView.swift in Sources */,
 				BBF011802B163E2A00D1287A /* TestViewModel.swift in Sources */,
