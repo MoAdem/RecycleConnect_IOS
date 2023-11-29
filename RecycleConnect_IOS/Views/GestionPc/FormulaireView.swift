@@ -250,7 +250,7 @@ struct LivraisonFormView: View {
                         .padding(.top, 16)
 
                     VStack(alignment: .leading, spacing: 8) {
-                        CustomTextField(placeholder: "Nom de l'article", text: $nomArticle)
+                        CustomTextField(placeholder: "Nom de l'article", text: $nomArticle).foregroundColor(Color.green)
                         CustomTextField(placeholder: "Nom du client", text: $nomClient)
                         CustomTextField(placeholder: "Adresse e-mail du client", text: $addressMailClient)
                         CustomTextField(placeholder: "Numéro du client", text: $numeroClient)
