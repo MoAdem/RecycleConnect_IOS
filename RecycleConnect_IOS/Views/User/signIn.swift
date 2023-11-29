@@ -8,9 +8,10 @@ enum ViewStack {
 struct SignInView: View {
     @State private var username = ""
     @State private var password = ""
+    @State private var showHomePage = false
 
     @State private var presentNextView = false
-    @State private var nextView: String = ""
+    @State private var nextView: ViewStack = .SignUp
 
     
     var body: some View {
@@ -79,42 +80,40 @@ struct SignInView: View {
                               .font(.system(size: 18))
                           
                           Button(action: {
-                            nextView = "SignUp"
-                              presentNextView = true
-                               }) {
-                                 Text("Créer un compte")
+                                             nextView = .SignUp
+                                             presentNextView = true
+                                         }) {
+                                             Text("Créer un compte")
+                                                 .foregroundColor(Color(Fonts.darkGreen))
+                                                 .fontWeight(.semibold)
+                                                 .font(.system(size: 18))
+                                         }
+                                     }
+                                     .padding(.bottom, 12)
+                                Button(action: {
+                                 nextView = .ResetPassword
+                                  presentNextView = true
+                                   }) {
+                                 Text("Mot de passe oublié ?")
                                 .foregroundColor(Color(Fonts.darkGreen))
                                 .fontWeight(.semibold)
                                 .font(.system(size: 18))
-                                                                    }
-                                                                }
-                                     .padding(.bottom, 12)
-                                          Button(action: {
-                                                  nextView = "ResetPassword"
-                                                  presentNextView = true
-                                                  }) {
-                                                  Text("Mot de passe oublié ?")
-                                                  .foregroundColor(Color(Fonts.darkGreen))
-                                                  .fontWeight(.semibold)
-                                                  .font(.system(size: 18))
-                                                                              
-                                                      }                                   
-                                         Spacer()
+                                                                   
+                                   }
+                                     Spacer()
                                  }
-                                                .background(Color.white)
-                                                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                                .ignoresSafeArea()
-                                                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                                .fullScreenCover(isPresented: $presentNextView) {
-                                                    if nextView == "SignUp" {
-                                                        SignUpView()
-                                                    }else if nextView == "ResetPassword" {
-                                                        ResetPassword()
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    
+                                 .background(Color.white)
+                                 .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                 .ignoresSafeArea()
+                                 .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                 .fullScreenCover(isPresented: $presentNextView) {
+                                     if nextView == .SignUp {
+                                         SignUpView()
+                                     }else if nextView == .ResetPassword {
+                                         ResetPassword()
+                                     }                                 }
+                             }
+                         }
 #Preview {
     SignInView()
 }
