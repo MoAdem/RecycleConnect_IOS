@@ -12,6 +12,7 @@
 		0C0D9CD62B163FFC00E4B8A4 /* articleform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0D9CD52B163FFC00E4B8A4 /* articleform.swift */; };
 		0C0D9CD82B165F9800E4B8A4 /* categorielist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0D9CD72B165F9800E4B8A4 /* categorielist.swift */; };
 		0C0D9CDA2B165FA800E4B8A4 /* categorieform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0D9CD92B165FA800E4B8A4 /* categorieform.swift */; };
+		0CFD28862B17C2B3000DF42D /* articlereview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CFD28852B17C2B3000DF42D /* articlereview.swift */; };
 		BB8D996C2B16337A00530D28 /* RecycleConnect_IOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8D996B2B16337A00530D28 /* RecycleConnect_IOSApp.swift */; };
 		BB8D996E2B16337A00530D28 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8D996D2B16337A00530D28 /* ContentView.swift */; };
 		BB8D99702B16337B00530D28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB8D996F2B16337B00530D28 /* Assets.xcassets */; };
@@ -51,6 +52,7 @@
 		0C0D9CD52B163FFC00E4B8A4 /* articleform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = articleform.swift; sourceTree = "<group>"; };
 		0C0D9CD72B165F9800E4B8A4 /* categorielist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = categorielist.swift; sourceTree = "<group>"; };
 		0C0D9CD92B165FA800E4B8A4 /* categorieform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = categorieform.swift; sourceTree = "<group>"; };
+		0CFD28852B17C2B3000DF42D /* articlereview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = articlereview.swift; sourceTree = "<group>"; };
 		BB8D99682B16337A00530D28 /* RecycleConnect_IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecycleConnect_IOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB8D996B2B16337A00530D28 /* RecycleConnect_IOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecycleConnect_IOSApp.swift; sourceTree = "<group>"; };
 		BB8D996D2B16337A00530D28 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 				0C0D9CD12B163FD900E4B8A4 /* articlelist.swift */,
 				0C0D9CD32B163FEE00E4B8A4 /* articledetails.swift */,
 				0C0D9CD52B163FFC00E4B8A4 /* articleform.swift */,
+				0CFD28852B17C2B3000DF42D /* articlereview.swift */,
 			);
 			path = Articles;
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 			files = (
 				0C0D9CD62B163FFC00E4B8A4 /* articleform.swift in Sources */,
 				BB8D99752B16337B00530D28 /* Persistence.swift in Sources */,
+				0CFD28862B17C2B3000DF42D /* articlereview.swift in Sources */,
 				BB8D996E2B16337A00530D28 /* ContentView.swift in Sources */,
 				BBF011842B163E8900D1287A /* Test.swift in Sources */,
 				BBF0117C2B163DDF00D1287A /* Fonts.swift in Sources */,
