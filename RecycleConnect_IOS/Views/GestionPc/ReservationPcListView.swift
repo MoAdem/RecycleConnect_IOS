@@ -44,8 +44,8 @@ struct ReservationPcListView: View {
                 ReservationPcCardView(reservationPc: reservationPc)
                     .listRowInsets(EdgeInsets(top: 5, leading: 5, bottom: 4, trailing: 4))
             }
-            .listStyle(InsetListStyle()) // Apply InsetListStyle
-            .listRowBackground(Color.clear) // Set the background color of List items
+            .listStyle(InsetListStyle())
+            .listRowBackground(Color.clear)  
             .background(
                 Image("background_splash_screen")
                     .resizable()
