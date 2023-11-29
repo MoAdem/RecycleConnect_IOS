@@ -12,7 +12,7 @@ struct AppTabView: View {
 
     var body: some View {
         TabView {
-            HomeView()
+            categorielist()
                 .tabItem {
                     Label("Home", systemImage: "house")
                 }
@@ -20,6 +20,15 @@ struct AppTabView: View {
                 .tabItem {
                     Label("Events", systemImage: "calendar")
                 }
+            ProfileView()
+                .tabItem {
+                    Label("Profile", systemImage: "person.crop.circle")
+                }
+           /* categorielist()
+                .tabItem {
+                    Label("Categories", systemImage: "calendar")
+                }*/
+            
         }
         .accentColor(Color("ColorGreen"))
     }

@@ -13,7 +13,8 @@ struct RecycleConnect_IOSApp: App {
 
     var body: some Scene {
         WindowGroup {
-            AppTabView()
+            SignInView()
+            //AppTabView()
         }
     }
 }
