@@ -16,6 +16,16 @@
 		BB8D99822B16337B00530D28 /* RecycleConnect_IOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8D99812B16337B00530D28 /* RecycleConnect_IOSTests.swift */; };
 		BB8D998C2B16337B00530D28 /* RecycleConnect_IOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8D998B2B16337B00530D28 /* RecycleConnect_IOSUITests.swift */; };
 		BB8D998E2B16337B00530D28 /* RecycleConnect_IOSUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8D998D2B16337B00530D28 /* RecycleConnect_IOSUITestsLaunchTests.swift */; };
+		BBB589F32B17685A005FACDC /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB589F22B17685A005FACDC /* Events.swift */; };
+		BBB589F52B17689B005FACDC /* EventListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB589F42B17689B005FACDC /* EventListView.swift */; };
+		BBB589F72B1768CA005FACDC /* EventCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB589F62B1768CA005FACDC /* EventCard.swift */; };
+		BBB589F92B176919005FACDC /* EventDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB589F82B176919005FACDC /* EventDetailView.swift */; };
+		BBB589FB2B1769A2005FACDC /* AppTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB589FA2B1769A2005FACDC /* AppTabView.swift */; };
+		BBB589FD2B1769C5005FACDC /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB589FC2B1769C5005FACDC /* HomeView.swift */; };
+		BBB589FF2B1769EF005FACDC /* EventListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB589FE2B1769EF005FACDC /* EventListCell.swift */; };
+		BBB58A012B176A22005FACDC /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB58A002B176A22005FACDC /* NetworkManager.swift */; };
+		BBB58A032B176A3F005FACDC /* EVError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB58A022B176A3F005FACDC /* EVError.swift */; };
+		BBB58A052B176A57005FACDC /* XDismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB58A042B176A57005FACDC /* XDismissButton.swift */; };
 		BBF0117C2B163DDF00D1287A /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF0117B2B163DDF00D1287A /* Fonts.swift */; };
 		BBF0117E2B163E1200D1287A /* TestServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF0117D2B163E1200D1287A /* TestServices.swift */; };
 		BBF011802B163E2A00D1287A /* TestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF0117F2B163E2A00D1287A /* TestViewModel.swift */; };
@@ -53,6 +63,16 @@
 		BB8D99872B16337B00530D28 /* RecycleConnect_IOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecycleConnect_IOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB8D998B2B16337B00530D28 /* RecycleConnect_IOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecycleConnect_IOSUITests.swift; sourceTree = "<group>"; };
 		BB8D998D2B16337B00530D28 /* RecycleConnect_IOSUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecycleConnect_IOSUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		BBB589F22B17685A005FACDC /* Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
+		BBB589F42B17689B005FACDC /* EventListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListView.swift; sourceTree = "<group>"; };
+		BBB589F62B1768CA005FACDC /* EventCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCard.swift; sourceTree = "<group>"; };
+		BBB589F82B176919005FACDC /* EventDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailView.swift; sourceTree = "<group>"; };
+		BBB589FA2B1769A2005FACDC /* AppTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabView.swift; sourceTree = "<group>"; };
+		BBB589FC2B1769C5005FACDC /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		BBB589FE2B1769EF005FACDC /* EventListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListCell.swift; sourceTree = "<group>"; };
+		BBB58A002B176A22005FACDC /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		BBB58A022B176A3F005FACDC /* EVError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EVError.swift; sourceTree = "<group>"; };
+		BBB58A042B176A57005FACDC /* XDismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XDismissButton.swift; sourceTree = "<group>"; };
 		BBF0117B2B163DDF00D1287A /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		BBF0117D2B163E1200D1287A /* TestServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestServices.swift; sourceTree = "<group>"; };
 		BBF0117F2B163E2A00D1287A /* TestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewModel.swift; sourceTree = "<group>"; };
@@ -119,6 +139,8 @@
 				BB8D99742B16337B00530D28 /* Persistence.swift */,
 				BB8D99762B16337B00530D28 /* RecycleConnect_IOS.xcdatamodeld */,
 				BB8D99712B16337B00530D28 /* Preview Content */,
+				BBB589FA2B1769A2005FACDC /* AppTabView.swift */,
+				BBB589FC2B1769C5005FACDC /* HomeView.swift */,
 			);
 			path = RecycleConnect_IOS;
 			sourceTree = "<group>";
@@ -192,6 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				BBF011832B163E8900D1287A /* Test.swift */,
+				BBB589F22B17685A005FACDC /* Events.swift */,
 			);
 			path = Events;
 			sourceTree = "<group>";
@@ -200,6 +223,11 @@
 			isa = PBXGroup;
 			children = (
 				BBF011812B163E7200D1287A /* TestView.swift */,
+				BBB589F42B17689B005FACDC /* EventListView.swift */,
+				BBB589F62B1768CA005FACDC /* EventCard.swift */,
+				BBB589F82B176919005FACDC /* EventDetailView.swift */,
+				BBB589FE2B1769EF005FACDC /* EventListCell.swift */,
+				BBB58A042B176A57005FACDC /* XDismissButton.swift */,
 			);
 			path = Events;
 			sourceTree = "<group>";
@@ -216,6 +244,8 @@
 			isa = PBXGroup;
 			children = (
 				BBF0117D2B163E1200D1287A /* TestServices.swift */,
+				BBB58A002B176A22005FACDC /* NetworkManager.swift */,
+				BBB58A022B176A3F005FACDC /* EVError.swift */,
 			);
 			path = Events;
 			sourceTree = "<group>";
@@ -350,14 +380,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBB589F52B17689B005FACDC /* EventListView.swift in Sources */,
+				BBB589F92B176919005FACDC /* EventDetailView.swift in Sources */,
 				BB8D99752B16337B00530D28 /* Persistence.swift in Sources */,
+				BBB589FD2B1769C5005FACDC /* HomeView.swift in Sources */,
 				BB8D996E2B16337A00530D28 /* ContentView.swift in Sources */,
+				BBB589FB2B1769A2005FACDC /* AppTabView.swift in Sources */,
 				BBF011842B163E8900D1287A /* Test.swift in Sources */,
 				BBF0117C2B163DDF00D1287A /* Fonts.swift in Sources */,
+				BBB589F32B17685A005FACDC /* Events.swift in Sources */,
 				BBF0117E2B163E1200D1287A /* TestServices.swift in Sources */,
+				BBB58A012B176A22005FACDC /* NetworkManager.swift in Sources */,
+				BBB58A032B176A3F005FACDC /* EVError.swift in Sources */,
 				BBF011822B163E7200D1287A /* TestView.swift in Sources */,
 				BBF011802B163E2A00D1287A /* TestViewModel.swift in Sources */,
+				BBB589FF2B1769EF005FACDC /* EventListCell.swift in Sources */,
 				BB8D99782B16337B00530D28 /* RecycleConnect_IOS.xcdatamodeld in Sources */,
+				BBB589F72B1768CA005FACDC /* EventCard.swift in Sources */,
+				BBB58A052B176A57005FACDC /* XDismissButton.swift in Sources */,
 				BB8D996C2B16337A00530D28 /* RecycleConnect_IOSApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
