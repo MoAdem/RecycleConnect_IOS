@@ -11,6 +11,10 @@ struct SignUpOrganisation: View {
     @State private var isEditing: Bool = false
     
     @State private var email: String = ""
+    @State private var nom: String = ""
+    @State private var adresse: String = ""
+    @State private var description: String = ""
+
     @State private var password: String = ""
     @State private var confirmPassword: String = ""
     
@@ -27,7 +31,7 @@ struct SignUpOrganisation: View {
             .padding(.top, 10)
             
             
-            TextField("", text: $email,
+            TextField("", text: $nom,
                       prompt: Text("Nom d'organisation")
             )
             .disableAutocorrection(true)
@@ -58,7 +62,7 @@ struct SignUpOrganisation: View {
                             lineWidth: 1.5)
             )
             .padding(.bottom, 25)
-            TextField("", text: $email,
+            TextField("", text: $adresse,
                       prompt: Text("Adresse ")
             )
             .disableAutocorrection(true)
@@ -72,7 +76,7 @@ struct SignUpOrganisation: View {
                             lineWidth: 1.5)
             )
             .padding(.bottom, 25)
-            TextField("", text: $email,
+            TextField("", text: $description,
                       prompt: Text("Description ")
             )
             .disableAutocorrection(true)
