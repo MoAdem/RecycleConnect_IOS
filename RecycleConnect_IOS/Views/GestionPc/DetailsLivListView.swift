@@ -20,7 +20,7 @@ struct DetailsLivListView: View {
                             .resizable()
                             .scaledToFill()
                             .edgesIgnoringSafeArea(.all))
-            .navigationTitle("Details Livraison")
+            //.navigationTitle("Details Livraison")
             .navigationBarTitleDisplayMode(.inline)
         }
     }

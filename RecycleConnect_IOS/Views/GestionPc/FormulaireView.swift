@@ -225,6 +225,7 @@ struct LivraisonFormView_Previews: PreviewProvider {
     }
 }
 */
+/*
 import SwiftUI
 
 struct LivraisonFormView: View {
@@ -250,7 +251,7 @@ struct LivraisonFormView: View {
                         .padding(.top, 16)
 
                     VStack(alignment: .leading, spacing: 8) {
-                        CustomTextField(placeholder: "Nom de l'article", text: $nomArticle).foregroundColor(Color.green)
+                        CustomTextField(placeholder: "Nom de l'article", text: $nomArticle)
                         CustomTextField(placeholder: "Nom du client", text: $nomClient)
                         CustomTextField(placeholder: "Adresse e-mail du client", text: $addressMailClient)
                         CustomTextField(placeholder: "Numéro du client", text: $numeroClient)
@@ -295,7 +296,7 @@ struct LivraisonFormView: View {
 
                 Spacer()
             }
-            .navigationTitle("Formulaire de Livraison")
+            //.navigationTitle("Formulaire de Livraison")
             .background(
                 NavigationLink(destination: DetailsLivListView(), isActive: $isNavigationActive) {
                     EmptyView()
@@ -345,4 +346,125 @@ struct LivraisonFormView_Previews: PreviewProvider {
     }
 }
 
+*/
+import SwiftUI
+
+struct LivraisonFormView: View {
+    @State private var nomArticle = ""
+    @State private var nomClient = ""
+    @State private var addressMailClient = ""
+    @State private var numeroClient = ""
+    @State private var selectedVille = "Tunis"
+    @State private var addressClient = ""
+    
+    @State private var showErrorMessages = false
+    @State private var isNavigationActive = false
+
+    var body: some View {
+        NavigationView {
+            VStack {
+                Spacer()
+
+                VStack(alignment: .center, spacing: 20) {
+                    Image("Image1")
+                        .resizable()
+                        .frame(width: 202, height: 174)
+                        .padding(.top, 16)
+
+                    VStack(alignment: .center, spacing: 8) {
+                        CustomTextField(placeholder: "Nom de l'article", text: $nomArticle, borderColor: .green)
+                        CustomTextField(placeholder: "Nom du client", text: $nomClient, borderColor: .green)
+                        CustomTextField(placeholder: "Adresse e-mail du client", text: $addressMailClient, borderColor: .green)
+                        CustomTextField(placeholder: "Numéro du client", text: $numeroClient, borderColor: .green)
+                        Picker(selection: $selectedVille, label: Text("Ville")) {
+                            ForEach(["Tunis", "Nabeul", "Gafsa", "Sfax", "Sousse"], id: \.self) { city in
+                                Text(city)
+                            }
+                        }
+                        .pickerStyle(MenuPickerStyle())
+                      
+                        CustomTextField(placeholder: "Adresse du client", text: $addressClient, borderColor: .green)
+                    }
+                    .padding(.top, 16)
+
+                    Button(action: {
+                        if validateInputs() {
+                            let livraison = Livraisonn(Nom_Article: nomArticle,
+                                                       Nom_Client: nomClient,
+                                                       address_mail_Client: addressMailClient,
+                                                       numero_Client: numeroClient,
+                                                       ville: selectedVille,
+                                                       address_Client: addressClient)
+                            print(livraison)
+                            showErrorMessages = true
+                            isNavigationActive = true
+                        }
+                    }) {
+                        Text("Enregistrer")
+                            .padding()
+                            .foregroundColor(.white)
+                            .background(Color.green)
+                            .cornerRadius(15)
+                    }
+                    .padding(.top, 16)
+                    .padding(.horizontal, 10)
+
+                    if showErrorMessages {
+                        FailedText(message: "Votre livraison a été enregistrée")
+                    }
+                }
+                .padding(.horizontal, 16)
+
+                Spacer()
+            }
+            //.navigationTitle("Formulaire de Livraison")
+            .background(
+                NavigationLink(destination: DetailsLivListView(), isActive: $isNavigationActive) {
+                    EmptyView()
+                }
+            )
+        }
+    }
+
+    func validateInputs() -> Bool {
+        // Ajoutez ici la logique de validation
+        // Retournez true si tous les champs sont valides, sinon false
+        return true
+    }
+}
+
+struct FailedText: View {
+    let message: String
+
+    var body: some View {
+        Text(message)
+            .foregroundColor(.green)
+            .padding(.top, 8)
+    }
+}
+
+struct CustomTextField: View {
+    var placeholder: String
+    @Binding var text: String
+    var borderColor: Color
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            TextField(placeholder, text: $text)
+                .padding()
+                .background(
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(borderColor, lineWidth: 2)
+                )
+        }
+    }
+}
+
+struct LivraisonFormView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationView {
+            LivraisonFormView()
+        }
+    }
+}
 

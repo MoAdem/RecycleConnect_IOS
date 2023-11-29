@@ -79,7 +79,7 @@ struct ReservationPcListView: View {
                     .scaledToFill()
                     .edgesIgnoringSafeArea(.all)
             )
-            .navigationTitle("Reservation PC")
+            //.navigationTitle("Reservation PC")
             .navigationBarTitleDisplayMode(.inline)
         }
     }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8855E2A82B17A9A3003D29A3 /* MappView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8855E2A72B17A9A3003D29A3 /* MappView.swift */; };
+		9E6D81E52B17BFB500FD604A /* NavView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6D81E42B17BFB500FD604A /* NavView.swift */; };
 		9E75D71B2B167C0E001D2D23 /* PC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E75D71A2B167C0E001D2D23 /* PC.swift */; };
 		9E75D71D2B167C2B001D2D23 /* ReservationPc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E75D71C2B167C2B001D2D23 /* ReservationPc.swift */; };
 		9E75D71F2B167CC0001D2D23 /* PcCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E75D71E2B167CC0001D2D23 /* PcCardView.swift */; };
@@ -53,6 +54,7 @@
 
 /* Begin PBXFileReference section */
 		8855E2A72B17A9A3003D29A3 /* MappView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MappView.swift; sourceTree = "<group>"; };
+		9E6D81E42B17BFB500FD604A /* NavView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavView.swift; sourceTree = "<group>"; };
 		9E75D71A2B167C0E001D2D23 /* PC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PC.swift; sourceTree = "<group>"; };
 		9E75D71C2B167C2B001D2D23 /* ReservationPc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationPc.swift; sourceTree = "<group>"; };
 		9E75D71E2B167CC0001D2D23 /* PcCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PcCardView.swift; sourceTree = "<group>"; };
@@ -112,12 +114,13 @@
 			children = (
 				9E75D71E2B167CC0001D2D23 /* PcCardView.swift */,
 				9E75D7202B167D07001D2D23 /* PcListView.swift */,
+				9E75D7222B167D5C001D2D23 /* ReservationPcCardView.swift */,
 				9E75D7242B167D8E001D2D23 /* ReservationPcListView.swift */,
 				9E75D7282B167E19001D2D23 /* FormulaireView.swift */,
 				9E75D72A2B167E9E001D2D23 /* DetailsLivCardView.swift */,
-				9E75D7222B167D5C001D2D23 /* ReservationPcCardView.swift */,
 				9E75D72C2B167F40001D2D23 /* DetailsLivListView.swift */,
 				8855E2A72B17A9A3003D29A3 /* MappView.swift */,
+				9E6D81E42B17BFB500FD604A /* NavView.swift */,
 			);
 			path = GestionPc;
 			sourceTree = "<group>";
@@ -405,6 +408,7 @@
 				9E75D7272B167DDE001D2D23 /* Livraison.swift in Sources */,
 				BB8D996E2B16337A00530D28 /* ContentView.swift in Sources */,
 				BBF011842B163E8900D1287A /* Test.swift in Sources */,
+				9E6D81E52B17BFB500FD604A /* NavView.swift in Sources */,
 				BBF0117C2B163DDF00D1287A /* Fonts.swift in Sources */,
 				9E75D7252B167D8E001D2D23 /* ReservationPcListView.swift in Sources */,
 				BBF0117E2B163E1200D1287A /* TestServices.swift in Sources */,

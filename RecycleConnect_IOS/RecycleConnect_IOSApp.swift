@@ -15,7 +15,7 @@ struct RecycleConnect_IOSApp: App {
         WindowGroup {
           //  ContentView()
               //  .environment(\.managedObjectContext, persistenceController.container.viewContext)
-        LivraisonFormView()
+        NavView()
         }
     }
 }

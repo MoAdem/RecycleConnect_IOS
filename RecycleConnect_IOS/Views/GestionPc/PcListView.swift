@@ -86,7 +86,7 @@ struct PcListView: View {
                     .scaledToFill()
                     .edgesIgnoringSafeArea(.all)
             )
-            .navigationTitle("Points de Collecte")
+           // .navigationTitle("Points de Collecte")
             .navigationBarTitleDisplayMode(.inline)
         }
     }
