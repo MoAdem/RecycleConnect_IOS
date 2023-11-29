@@ -22,10 +22,9 @@ struct SignUpUser: View {
                     .resizable()
                     .scaledToFill()
                     .frame(width: 200, height: 200)
-                    .padding(.bottom, 20)
+                    .padding(.bottom, 5)
             }
-            .padding(.top, 50)
-            
+            .padding(.top, 10)
             
             TextField("", text: $email,
                       prompt: Text("Nom")
@@ -45,7 +44,7 @@ struct SignUpUser: View {
             .padding(.bottom, 25)
 
             TextField("", text: $email,
-                      prompt: Text("Adresse Email ")
+                      prompt: Text("Adresse mail ")
             )
             .disableAutocorrection(true)
             .frame(width: 300, height: 40)
@@ -58,8 +57,36 @@ struct SignUpUser: View {
                             lineWidth: 1.5)
             )
             .padding(.bottom, 25)
-            
-            
+            TextField("", text: $email,
+                      prompt: Text("Adresse ")
+            )
+            .disableAutocorrection(true)
+            .frame(width: 300, height: 40)
+            .padding(.leading, 40)
+            .background(Image("location").resizable().scaledToFit().frame(
+                width: 25, height:25).padding(.leading, 10), alignment: .leading)
+            .overlay(
+                RoundedRectangle(cornerRadius: 50)
+                    .stroke(Color(Color(Fonts.darkGreen)),
+                            lineWidth: 1.5)
+            )
+           
+            .padding(.bottom, 25)
+            TextField("", text: $email,
+                      prompt: Text("Téléphone")
+            )
+            .disableAutocorrection(true)
+            .frame(width: 300, height: 40)
+            .padding(.leading, 40)
+            .background(Image("phone").resizable().scaledToFit().frame(
+                width: 25, height:25).padding(.leading, 10), alignment: .leading)
+            .overlay(
+                RoundedRectangle(cornerRadius: 50)
+                    .stroke(Color(Color(Fonts.darkGreen)),
+                            lineWidth: 1.5)
+            )
+           
+            .padding(.bottom, 25)
             SecureField("", text: $password,
                         prompt: Text("Mot de passe")
             )
@@ -89,7 +116,7 @@ struct SignUpUser: View {
                     .stroke(Color(Color(Fonts.darkGreen)),
                             lineWidth: 1.5)
             )
-            .padding(.bottom, 25)
+            .padding(.bottom, 30)
             
             
           

@@ -30,7 +30,6 @@ struct SignUpView: View {
                   
                 }
                 .frame(width: 400, height: 150)
-                
                
                 ZStack(alignment: Alignment(horizontal: .leading, vertical: .top), content: {
                     Rectangle()

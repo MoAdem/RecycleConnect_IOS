@@ -55,8 +55,9 @@ struct SignInView: View {
                 .padding(.top, 13)
                 .background(Image("pass").resizable().scaledToFit().frame(
                     width: 25, height:40).padding(.leading, 30), alignment: .leading)
+                .padding(.bottom, 18)
+
             Button{
-                
             } label: {
                 ZStack{
                     RoundedRectangle(cornerRadius: 50)
