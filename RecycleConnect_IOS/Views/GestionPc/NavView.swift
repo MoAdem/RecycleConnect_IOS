@@ -23,7 +23,7 @@ struct NavView: View {
                     Text("Go to Mapp")
                 }
             }
-           // .navigationTitle("Navigation Example")
+           
         }
     }
 }
