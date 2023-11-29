@@ -93,9 +93,10 @@ struct SignInView: View {
                                      Spacer()
                                  }
                                  .background(Color.white)
+                                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                                  .ignoresSafeArea()
                                  .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                 .sheet(isPresented: $presentNextView) {
+                                 .fullScreenCover(isPresented: $presentNextView) {
                                      if nextView == .SignUp {
                                          SignUpView()
                                      }
