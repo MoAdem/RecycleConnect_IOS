@@ -9,13 +9,13 @@ import Foundation
 final class EventsServices {
     static let shared = EventsServices()
     
-    static let baseUrl = "https://recycleconnect.onrender.com/api/events"
-    static let eventsUrl = baseUrl + "api/events"
+    static let baseUrl = "https://recycleconnect.onrender.com/"
+    static let getalleventsUrl = baseUrl + "api/events/"
     
     private init() {}
     
     func getEvents(completion: @escaping (Result<[Events], EVError>) -> Void) {
-        guard let url = URL(string: EventsServices.baseUrl) else {
+        guard let url = URL(string: EventsServices.getalleventsUrl) else {
             completion(.failure(.invalidURL))
             return
         }
