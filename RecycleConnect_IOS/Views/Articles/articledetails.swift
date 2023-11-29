@@ -30,19 +30,30 @@ struct articledetails: View {
                     .font(.title3)
                     .font(.subheadline)
                     .foregroundColor(Color(.black))
-                    .padding(.bottom, 50)
+                    .padding(.bottom, 10)
+                
+                NavigationLink(destination: articlereview()){
+                    Text("Voulez vous partager votre avis ?")
+                        .font(.footnote)
+                        .foregroundColor(Color(red: 0.05, green: 0.54, blue: 0.48))
+                        .padding()
+                        .cornerRadius(10)
+                }.padding(.bottom , 10)
                 
                 Button(action: {
                 }) {
                     Text("Réserver")
                         .font(.title3)
                         .fontWeight(.bold)
+                        .frame(maxWidth: .infinity)
                         .foregroundColor(Color(.white))
-                        .padding()
+                        .padding(10)
                         .background(Color(red: 0.05, green: 0.54, blue: 0.48))
                         .cornerRadius(10)
                 }
                 .padding(.bottom, 100)
+                .padding(.leading , 10)
+                .padding(.trailing , 10)
             }
         }
     }

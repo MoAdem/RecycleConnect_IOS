@@ -55,7 +55,7 @@ struct categorieform: View {
                 }) {
                     Text("Valider")
                         .foregroundColor(.white)
-                        .padding()
+                        .padding(10)
                         .frame(maxWidth: .infinity)
                         .background(Color(red: 0.05, green: 0.54, blue: 0.48))
                         .cornerRadius(10)
