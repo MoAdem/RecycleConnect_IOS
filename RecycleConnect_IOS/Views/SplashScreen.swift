@@ -15,7 +15,7 @@ struct Splashscreen: View {
             VStack {
                 ZStack {
                     Image("")
-                    Image("logo ")
+                    Image("logo")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .scaleEffect(size)

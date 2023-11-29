@@ -14,6 +14,7 @@
 		6AB4DDF72B166591005ABB67 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB4DDF62B166591005ABB67 /* UserService.swift */; };
 		6AB4DDF92B166C8F005ABB67 /* SignUpUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB4DDF82B166C8F005ABB67 /* SignUpUser.swift */; };
 		6AB4DDFB2B166CA3005ABB67 /* SignUpOrganisation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB4DDFA2B166CA3005ABB67 /* SignUpOrganisation.swift */; };
+		6AED3B402B17B25000F75A3F /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AED3B3F2B17B25000F75A3F /* HomeScreen.swift */; };
 		6AEEB7122B1751CC008FE5BE /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEEB7112B1751CC008FE5BE /* SplashScreen.swift */; };
 		BB8D996C2B16337A00530D28 /* RecycleConnect_IOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8D996B2B16337A00530D28 /* RecycleConnect_IOSApp.swift */; };
 		BB8D996E2B16337A00530D28 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8D996D2B16337A00530D28 /* ContentView.swift */; };
@@ -56,6 +57,7 @@
 		6AB4DDF62B166591005ABB67 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		6AB4DDF82B166C8F005ABB67 /* SignUpUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpUser.swift; sourceTree = "<group>"; };
 		6AB4DDFA2B166CA3005ABB67 /* SignUpOrganisation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpOrganisation.swift; sourceTree = "<group>"; };
+		6AED3B3F2B17B25000F75A3F /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		6AEEB7112B1751CC008FE5BE /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		BB8D99682B16337A00530D28 /* RecycleConnect_IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecycleConnect_IOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB8D996B2B16337A00530D28 /* RecycleConnect_IOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecycleConnect_IOSApp.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				6AB4DDEC2B1654F6005ABB67 /* SignUp.swift */,
 				6AB4DDF82B166C8F005ABB67 /* SignUpUser.swift */,
 				6AB4DDFA2B166CA3005ABB67 /* SignUpOrganisation.swift */,
+				6AED3B3F2B17B25000F75A3F /* HomeScreen.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -420,6 +423,7 @@
 				BBF0117E2B163E1200D1287A /* TestServices.swift in Sources */,
 				6AB4DDF92B166C8F005ABB67 /* SignUpUser.swift in Sources */,
 				BBF011822B163E7200D1287A /* TestView.swift in Sources */,
+				6AED3B402B17B25000F75A3F /* HomeScreen.swift in Sources */,
 				BBF011802B163E2A00D1287A /* TestViewModel.swift in Sources */,
 				BB8D99782B16337B00530D28 /* RecycleConnect_IOS.xcdatamodeld in Sources */,
 				BB8D996C2B16337A00530D28 /* RecycleConnect_IOSApp.swift in Sources */,
