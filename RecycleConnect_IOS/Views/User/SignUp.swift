@@ -43,10 +43,10 @@ struct SignUpView: View {
                         )
                     VStack(alignment: HorizontalAlignment.leading, content: {
                         HStack{
-                            Text("I am a :")
+                            Text("Vous etes:")
                                 .fontWeight(.medium)
                                 .font(.system(size: 18))
-                            Text("Regular user")
+                            Text("Client")
                                 .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                                 .font(.system(size: 20))
                         }
@@ -63,7 +63,7 @@ struct SignUpView: View {
                                 RoundedRectangle(cornerRadius: 50)
                                     .frame(width: 200, height: 40)
                                     .foregroundColor(Fonts.darkGreen)
-                                Text("Continue")
+                                Text("Continuer")
                                     .foregroundStyle(Color.white)
                                     .fontWeight(.bold)
                                     .font(.system(size: 18))
@@ -88,7 +88,7 @@ struct SignUpView: View {
                         )
                     VStack(alignment: HorizontalAlignment.leading, content: {
                         HStack{
-                            Text("I am an:")
+                            Text("Vous etes : ")
                                 .fontWeight(.medium)
                                 .font(.system(size: 18))
                             Text("Organisation")
@@ -108,7 +108,7 @@ struct SignUpView: View {
                                 RoundedRectangle(cornerRadius: 50)
                                     .frame(width: 200, height: 40)
                                     .foregroundColor(Fonts.darkGreen)
-                                Text("Continue")
+                                Text("Continuer")
                                     .foregroundStyle(Color.white)
                                     .fontWeight(.bold)
                                     .font(.system(size: 18))
@@ -127,9 +127,9 @@ struct SignUpView: View {
             .navigationDestination(isPresented: $presentNextView){
                 switch nextView {
                 case .SignUpUser:
-                   SignInView()
+                    SignUpUser()
                 case .SignUpOrganisation:
-                    SignInView()
+                    SignUpOrganisation()
                 }
                 
             }
