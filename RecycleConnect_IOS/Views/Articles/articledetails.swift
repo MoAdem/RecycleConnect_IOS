@@ -22,13 +22,13 @@ struct articledetails: View {
                     .padding(.bottom, 20)
                 
                 Text("Sac à mains CK ")
-                    .font(.title)
+                    .font(.title2)
                    .fontWeight(.bold)
                    .padding(.bottom, 20)
                 
                 Text("Sac à mains authentique. \u{2028} Porté uniquement 2 fois. \u{2028} Il est en trés bon état.")
-                    .font(.title3)
                     .font(.subheadline)
+                    .fontWeight(.medium)
                     .foregroundColor(Color(.black))
                     .padding(.bottom, 10)
                 
@@ -43,8 +43,6 @@ struct articledetails: View {
                 Button(action: {
                 }) {
                     Text("Réserver")
-                        .font(.title3)
-                        .fontWeight(.bold)
                         .frame(maxWidth: .infinity)
                         .foregroundColor(Color(.white))
                         .padding(10)
