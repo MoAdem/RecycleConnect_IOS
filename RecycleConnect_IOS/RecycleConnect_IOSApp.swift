@@ -13,7 +13,7 @@ struct RecycleConnect_IOSApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ReservationView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

@@ -10,6 +10,7 @@
 		4046AF192B176A0F006E0F09 /* PanierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4046AF182B176A0F006E0F09 /* PanierView.swift */; };
 		4046AF1B2B176A2A006E0F09 /* ReservationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4046AF1A2B176A2A006E0F09 /* ReservationView.swift */; };
 		4046AF1D2B177AD5006E0F09 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4046AF1C2B177AD5006E0F09 /* ColorExtensions.swift */; };
+		4046AF202B177FAF006E0F09 /* PanierService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4046AF1F2B177FAF006E0F09 /* PanierService.swift */; };
 		BB8D996C2B16337A00530D28 /* RecycleConnect_IOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8D996B2B16337A00530D28 /* RecycleConnect_IOSApp.swift */; };
 		BB8D996E2B16337A00530D28 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8D996D2B16337A00530D28 /* ContentView.swift */; };
 		BB8D99702B16337B00530D28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB8D996F2B16337B00530D28 /* Assets.xcassets */; };
@@ -47,6 +48,7 @@
 		4046AF182B176A0F006E0F09 /* PanierView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PanierView.swift; path = ../../../../Recycleconnect/Recycleconnect/PanierView.swift; sourceTree = "<group>"; };
 		4046AF1A2B176A2A006E0F09 /* ReservationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReservationView.swift; path = ../../../../Recycleconnect/Recycleconnect/ReservationView.swift; sourceTree = "<group>"; };
 		4046AF1C2B177AD5006E0F09 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
+		4046AF1F2B177FAF006E0F09 /* PanierService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanierService.swift; sourceTree = "<group>"; };
 		BB8D99682B16337A00530D28 /* RecycleConnect_IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecycleConnect_IOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB8D996B2B16337A00530D28 /* RecycleConnect_IOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecycleConnect_IOSApp.swift; sourceTree = "<group>"; };
 		BB8D996D2B16337A00530D28 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -105,6 +107,14 @@
 				4046AF1A2B176A2A006E0F09 /* ReservationView.swift */,
 			);
 			path = Reservation;
+			sourceTree = "<group>";
+		};
+		4046AF1E2B177F8C006E0F09 /* Panier */ = {
+			isa = PBXGroup;
+			children = (
+				4046AF1F2B177FAF006E0F09 /* PanierService.swift */,
+			);
+			path = Panier;
 			sourceTree = "<group>";
 		};
 		BB8D995F2B16337A00530D28 = {
@@ -173,6 +183,7 @@
 		BBF011712B163D3900D1287A /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				4046AF1E2B177F8C006E0F09 /* Panier */,
 				BBF0117A2B163DCF00D1287A /* Events */,
 			);
 			path = Services;
@@ -387,6 +398,7 @@
 				BB8D99782B16337B00530D28 /* RecycleConnect_IOS.xcdatamodeld in Sources */,
 				BB8D996C2B16337A00530D28 /* RecycleConnect_IOSApp.swift in Sources */,
 				4046AF1D2B177AD5006E0F09 /* ColorExtensions.swift in Sources */,
+				4046AF202B177FAF006E0F09 /* PanierService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
