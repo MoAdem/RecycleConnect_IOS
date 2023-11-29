@@ -15,22 +15,28 @@ struct EventListView: View {
     @State private var isShowingDetailView = false
         
     var body: some View {
-        NavigationView {
-            List(events, id: \._id) { event in
-                EventListCell(event: event)
-                    .listRowSeparator(.hidden)
-                    .onTapGesture {
-                        isShowingDetailView = true
-                    }
+        ZStack{
+            NavigationView {
+                List(events, id: \._id) { event in
+                    EventListCell(event: event)
+                        .listRowSeparator(.hidden)
+                        .onTapGesture {
+                            isShowingDetailView = true
+                        }
+                }
+                .navigationTitle("Events")
+                .listStyle(.plain)
             }
-            .navigationTitle("Events")
+            .onAppear() {
+                getEvents()
+            }
+            .blur(radius: isShowingDetailView ? 20 : 0)
+            if isShowingDetailView {
+                EventDetailView(event: MockData.sampleEvent, isShowingDetailView: $isShowingDetailView)
+            }
+            
         }
-        .onAppear() {
-            getEvents()
-        }
-        if isShowingDetailView {
-            EventDetailView(event: MockData.sampleEvent, isShowingDetailView: $isShowingDetailView)
-        }
+
     }
     func getEvents() {
         EventsServices.shared.getEvents { result in

@@ -30,4 +30,3 @@ struct AppTabView_Previews: PreviewProvider {
         AppTabView()
     }
 }
-
