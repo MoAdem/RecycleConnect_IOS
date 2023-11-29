@@ -46,6 +46,7 @@ struct EventListView: View {
                     self.events = events
                 case .failure(let error):
                     print(error.localizedDescription)
+                
                 }
             }
         }

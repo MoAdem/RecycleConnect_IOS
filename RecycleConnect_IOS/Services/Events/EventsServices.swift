@@ -2,18 +2,19 @@
 //  NetworkManager.swift
 //  OrogEvents
 //
-//  Created by Med adem Torkhani   on 27/11/2023.
+//  Created by Med adem Torkhani on 27/11/2023.
 //
 
 import Foundation
+
 final class EventsServices {
     static let shared = EventsServices()
-    
+
     static let baseUrl = "https://recycleconnect.onrender.com/"
     static let getalleventsUrl = baseUrl + "api/events/"
-    
+
     private init() {}
-    
+
     func getEvents(completion: @escaping (Result<[Events], EVError>) -> Void) {
         guard let url = URL(string: EventsServices.getalleventsUrl) else {
             completion(.failure(.invalidURL))
@@ -24,19 +25,18 @@ final class EventsServices {
                 completion(.failure(.unableToComplete))
                 return
             }
-            
+
             guard let response = response as? HTTPURLResponse else {
                 completion(.failure(.invalidResponse))
                 return
             }
             print("Response Status Code: \(response.statusCode)")
 
-            
             guard let data = data else {
                 completion(.failure(.invalidData))
                 return
             }
-            
+
             do {
                 let decoder = JSONDecoder()
                 let decodedResponse = try decoder.decode(EventsResponse.self, from: data)
