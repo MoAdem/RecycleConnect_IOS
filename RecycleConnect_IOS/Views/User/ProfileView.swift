@@ -5,7 +5,7 @@ struct ProfileView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 15) {
             HStack {
-                Image("login")
+                Image("admin")
                     .resizable()
                     .frame(width: 100, height: 100)
                     .cornerRadius(50)
@@ -48,7 +48,7 @@ struct ProfileView: View {
             .buttonStyle(PlainButtonStyle())
             
             NavigationLink(destination: Text("Delivery Address Page")) {
-                Text("Delivery Address")
+                Text("Adresse livraison")
                     .font(.headline)
                     .padding()
                     .frame(maxWidth: .infinity)
@@ -60,7 +60,7 @@ struct ProfileView: View {
             .buttonStyle(PlainButtonStyle())
             
             NavigationLink(destination: Text("Support Center Page")) {
-                Text("Support Center")
+                Text("Centre Support ")
                     .font(.headline)
                     .padding()
                     .frame(maxWidth: .infinity)
