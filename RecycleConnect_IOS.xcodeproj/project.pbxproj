@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4046AF192B176A0F006E0F09 /* PanierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4046AF182B176A0F006E0F09 /* PanierView.swift */; };
-		4046AF1B2B176A2A006E0F09 /* ReservationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4046AF1A2B176A2A006E0F09 /* ReservationView.swift */; };
 		4046AF1D2B177AD5006E0F09 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4046AF1C2B177AD5006E0F09 /* ColorExtensions.swift */; };
 		4046AF202B177FAF006E0F09 /* PanierService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4046AF1F2B177FAF006E0F09 /* PanierService.swift */; };
+		40C9ECC52B187DD200A654E1 /* ReservationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C9ECC42B187DD200A654E1 /* ReservationView.swift */; };
+		40C9ECC72B187E0F00A654E1 /* PanierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C9ECC62B187E0F00A654E1 /* PanierView.swift */; };
 		BB8D996C2B16337A00530D28 /* RecycleConnect_IOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8D996B2B16337A00530D28 /* RecycleConnect_IOSApp.swift */; };
 		BB8D996E2B16337A00530D28 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8D996D2B16337A00530D28 /* ContentView.swift */; };
 		BB8D99702B16337B00530D28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB8D996F2B16337B00530D28 /* Assets.xcassets */; };
@@ -45,10 +45,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4046AF182B176A0F006E0F09 /* PanierView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PanierView.swift; path = ../../../../Recycleconnect/Recycleconnect/PanierView.swift; sourceTree = "<group>"; };
-		4046AF1A2B176A2A006E0F09 /* ReservationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReservationView.swift; path = ../../../../Recycleconnect/Recycleconnect/ReservationView.swift; sourceTree = "<group>"; };
 		4046AF1C2B177AD5006E0F09 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
 		4046AF1F2B177FAF006E0F09 /* PanierService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanierService.swift; sourceTree = "<group>"; };
+		40C9ECC42B187DD200A654E1 /* ReservationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationView.swift; sourceTree = "<group>"; };
+		40C9ECC62B187E0F00A654E1 /* PanierView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanierView.swift; sourceTree = "<group>"; };
 		BB8D99682B16337A00530D28 /* RecycleConnect_IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecycleConnect_IOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB8D996B2B16337A00530D28 /* RecycleConnect_IOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecycleConnect_IOSApp.swift; sourceTree = "<group>"; };
 		BB8D996D2B16337A00530D28 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -96,7 +96,7 @@
 		4046AF162B1769D8006E0F09 /* Panier */ = {
 			isa = PBXGroup;
 			children = (
-				4046AF182B176A0F006E0F09 /* PanierView.swift */,
+				40C9ECC62B187E0F00A654E1 /* PanierView.swift */,
 			);
 			path = Panier;
 			sourceTree = "<group>";
@@ -104,7 +104,7 @@
 		4046AF172B1769E1006E0F09 /* Reservation */ = {
 			isa = PBXGroup;
 			children = (
-				4046AF1A2B176A2A006E0F09 /* ReservationView.swift */,
+				40C9ECC42B187DD200A654E1 /* ReservationView.swift */,
 			);
 			path = Reservation;
 			sourceTree = "<group>";
@@ -389,13 +389,13 @@
 				BB8D99752B16337B00530D28 /* Persistence.swift in Sources */,
 				BB8D996E2B16337A00530D28 /* ContentView.swift in Sources */,
 				BBF011842B163E8900D1287A /* Test.swift in Sources */,
-				4046AF1B2B176A2A006E0F09 /* ReservationView.swift in Sources */,
-				4046AF192B176A0F006E0F09 /* PanierView.swift in Sources */,
 				BBF0117C2B163DDF00D1287A /* Fonts.swift in Sources */,
+				40C9ECC72B187E0F00A654E1 /* PanierView.swift in Sources */,
 				BBF0117E2B163E1200D1287A /* TestServices.swift in Sources */,
 				BBF011822B163E7200D1287A /* TestView.swift in Sources */,
 				BBF011802B163E2A00D1287A /* TestViewModel.swift in Sources */,
 				BB8D99782B16337B00530D28 /* RecycleConnect_IOS.xcdatamodeld in Sources */,
+				40C9ECC52B187DD200A654E1 /* ReservationView.swift in Sources */,
 				BB8D996C2B16337A00530D28 /* RecycleConnect_IOSApp.swift in Sources */,
 				4046AF1D2B177AD5006E0F09 /* ColorExtensions.swift in Sources */,
 				4046AF202B177FAF006E0F09 /* PanierService.swift in Sources */,
