@@ -21,6 +21,7 @@ struct SignInView: View {
     @State private var nextView: ViewStack = .SignUp
     
     @State private var isAppTabViewPresented: Bool = false
+    @State private var isResetPasswordPresented: Bool = false
 
     
     var body: some View {
@@ -101,15 +102,15 @@ struct SignInView: View {
                                      }
                                      .padding(.bottom, 12)
                                 Button(action: {
-                                 nextView = .ResetPassword
-                                  presentNextView = true
+                                    isResetPasswordPresented.toggle()
                                    }) {
                                  Text("Mot de passe oublié ?")
                                 .foregroundColor(Color(Fonts.darkGreen))
                                 .fontWeight(.semibold)
                                 .font(.system(size: 18))
                                                                    
-                                   }
+                                   }.sheet(isPresented: $isResetPasswordPresented) {
+                                       ResetPassword()
                                      Spacer()
                                  }
                                  .background(Color.white)
@@ -124,6 +125,8 @@ struct SignInView: View {
                                      }                                 }
                              }
                          }
+}
+    
 #Preview {
     SignInView()
 }
