@@ -33,10 +33,10 @@ struct AnnotationItem: Identifiable {
 }
 
 struct MappView: View {
-    @State private var mapRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.5, longitude: -0.12), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
+    @State private var mapRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 36.809328 , longitude: 10.086327 ), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
     
     @State private var annotations = [
-        AnnotationItem(annotation: MKPointAnnotation(__coordinate: CLLocationCoordinate2D(latitude: 51.5, longitude: -0.12), title: "London", subtitle: "Capital of the UK")),
+        AnnotationItem(annotation: MKPointAnnotation(__coordinate: CLLocationCoordinate2D(latitude: 36.809328, longitude: 10.086327 ), title: "Manouba", subtitle: "Manouba")),
         /*AnnotationItem(annotation: MKPointAnnotation(__coordinate: CLLocationCoordinate2D(latitude: 40.7128, longitude: -74.0060), title: "New York", subtitle: "The Big Apple")),*/
         // Add more annotations as needed
     ]
