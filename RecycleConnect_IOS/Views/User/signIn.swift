@@ -14,7 +14,8 @@ struct SignInView: View {
 
     @State private var presentNextView = false
     @State private var nextView: ViewStack = .SignUp
-
+    @State private var isAppTabViewPresented: Bool = false
+      @State private var isResetPasswordPresented: Bool = false
     
     var body: some View {
         VStack {
@@ -59,7 +60,7 @@ struct SignInView: View {
                 .padding(.bottom, 18)
        
             Button(action: {
-                // Call the login function from UserViewModel
+
                 userViewModel.loginUser(username: username, password: password) { result in
                     switch result {
                     case .success(let user):
@@ -98,31 +99,32 @@ struct SignInView: View {
                                          }
                                      }
                                      .padding(.bottom, 12)
-                                Button(action: {
-                                 nextView = .ResetPassword
-                                  presentNextView = true
-                                   }) {
-                                 Text("Mot de passe oublié ?")
-                                .foregroundColor(Color(Fonts.darkGreen))
-                                .fontWeight(.semibold)
-                                .font(.system(size: 18))
-                                                                   
-                                   }
-                                     Spacer()
-                                 }
-                                 .background(Color.white)
-                                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                 .ignoresSafeArea()
-                                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                 .fullScreenCover(isPresented: $presentNextView) {
-                                     if nextView == .SignUp {
-                                         SignUpView()
-                                     }else if nextView == .ResetPassword {
-                                         ResetPassword()
-                                     }                                 }
-                             }
-                         }
-#Preview {
-    SignInView()
-}
-
+                                    Button(action: {
+                                                isResetPasswordPresented.toggle()
+                                               }) {
+                                             Text("Mot de passe oublié ?")
+                                            .foregroundColor(Color(Fonts.darkGreen))
+                                            .fontWeight(.semibold)
+                                            .font(.system(size: 18))
+                                                                               
+                                               }.sheet(isPresented: $isResetPasswordPresented) {
+                                                                                     ResetPassword()
+                                                                                   Spacer()
+                                                                               }
+                                                                               .background(Color.white)
+                                                                               .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                                                               .ignoresSafeArea()
+                                                                               .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                                                               .fullScreenCover(isPresented: $presentNextView) {
+                                                                                   if nextView == .SignUp {
+                                                                                       SignUpView()
+                                                                                   }else if nextView == .ResetPassword {
+                                                                                       ResetPassword()
+                                                                                   }                                 }
+                                                                           }
+                                                                       }
+                                              }
+                                                  
+                                              #Preview {
+                                                  SignInView()
+                                              }
