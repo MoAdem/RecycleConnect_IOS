@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ResetPassword: View {
+struct UpdatePassword: View {
        @State private var showAlert = false
        @State private var alertMessage = ""
        @State private var verificationCode: String = ""
@@ -101,26 +101,18 @@ struct ResetPassword: View {
         .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, maxHeight: .infinity)
     }
     private func sendPasswordReset() {
-        guard emailError == nil && !email.isEmpty else {
-            showAlert = true
-            alertMessage = "Veuillez entrer une adresse email valide."
-            return
-        }
-
-        userViewModel.forgotPassword(email: email) { result in
-            switch result {
-            case .success(let message):
-                print("Password reset code sent: \(message)")
-                showAlert = true
-                alertMessage = "Code envoyé avec succès!"
-                // Handle success state
-            case .failure(let error):
-                print("Error sending password reset code: \(error.localizedDescription)")
-                showAlert = true
-                alertMessage = "Envoi de code a échoué: \(error.localizedDescription)"
-            }
-        }
-    }
+           userViewModel.forgotPassword(email: email) { result in
+               switch result {
+               case .success(let message):
+                   print("Password reset code sent: \(message)")
+                   showAlert = true
+                   alertMessage = "Code envoyé avec success!"
+               case .failure(let error):
+                   print("Error sending password reset code: \(error.localizedDescription)")
+                   showAlert = true
+                   alertMessage = "Envoi de code a echoué: \(error.localizedDescription)"                }
+           }
+       }
     private func validInput() {
         let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
         let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailRegex)
@@ -137,5 +129,5 @@ struct ResetPassword: View {
 
 
 #Preview {
-    ResetPassword()
+    UpdatePassword()
 }

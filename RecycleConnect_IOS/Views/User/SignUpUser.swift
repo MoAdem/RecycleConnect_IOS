@@ -10,15 +10,17 @@ import SwiftUI
 struct SignUpUser: View {
     @StateObject var userViewModel = UserViewModel()
     @State private var isEditing: Bool = false
-
+    @State private var shouldNavigateToSignIn = false
+    @State private var showAlert = false
+    @State private var alertMessage = ""
     @State private var email: String = ""
     @State private var nom: String = ""
     @State private var adress: String = ""
     @State private var tel: String = ""
-
     @State private var password: String = ""
     @State private var confirmPassword: String = ""
     
+    //controle de saisie
     @State private var fullNameError: String? = nil
     @State private var emailError: String? = nil
     @State private var passwordError: String? = nil
@@ -171,7 +173,8 @@ struct SignUpUser: View {
             
             HStack {
                 Button(action: {
-                    validateAndSignUp()                           }) {
+                    validateAndSignUp()                
+                }) {
                         ZStack {
                             RoundedRectangle(cornerRadius: 50)
                                 .frame(width: 150, height: 40)
@@ -188,7 +191,11 @@ struct SignUpUser: View {
             Spacer()
             
         }
-        
+        .background(
+                    NavigationLink("", destination: SignInView(), isActive: $shouldNavigateToSignIn)
+                        .opacity(0)
+                        .buttonStyle(PlainButtonStyle())
+                )
         
     }
 
@@ -198,9 +205,14 @@ struct SignUpUser: View {
             userViewModel.createUser(email: email, username: nom,telephone: tel ,address: adress, password: password, role: "client") { result in
                 switch result {
                 case .success(let message):
-                    print("Success: \(message)")
+                    print("Succès: \(message)")
+                    showAlert = true
+                    alertMessage = "Création du compte est effectuée !"
+                    shouldNavigateToSignIn = true
                 case .failure(let error):
-                    print("Error: \(error.localizedDescription)")
+                    print("Erreur: \(error.localizedDescription)")
+                    showAlert = true
+                    alertMessage = "Création du compte échouée !"
                 }
             }
         }

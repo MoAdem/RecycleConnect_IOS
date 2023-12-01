@@ -71,7 +71,8 @@ struct SignInView: View {
                     case .failure(let error):
                         print("Login failed with error: \(error)")
                         showAlert = true
-                        alertMessage = "Login failed: \(error.localizedDescription)"                    }
+                        alertMessage = "Login failed: \(error.localizedDescription)"                 
+                    }
                 }
             }) {
                 ZStack {

@@ -8,11 +8,12 @@
 import Foundation
 
 
-struct User: Codable {
+struct User: Codable,Hashable {
     let username: String
     let email: String
     let address: String
     let password: String
     let role: String
 }
+
 
