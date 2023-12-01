@@ -9,7 +9,8 @@ import SwiftUI
 
 struct SignUpOrganisation: View {
     @State private var isEditing: Bool = false
-    
+    @StateObject var userViewModel = UserViewModel()
+
     @State private var email: String = ""
     @State private var nom: String = ""
     @State private var adresse: String = ""
@@ -188,9 +189,17 @@ struct SignUpOrganisation: View {
     private func validateAndSignUp() {
             validateInput()
 
-            if NomError == nil && emailError == nil && passwordError == nil && confirmPasswordError == nil && addressError == nil {
+        if NomError == nil && emailError == nil && passwordError == nil && confirmPasswordError == nil && addressError == nil {
+            userViewModel.createOrg(username: nom, email: email, address: adresse, telephone: "55658945", password: password, role: "organization", orgDescription: description){ result in
+                switch result {
+                case .success(let message):
+                    print("Success: \(message)")
+                case .failure(let error):
+                    print("Error: \(error.localizedDescription)")
+                }
             }
         }
+    }
 
         private func validateInput() {
             if nom.isEmpty {
