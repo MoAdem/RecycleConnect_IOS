@@ -17,7 +17,7 @@ struct Livraison {
     let address_Client: String
 }
 */
-
+/*
  import Foundation
  
 struct Livraisonn: Codable  {
@@ -29,3 +29,28 @@ struct Livraisonn: Codable  {
  let ville: String
  let address_Client: String
  }
+*/
+/*
+import Foundation
+
+struct Livraisonn: Codable, Identifiable {
+    var id = UUID() // Ajoutez cette ligne pour conformer à Identifiable
+    let Nom_Article: String
+    let Nom_Client: String
+    let address_mail_Client: String
+    let numero_Client: Double
+    let ville: String
+    let address_Client: String
+}*/
+import Foundation
+
+struct Livraisonn: Codable, Identifiable {
+    let id = UUID()
+    let Nom_Article: String
+    let Nom_Client: String
+    let address_mail_Client: String
+    let numero_Client: Double
+    let ville: String
+    let address_Client: String
+}
+

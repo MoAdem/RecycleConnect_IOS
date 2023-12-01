@@ -4,7 +4,7 @@
 //
 //  Created by karimk on 28/11/2023.
 //
-
+/*
 import SwiftUI
 
 struct DetailsLivCardView: View {
@@ -71,9 +71,11 @@ struct DetailsLivCardView_Previews: PreviewProvider {
     static var previews: some View {
         DetailsLivCardView()
     }
-}
+}*/
 
-/*
+
+
+
 import SwiftUI
 struct DetailsLivCardView: View {
     var livraison: Livraisonn
@@ -123,7 +125,7 @@ struct DetailsLivCardView: View {
             Button("Modifier") {
                 isEditing.toggle()
             }
-            .tint(.blue)
+            .tint(.green)
         }
         .background(
             NavigationLink(
@@ -137,4 +139,4 @@ struct DetailsLivCardView: View {
     }
 }
 
-*/
+
