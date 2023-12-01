@@ -194,7 +194,7 @@ struct SignUpUser: View {
     private func validateAndSignUp() {
         validateInput()
         if fullNameError == nil && emailError == nil && passwordError == nil && confirmPasswordError == nil && addressError == nil {
-            userViewModel.createUser(email: email, username: nom, address: adress, password: password, role: "client") { result in
+            userViewModel.createUser(email: email, username: nom,telephone: tel ,address: adress, password: password, role: "client") { result in
                 switch result {
                 case .success(let message):
                     print("Success: \(message)")

@@ -9,7 +9,8 @@ import Foundation
 
 
 class UserViewModel: ObservableObject {
-    func createUser(email: String, username: String, address: String, password: String, role: String, completion: @escaping (Result<String, Error>) -> Void) {
+    func createUser(email: String, username: String,
+                    telephone:String, address: String, password: String, role: String, completion: @escaping (Result<String, Error>) -> Void) {
     
         guard let url = URL(string: "http://localhost:5000/api/user/create") else {
             completion(.failure(NSError(domain: "Invalid URL", code: 0, userInfo: nil)))
@@ -20,12 +21,13 @@ class UserViewModel: ObservableObject {
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        // Prepare your user data here
+    
         let user = [
             "email": email,
             "username": username,
             "address": address,
             "password": password,
+            "telephone": telephone,
             "role": role
         ]
         
