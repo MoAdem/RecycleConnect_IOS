@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4046AF1D2B177AD5006E0F09 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4046AF1C2B177AD5006E0F09 /* ColorExtensions.swift */; };
 		4046AF202B177FAF006E0F09 /* PanierService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4046AF1F2B177FAF006E0F09 /* PanierService.swift */; };
+		40A357B22B1A446400E6AF1C /* ReservationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A357B12B1A446400E6AF1C /* ReservationService.swift */; };
 		40C9ECC52B187DD200A654E1 /* ReservationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C9ECC42B187DD200A654E1 /* ReservationView.swift */; };
 		40C9ECC72B187E0F00A654E1 /* PanierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C9ECC62B187E0F00A654E1 /* PanierView.swift */; };
 		BB8D996C2B16337A00530D28 /* RecycleConnect_IOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8D996B2B16337A00530D28 /* RecycleConnect_IOSApp.swift */; };
@@ -47,6 +48,7 @@
 /* Begin PBXFileReference section */
 		4046AF1C2B177AD5006E0F09 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
 		4046AF1F2B177FAF006E0F09 /* PanierService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanierService.swift; sourceTree = "<group>"; };
+		40A357B12B1A446400E6AF1C /* ReservationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationService.swift; sourceTree = "<group>"; };
 		40C9ECC42B187DD200A654E1 /* ReservationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationView.swift; sourceTree = "<group>"; };
 		40C9ECC62B187E0F00A654E1 /* PanierView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanierView.swift; sourceTree = "<group>"; };
 		BB8D99682B16337A00530D28 /* RecycleConnect_IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecycleConnect_IOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -117,6 +119,14 @@
 			path = Panier;
 			sourceTree = "<group>";
 		};
+		40A357B02B1A444B00E6AF1C /* ReservationService */ = {
+			isa = PBXGroup;
+			children = (
+				40A357B12B1A446400E6AF1C /* ReservationService.swift */,
+			);
+			path = ReservationService;
+			sourceTree = "<group>";
+		};
 		BB8D995F2B16337A00530D28 = {
 			isa = PBXGroup;
 			children = (
@@ -183,6 +193,7 @@
 		BBF011712B163D3900D1287A /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				40A357B02B1A444B00E6AF1C /* ReservationService */,
 				4046AF1E2B177F8C006E0F09 /* Panier */,
 				BBF0117A2B163DCF00D1287A /* Events */,
 			);
@@ -386,6 +397,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40A357B22B1A446400E6AF1C /* ReservationService.swift in Sources */,
 				BB8D99752B16337B00530D28 /* Persistence.swift in Sources */,
 				BB8D996E2B16337A00530D28 /* ContentView.swift in Sources */,
 				BBF011842B163E8900D1287A /* Test.swift in Sources */,

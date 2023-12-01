@@ -1,74 +1,93 @@
 import SwiftUI
 
+struct Article: Identifiable {
+    let id = UUID()
+    let name: String
+    var isSelected: Bool = false
+}
+
 struct PanierView: View {
     @State private var livraisonSelected = false
     @State private var recupererSelected = false
     @State private var isDetailsLivListViewActive = false
     @State private var isPcCardViewActive = false
+    @State private var showAlert = false
+    @State private var selectedArticleId: String? = nil
+
+    @State private var articles: [Article] = [
+        Article(name: "Article 1"),
+        Article(name: "Article 2"),
+        Article(name: "Article 3")
+    ]
 
     var body: some View {
         NavigationView {
             VStack {
-                // Display the number of items in the panier
-                Text("Nombre d'articles dans le panier: 1")
+                Text("Article Selectionné: \(articles.filter { $0.isSelected }.count)")
                     .font(.title)
                     .fontWeight(.bold)
                     .padding(.bottom, 16)
                     .foregroundColor(Color(hex: "0C8A7B"))
 
-                // List of items in the panier (replace with actual items)
-                List {
-                    Text("Article 1")
-                        .foregroundColor(Color(hex: "0C8A7B"))
-                        .padding()
-                        .background(RoundedRectangle(cornerRadius: 8).strokeBorder(Color(hex: "0C8A7B")))
-                    Text("Article 2")
-                        .foregroundColor(Color(hex: "0C8A7B"))
-                        .padding()
-                        .background(RoundedRectangle(cornerRadius: 8).strokeBorder(Color(hex: "0C8A7B")))
-                    Text("Article 3")
-                        .foregroundColor(Color(hex: "0C8A7B"))
-                        .padding()
-                        .background(RoundedRectangle(cornerRadius: 8).strokeBorder(Color(hex: "0C8A7B")))
+                VStack(alignment: .leading, spacing: 8) {
+                    ForEach(articles) { article in
+                        RoundedRectangle(cornerRadius: 8)
+                            .strokeBorder(Color(hex: "0C8A7B"), lineWidth: 1)
+                            .padding(.vertical, 8)
+                            .overlay(
+                                Text(article.name)
+                                    .foregroundColor(Color.black)
+                                    .padding()
+                                    .onTapGesture {
+                                        toggleSelection(for: article)
+                                    }
+                                    .rotation3DEffect(
+                                        .degrees(article.isSelected ? 10 : 0), // Angle de rotation pour l'article sélectionné
+                                        axis: (x: 0.5, y: 10.0, z:0.5) // Axe de rotation (rotation autour de l'axe Y)
+                                    )
+                                    .animation(.spring()) // Ajout d'une animation fluide
+)
+                    }
                 }
-                .listStyle(PlainListStyle())
 
-                // Stylish button to empty the panier
                 Button("Vider le panier") {
-                    // Action to empty the panier
-                    deletePanier()
-                }
-                .buttonStyle(DynamicButtonStyle(color: "0C8A7B", shape: .capsule))
-                .foregroundColor(.white)
-                .padding(.top, 16)
-
-                // Radio buttons for livraison and récupérer au point de collecte
-                HStack {
-                    RadioButton(text: "Livraison", isSelected: $livraisonSelected, otherSelected: $recupererSelected)
-                        .padding(.trailing, 16)
-                    RadioButton(text: "Récupérer au point de collecte", isSelected: $recupererSelected, otherSelected: $livraisonSelected)
-                        .padding(.leading, 16)
-                }
-                .padding(.top, 16)
-
-                // Modern button to validate the command
-                Button("Valider la commande") {
-                    if livraisonSelected && !recupererSelected {
-                        // Transition to "DetailsLivListView"
-                        isDetailsLivListViewActive = true
-                    } else if recupererSelected && !livraisonSelected {
-                        // Transition to "PcCardView"
-                        isPcCardViewActive = true
+                    withAnimation {
+                        deletePanier()
                     }
                 }
                 .buttonStyle(DynamicButtonStyle(color: "0C8A7B", shape: .capsule))
                 .foregroundColor(.white)
                 .padding(.top, 16)
 
+                HStack {
+                    RadioButton(text: "Livraison", isSelected: $livraisonSelected, otherSelected: $recupererSelected)
+                        .padding(.trailing, 16)
+                        .animation(.easeInOut)
+                    RadioButton(text: "Récupérer au point de collecte", isSelected: $recupererSelected, otherSelected: $livraisonSelected)
+                        .padding(.leading, 16)
+                        .animation(.easeInOut)
+                }
+                .padding(.top, 16)
+
+                Button("Valider la commande") {
+                    if livraisonSelected && !recupererSelected {
+                        isDetailsLivListViewActive = true
+                    } else if recupererSelected && !livraisonSelected {
+                        isPcCardViewActive = true
+                    }
+                    showAlert = true
+                }
+                .buttonStyle(DynamicButtonStyle(color: "0C8A7B", shape: .capsule))
+                .foregroundColor(.white)
+                .padding(.top, 16)
+                .alert(isPresented: $showAlert) {
+                    Alert(title: Text("Commande validée"), message: Text("Votre commande a été validée avec succès."), dismissButton: .default(Text("OK")))
+                }
+
                 Spacer()
             }
             .padding(16)
-            .background(Color.gray.edgesIgnoringSafeArea(.all))
+            .background(Color.white.edgesIgnoringSafeArea(.all))
             .navigationBarTitle("", displayMode: .inline)
             .navigationBarItems(leading:
                 Image("logo-panier-vert1")
@@ -76,19 +95,26 @@ struct PanierView: View {
                     .frame(width: 80, height: 80)
             )
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 
-    // Function to delete the panier
     private func deletePanier() {
-        PanierService.shared.deletePanier(panierId: "654b7a9d37bdf7303959471a") { result in
-            switch result {
-            case .success:
-                // Handle successful deletion, e.g., update the UI or show a message
-                print("Panier deleted successfully")
-            case .failure(let error):
-                // Handle the error, e.g., show an alert
-                print("Error deleting panier: \(error.localizedDescription)")
-            }
+        let selectedArticles = articles.filter { $0.isSelected }
+        for article in selectedArticles {
+            print("Article à supprimer avec l'ID : \(article.id)")
+        }
+
+        // Appel à votre fonction de suppression du panier
+        // ...
+
+        // Supprimer les articles sélectionnés du tableau
+        articles.removeAll(where: { $0.isSelected })
+    }
+
+    private func toggleSelection(for article: Article) {
+        if let index = articles.firstIndex(where: { $0.id == article.id }) {
+            articles[index].isSelected.toggle()
+            selectedArticleId = articles[index].isSelected ? article.id.uuidString : nil
         }
     }
 }
@@ -152,11 +178,19 @@ enum ButtonShape {
     }
 }
 
+
 /*struct DetailsLivListView: View {
+
     // Contenu de la vue "DetailsLivListView"
+
 }
 
+
+
 struct PcCardView: View {
+
     // Contenu de la vue "PcCardView"
+
 }
+
 */
