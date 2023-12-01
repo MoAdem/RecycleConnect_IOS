@@ -24,7 +24,7 @@ struct DetailsLivListView: View {
                     .scaledToFill()
                     .edgesIgnoringSafeArea(.all)
             )
-            //.navigationTitle("Details Livraison")
+            .navigationTitle("Details Livraison")
             .navigationBarTitleDisplayMode(.inline)
         }
     }
@@ -35,3 +35,62 @@ struct DetailsLivListView_Previews: PreviewProvider {
         DetailsLivListView()
     }
 }
+
+/*
+import SwiftUI
+
+struct DetailsLivListView: View {
+    @ObservedObject var viewModel = LivraisonViewModel()
+
+    var body: some View {
+        NavigationView {
+            List(viewModel.livraisons, id: \._id) { livraison in
+                DetailsLivCardView(livraison: livraison)
+                    .listRowInsets(EdgeInsets(top: 5, leading: 5, bottom: 4, trailing: 4))
+            }
+            .onAppear {
+                viewModel.fetchData()
+            }
+            .listStyle(InsetListStyle())
+            .listRowBackground(Color.clear)
+            .background(
+                Image("background_splash_screen")
+                    .resizable()
+                    .scaledToFill()
+                    .edgesIgnoringSafeArea(.all)
+            )
+            .navigationBarTitleDisplayMode(.inline)
+        }
+    }
+}
+*/
+/*
+import SwiftUI
+
+struct DetailsLivListView: View {
+    @ObservedObject var viewModel = LivraisonViewModel()
+
+    var body: some View {
+        NavigationView {
+            List($viewModel.livraisonns, id: \._id) { livraison in
+                DetailsLivCardView(livraison: livraison)
+                    .listRowInsets(EdgeInsets(top: 5, leading: 5, bottom: 4, trailing: 4))
+            }
+            .onAppear {
+                viewModel.fetchData()
+                print("Number of livraisons: \(viewModel.livraisons.count)")
+            }
+            .listStyle(InsetListStyle())
+            .listRowBackground(Color.clear)
+            .background(
+                Image("background_splash_screen")
+                    .resizable()
+                    .scaledToFill()
+                    .edgesIgnoringSafeArea(.all)
+            )
+            .navigationBarTitleDisplayMode(.inline)
+        }
+    }
+}
+
+*/

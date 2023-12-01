@@ -72,3 +72,69 @@ struct DetailsLivCardView_Previews: PreviewProvider {
         DetailsLivCardView()
     }
 }
+
+/*
+import SwiftUI
+struct DetailsLivCardView: View {
+    var livraison: Livraisonn
+
+    @State private var isEditing = false
+
+    var body: some View {
+        HStack(spacing: 7) {
+            VStack(alignment: .leading, spacing: 9) {
+                Text("Votre commande a été ajoutée avec succès sous les coordonnées  ")
+                    .font(.system(size: 15))
+                    .fontWeight(.medium)
+                    .frame(maxWidth: .infinity, alignment: .center)
+
+                Text(livraison.Nom_Client)
+                    .font(.body)
+                    .foregroundColor(.secondary)
+                    .frame(maxWidth: .infinity, alignment: .center)
+
+                Text(livraison.address_mail_Client)
+                    .font(.body)
+                    .foregroundColor(.secondary)
+                    .frame(maxWidth: .infinity, alignment: .center)
+
+                Text("\(livraison.numero_Client)")
+                    .font(.body)
+                    .foregroundColor(.secondary)
+                    .frame(maxWidth: .infinity, alignment: .center)
+
+                Text(livraison.address_Client)
+                    .font(.body)
+                    .foregroundColor(.secondary)
+                    .frame(maxWidth: .infinity, alignment: .center)
+            }
+            .padding(16)
+        }
+        .background(Color.white)
+        .cornerRadius(8)
+        .shadow(radius: 4)
+        .padding(8)
+        .swipeActions {
+            Button("Supprimer") {
+                // Action de suppression
+            }
+            .tint(.red)
+
+            Button("Modifier") {
+                isEditing.toggle()
+            }
+            .tint(.blue)
+        }
+        .background(
+            NavigationLink(
+                destination: LivraisonFormView(),
+                isActive: $isEditing
+            ) {
+                EmptyView()
+            }
+            .hidden()
+        )
+    }
+}
+
+*/
