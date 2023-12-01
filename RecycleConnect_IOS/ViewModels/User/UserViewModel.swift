@@ -9,28 +9,40 @@ import Foundation
 
 
 class UserViewModel: ObservableObject {
-    @Published var users: [User] = []
+    func createUser(email: String, username: String, address: String, password: String, role: String, completion: @escaping (Result<String, Error>) -> Void) {
     
-    func getAllUsers(){
-        UserServices.shared.getAllUsers { result in
-            switch result{
-            case .success(let users):
-                self.users = users
-                print("Successfully fetched users : \(users)")
-            case .failure(let error):
-                print(String(describing: error))
-            }
+        guard let url = URL(string: "http://localhost:5000/api/user/create") else {
+            completion(.failure(NSError(domain: "Invalid URL", code: 0, userInfo: nil)))
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        // Prepare your user data here
+        let user = [
+            "email": email,
+            "username": username,
+            "address": address,
+            "password": password,
+            "role": role
+        ]
+        
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: user, options: .prettyPrinted)
+            
+            URLSession.shared.dataTask(with: request) { data, response, error in
+               
+                if let error = error {
+                    completion(.failure(error))
+                } else if let data = data {
+                    let responseString = String(data: data, encoding: .utf8) ?? ""
+                    completion(.success(responseString))
+                }
+            }.resume()
+        } catch {
+            completion(.failure(error))
         }
     }
-    
-    
-    
-    
-    
-    
-
 }
-
-
-
-

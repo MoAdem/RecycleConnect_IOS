@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct SignUpUser: View {
+    @StateObject var userViewModel = UserViewModel()
+
     @State private var isEditing: Bool = false
     
     @State private var email: String = ""
@@ -170,32 +172,38 @@ struct SignUpUser: View {
             
             HStack {
                 Button(action: {
-                    validateAndSignUp ()
-                }, label: {
-                    ZStack{
-                        RoundedRectangle(cornerRadius: 50)
-                            .frame(width: 150, height: 40)
-                            .foregroundColor(Color(Fonts.darkGreen))
-                        Text("Continuer")
-                            .foregroundStyle(Color.white)
-                            .fontWeight(.bold)
-                            .font(.system(size: 18))
-                    }
-                })
-                .padding(.leading, 120)
-                Spacer()
-            }
-            Spacer()
-            
-        }
-        
-    }
-    private func validateAndSignUp() {
-            validateInput()
+                              validateAndSignUp()                           }) {
+                              ZStack {
+                                  RoundedRectangle(cornerRadius: 50)
+                                      .frame(width: 150, height: 40)
+                                      .foregroundColor(Color(Fonts.darkGreen))
+                                  Text("Continuer")
+                                      .foregroundStyle(Color.white)
+                                      .fontWeight(.bold)
+                                      .font(.system(size: 18))
+                              }
+                          }
+                          .padding(.leading, 120)
+                          Spacer()
+                      }
+                      Spacer()
+                  }
+              }
 
-            if fullNameError == nil && emailError == nil && passwordError == nil && confirmPasswordError == nil && addressError == nil {
+
+    private func validateAndSignUp() {
+        validateInput()
+        if fullNameError == nil && emailError == nil && passwordError == nil && confirmPasswordError == nil && addressError == nil {
+            userViewModel.createUser(email: email, username: nom, address: adress, password: password, role: "client") { result in
+                switch result {
+                case .success(let message):
+                    print("Success: \(message)")
+                case .failure(let error):
+                    print("Error: \(error.localizedDescription)")
+                }
             }
         }
+    }
 
         private func validateInput() {
             if nom.isEmpty {

@@ -7,14 +7,12 @@
 
 import Foundation
 
-struct User: Hashable, Codable{
-    var _id: String
-    var firstName: String
-    var lastName: String
-    var username: String
-    var password: String
-    var email: String
-    var phoneNumber: String
-    var role: String
-    var archived: Bool
+
+struct User: Codable {
+    let username: String
+    let email: String
+    let address: String
+    let password: String
+    let role: String
 }
+
