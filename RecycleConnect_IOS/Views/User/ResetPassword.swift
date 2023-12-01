@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ResetPassword: View {
-    
+       @State private var showAlert = false
+       @State private var alertMessage = ""
        @State private var verificationCode: String = ""
        @State private var email: String = ""
        @State private var emailError: String? = nil
@@ -87,6 +88,9 @@ struct ResetPassword: View {
                             .fontWeight(.bold)
                             .font(.system(size: 18))
                     }
+                    .alert(isPresented: $showAlert) {
+                               Alert(title: Text("Renitialiser mot de passe"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+                           }
                 }
                 .padding(.leading, 130)
                 Spacer()
@@ -101,11 +105,13 @@ struct ResetPassword: View {
                switch result {
                case .success(let message):
                    print("Password reset code sent: \(message)")
+                   showAlert = true
+                   alertMessage = "Code envoyé avec success!"
                    // Handle success state
                case .failure(let error):
                    print("Error sending password reset code: \(error.localizedDescription)")
-                   // Handle error state if needed
-               }
+                   showAlert = true
+                   alertMessage = "Envoi de code a echoué: \(error.localizedDescription)"                }
            }
        }
     private func validInput() {

@@ -7,7 +7,8 @@ enum ViewStack {
 
 struct SignInView: View {
     @StateObject var userViewModel = UserViewModel()
-
+    @State private var showAlert = false
+    @State private var alertMessage = ""
     @State private var username = ""
     @State private var password = ""
     @State private var showHomePage = false
@@ -65,9 +66,12 @@ struct SignInView: View {
                     switch result {
                     case .success(let user):
                         print("Login successful for user: \(user)")
+                        showAlert = true
+                        alertMessage = "Login successful"
                     case .failure(let error):
                         print("Login failed with error: \(error)")
-                    }
+                        showAlert = true
+                        alertMessage = "Login failed: \(error.localizedDescription)"                    }
                 }
             }) {
                 ZStack {
@@ -79,6 +83,10 @@ struct SignInView: View {
                         .fontWeight(.bold)
                         .font(.system(size: 18))
                 }
+                .alert(isPresented: $showAlert) {
+                           Alert(title: Text("Login Status"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+                       }
+                   }
             }
             .padding(.bottom, 30)
                                            
@@ -123,7 +131,7 @@ struct SignInView: View {
                                                                                    }                                 }
                                                                            }
                                                                        }
-                                              }
+
                                                   
                                               #Preview {
                                                   SignInView()
