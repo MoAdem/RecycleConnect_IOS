@@ -9,9 +9,8 @@ import SwiftUI
 
 struct SignUpUser: View {
     @StateObject var userViewModel = UserViewModel()
-
     @State private var isEditing: Bool = false
-    
+
     @State private var email: String = ""
     @State private var nom: String = ""
     @State private var adress: String = ""
@@ -41,7 +40,7 @@ struct SignUpUser: View {
             TextField("", text: $nom,
                       prompt: Text("Nom")
             )
-           .disableAutocorrection(true)
+            .disableAutocorrection(true)
             .frame(width: 300, height: 40)
             .padding(.leading, 40)
             .background(Image("profile").resizable().scaledToFit().frame(
@@ -51,15 +50,15 @@ struct SignUpUser: View {
                     .stroke(Color(Color(Fonts.darkGreen)),
                             lineWidth: 1.5)
             )
-           // .padding(.bottom, 25)
+            // .padding(.bottom, 25)
             
             .padding(.bottom, 15)
             if let error = fullNameError {
-                           Text(error)
-                               .foregroundColor(.red)
-                               .padding(.bottom, 1)
-
-                       }
+                Text(error)
+                    .foregroundColor(.red)
+                    .padding(.bottom, 1)
+                
+            }
             TextField("", text: $email,
                       prompt: Text("Adresse mail ")
             )
@@ -75,12 +74,12 @@ struct SignUpUser: View {
             )
             .padding(.bottom, 15)
             if let error = emailError {
-                         Text(error)
-                             .foregroundColor(.red)
-                             .padding(.bottom, 1)
-
-                     }
-
+                Text(error)
+                    .foregroundColor(.red)
+                    .padding(.bottom, 1)
+                
+            }
+            
             TextField("", text: $adress,
                       prompt: Text("Adresse ")
             )
@@ -94,18 +93,18 @@ struct SignUpUser: View {
                     .stroke(Color(Color(Fonts.darkGreen)),
                             lineWidth: 1.5)
             )
-           
+            
             .padding(.bottom, 15)
             if let error = addressError {
-                         Text(error)
-                             .foregroundColor(.red)
-                             .padding(.bottom, 1)
-
-                     }
+                Text(error)
+                    .foregroundColor(.red)
+                    .padding(.bottom, 1)
+                
+            }
             
             TextField("", text: $tel,
                       prompt: Text("Téléphone")
-                
+                      
             )
             
             .disableAutocorrection(true)
@@ -118,15 +117,15 @@ struct SignUpUser: View {
                     .stroke(Color(Color(Fonts.darkGreen)),
                             lineWidth: 1.5)
             )
-           
+            
             .padding(.bottom, 15)
             if let error = phoneError {
-                         Text(error)
-                             .foregroundColor(.red)
-                             .padding(.bottom, 1)
-
-
-                     }
+                Text(error)
+                    .foregroundColor(.red)
+                    .padding(.bottom, 1)
+                
+                
+            }
             
             SecureField("", text: $password,
                         prompt: Text("Mot de passe")
@@ -144,10 +143,10 @@ struct SignUpUser: View {
             .padding(.bottom,15)
             
             if let error = passwordError {
-                         Text(error)
-                             .foregroundColor(.red)
-                             
-                     }
+                Text(error)
+                    .foregroundColor(.red)
+                
+            }
             SecureField("", text: $confirmPassword,
                         prompt: Text("Confirmer mot de passe ")
             )
@@ -164,32 +163,34 @@ struct SignUpUser: View {
             .padding(.bottom, 10)
             
             if let error = confirmPasswordError {
-                         Text(error)
-                             .foregroundColor(.red)
-                             .padding(.bottom, 1)
-
-                     }
+                Text(error)
+                    .foregroundColor(.red)
+                    .padding(.bottom, 1)
+                
+            }
             
             HStack {
                 Button(action: {
-                              validateAndSignUp()                           }) {
-                              ZStack {
-                                  RoundedRectangle(cornerRadius: 50)
-                                      .frame(width: 150, height: 40)
-                                      .foregroundColor(Color(Fonts.darkGreen))
-                                  Text("Continuer")
-                                      .foregroundStyle(Color.white)
-                                      .fontWeight(.bold)
-                                      .font(.system(size: 18))
-                              }
-                          }
-                          .padding(.leading, 120)
-                          Spacer()
-                      }
-                      Spacer()
-                  }
-              }
-
+                    validateAndSignUp()                           }) {
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 50)
+                                .frame(width: 150, height: 40)
+                                .foregroundColor(Color(Fonts.darkGreen))
+                            Text("Continuer")
+                                .foregroundStyle(Color.white)
+                                .fontWeight(.bold)
+                                .font(.system(size: 18))
+                        }
+                    }
+                    .padding(.leading, 120)
+                Spacer()
+            }
+            Spacer()
+            
+        }
+        
+        
+    }
 
     private func validateAndSignUp() {
         validateInput()
@@ -207,7 +208,7 @@ struct SignUpUser: View {
 
         private func validateInput() {
             if nom.isEmpty {
-                fullNameError = "Veuillez remplir ce champ !"
+                fullNameError = "Veuillez entrer votre nom !"
             } else if nom.count < 6 {
                 fullNameError = "Au moins 6 caractères!"
             } else {
@@ -217,14 +218,14 @@ struct SignUpUser: View {
             let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
             let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailRegex)
             if email.isEmpty {
-                emailError = "Veuillez remplir ce champ !"
+                emailError = "Veuillez entrer votre adresse mail !"
             } else if !emailPredicate.evaluate(with: email) {
                 emailError = "Adresse email invalide"
             } else {
                 emailError = nil
             }
             if tel.isEmpty {
-                phoneError = "Veuillez remplir ce champ !"
+                phoneError = "Veuillez entrer votre numero de téléphone !"
             } else  if !(tel.hasPrefix("5") || tel.hasPrefix("9") || tel.hasPrefix("2")) {
                 phoneError = "Veuillez entrer un numéro valide"
             } else if tel.count != 8 {
@@ -233,13 +234,13 @@ struct SignUpUser: View {
                 phoneError = nil
             }
             if password.isEmpty {
-                passwordError = "Veuillez remplir ce champ !"
+                passwordError = "Veuillez entrer votre mot de passe !"
             } else {
                 passwordError = nil
             }
 
             if confirmPassword.isEmpty {
-                confirmPasswordError = "Veuillez remplir ce champ !"
+                confirmPasswordError = "Veuillez confirmer votre mot de passe !"
             } else if password != confirmPassword {
                 confirmPasswordError = "Les mots de passe sont incompatibles"
             } else {
@@ -247,7 +248,7 @@ struct SignUpUser: View {
             }
 
             if adress.isEmpty {
-                addressError = "Veuillez remplir ce champ !"
+                addressError = "Veuillez entrer votre adresse svp !"
             } else {
                 addressError = nil
             }

@@ -6,6 +6,8 @@ enum ViewStack {
 }
 
 struct SignInView: View {
+    @StateObject var userViewModel = UserViewModel()
+
     @State private var username = ""
     @State private var password = ""
     @State private var showHomePage = false
@@ -56,22 +58,28 @@ struct SignInView: View {
                     width: 25, height:40).padding(.leading, 30), alignment: .leading)
                 .padding(.bottom, 18)
        
-                       
             Button(action: {
-                         ///
-                      }) {
-                          ZStack {
-                              RoundedRectangle(cornerRadius: 50)
-                                  .frame(width: 340, height: 40)
-                                  .foregroundColor(Fonts.darkGreen)
-                              Text("Se connecter")
-                                  .foregroundColor(Color.white)
-                                  .fontWeight(.bold)
-                                  .font(.system(size: 18))
-                          }
-                      }
-                      .padding(.bottom, 30)
-                      
+                // Call the login function from UserViewModel
+                userViewModel.loginUser(username: username, password: password) { result in
+                    switch result {
+                    case .success(let user):
+                        print("Login successful for user: \(user)")
+                    case .failure(let error):
+                        print("Login failed with error: \(error)")
+                    }
+                }
+            }) {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 50)
+                        .frame(width: 340, height: 40)
+                        .foregroundColor(Fonts.darkGreen)
+                    Text("Se connecter")
+                        .foregroundColor(Color.white)
+                        .fontWeight(.bold)
+                        .font(.system(size: 18))
+                }
+            }
+            .padding(.bottom, 30)
                                            
                       HStack(alignment: .center) {
                           Text("Pas de compte ?")

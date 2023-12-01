@@ -1,9 +1,4 @@
-//
-//  SignUpView.swift
-//  Ecocircuit
-//
-//  Created by Ibrahim saddour on 9/11/2023.
-//
+
 
 import SwiftUI
 
