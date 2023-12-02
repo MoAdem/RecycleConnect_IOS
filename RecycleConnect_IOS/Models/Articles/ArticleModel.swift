@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Article
+struct Article : Codable
 {
     var IdArticle : String
     var PhotoArticle : String
