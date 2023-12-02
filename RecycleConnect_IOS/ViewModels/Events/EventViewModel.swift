@@ -10,11 +10,14 @@ import SwiftUI
 final class EventViewModel: ObservableObject {
     @Published var events: [Events] = []
     @Published var alertItem: AlertItem?
+    @Published var isLoding = false
 
     
     func getEvents() {
-        EventsServices.shared.getEvents { result in
+        isLoding = true
+        EventsServices.shared.getEvents { [self] result in
             DispatchQueue.main.async {
+                isLoding = false
                 switch result {
                 case .success(let events):
                     self.events = events
