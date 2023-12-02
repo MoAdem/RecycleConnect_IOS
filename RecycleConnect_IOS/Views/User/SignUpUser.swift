@@ -194,7 +194,7 @@ struct SignUpUser: View {
         .background(
                     NavigationLink("", destination: SignInView(), isActive: $shouldNavigateToSignIn)
                         .opacity(0)
-                        .buttonStyle(PlainButtonStyle())
+                         .buttonStyle(PlainButtonStyle())
                 )
         
     }

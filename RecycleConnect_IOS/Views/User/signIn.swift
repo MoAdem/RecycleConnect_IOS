@@ -13,10 +13,14 @@ struct SignInView: View {
     @State private var password = ""
     @State private var showHomePage = false
 
+    /// controle de saisie
+    @State private var fullNameError: String? = nil
+    @State private var passwordError: String? = nil
+
     @State private var presentNextView = false
     @State private var nextView: ViewStack = .SignUp
     @State private var isAppTabViewPresented: Bool = false
-      @State private var isResetPasswordPresented: Bool = false
+    @State private var isResetPasswordPresented: Bool = false
     
     var body: some View {
         VStack {
@@ -39,9 +43,15 @@ struct SignInView: View {
                 .padding(.trailing, 20)
                 .padding(.bottom,20)
                 .padding(.top, 20)
+            
                 .background(Image("profile").resizable().scaledToFit().frame(
                     width: 25, height:25).padding(.leading, 30), alignment: .leading)
-            
+            if let error = fullNameError {
+                Text(error)
+                    .foregroundColor(.red)
+                    .padding(.bottom, 1)
+                
+            }
             SecureField("", text: $password, prompt: Text("Mot de passe").foregroundColor(Color.gray))
                 .disableAutocorrection(true)
                 .frame(width: 300, height: 40)
@@ -59,9 +69,13 @@ struct SignInView: View {
                 .background(Image("pass").resizable().scaledToFit().frame(
                     width: 25, height:40).padding(.leading, 30), alignment: .leading)
                 .padding(.bottom, 18)
-       
+            if let error = passwordError {
+                Text(error)
+                    .foregroundColor(.red)
+                
+            }
             Button(action: {
-
+                validInput()
                 userViewModel.loginUser(username: username, password: password) { result in
                     switch result {
                     case .success(let user):
@@ -131,6 +145,21 @@ struct SignInView: View {
                                                                                        ResetPassword()
                                                                                    }                                 }
                                                                            }
+    private func validInput() {
+        if username.isEmpty {
+            fullNameError = "Veuillez entrer votre nom !"
+        } else if username.count < 6 {
+            fullNameError = "Au moins 6 caractères!"
+        } else {
+            fullNameError = nil
+        }
+        if password.isEmpty {
+            passwordError = "Veuillez entrer votre mot de passe !"
+        } else {
+            passwordError = nil
+        }
+        
+    }
                                                                        }
 
                                                   
