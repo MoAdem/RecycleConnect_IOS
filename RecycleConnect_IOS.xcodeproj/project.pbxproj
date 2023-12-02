@@ -31,6 +31,8 @@
 		BBF011802B163E2A00D1287A /* TestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF0117F2B163E2A00D1287A /* TestViewModel.swift */; };
 		BBF011822B163E7200D1287A /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF011812B163E7200D1287A /* TestView.swift */; };
 		BBF011842B163E8900D1287A /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF011832B163E8900D1287A /* Test.swift */; };
+		BBF816D82B1B6634006F9B19 /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF816D72B1B6634006F9B19 /* EventViewModel.swift */; };
+		BBF816DC2B1B6FD8006F9B19 /* LodingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF816DB2B1B6FD8006F9B19 /* LodingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +80,8 @@
 		BBF0117F2B163E2A00D1287A /* TestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewModel.swift; sourceTree = "<group>"; };
 		BBF011812B163E7200D1287A /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		BBF011832B163E8900D1287A /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
+		BBF816D72B1B6634006F9B19 /* EventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModel.swift; sourceTree = "<group>"; };
+		BBF816DB2B1B6FD8006F9B19 /* LodingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LodingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +145,7 @@
 				BB8D99712B16337B00530D28 /* Preview Content */,
 				BBB589FA2B1769A2005FACDC /* AppTabView.swift */,
 				BBB589FC2B1769C5005FACDC /* HomeView.swift */,
+				BBF816DB2B1B6FD8006F9B19 /* LodingView.swift */,
 			);
 			path = RecycleConnect_IOS;
 			sourceTree = "<group>";
@@ -236,6 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				BBF0117F2B163E2A00D1287A /* TestViewModel.swift */,
+				BBF816D72B1B6634006F9B19 /* EventViewModel.swift */,
 			);
 			path = Events;
 			sourceTree = "<group>";
@@ -393,11 +399,13 @@
 				BBB58A012B176A22005FACDC /* EventsServices.swift in Sources */,
 				BBB58A032B176A3F005FACDC /* EVError.swift in Sources */,
 				BBF011822B163E7200D1287A /* TestView.swift in Sources */,
+				BBF816D82B1B6634006F9B19 /* EventViewModel.swift in Sources */,
 				BBF011802B163E2A00D1287A /* TestViewModel.swift in Sources */,
 				BBB589FF2B1769EF005FACDC /* EventListCell.swift in Sources */,
 				BB8D99782B16337B00530D28 /* RecycleConnect_IOS.xcdatamodeld in Sources */,
 				BBB589F72B1768CA005FACDC /* EventCard.swift in Sources */,
 				BBB58A052B176A57005FACDC /* XDismissButton.swift in Sources */,
+				BBF816DC2B1B6FD8006F9B19 /* LodingView.swift in Sources */,
 				BB8D996C2B16337A00530D28 /* RecycleConnect_IOSApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
