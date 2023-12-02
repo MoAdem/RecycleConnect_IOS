@@ -37,6 +37,9 @@ struct EventListView: View {
             .onAppear() {
                 eventViewModel.getEvents()
             }
+            .alert(item: $eventViewModel.alertItem) { alertitem in
+                Alert(title: alertitem.title,message: alertitem.message, dismissButton: alertitem.dismissButton)
+            }
             .blur(radius: isShowingDetailView ? 20 : 0)
             if isShowingDetailView {
                 EventDetailView(event: MockData.sampleEvent, isShowingDetailView: $isShowingDetailView)

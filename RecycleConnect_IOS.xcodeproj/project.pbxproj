@@ -33,6 +33,7 @@
 		BBF011842B163E8900D1287A /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF011832B163E8900D1287A /* Test.swift */; };
 		BBF816D82B1B6634006F9B19 /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF816D72B1B6634006F9B19 /* EventViewModel.swift */; };
 		BBF816DC2B1B6FD8006F9B19 /* LodingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF816DB2B1B6FD8006F9B19 /* LodingView.swift */; };
+		BBF816DF2B1B75DC006F9B19 /* AlertEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF816DE2B1B75DC006F9B19 /* AlertEvents.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,7 @@
 		BBF011832B163E8900D1287A /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		BBF816D72B1B6634006F9B19 /* EventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModel.swift; sourceTree = "<group>"; };
 		BBF816DB2B1B6FD8006F9B19 /* LodingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LodingView.swift; sourceTree = "<group>"; };
+		BBF816DE2B1B75DC006F9B19 /* AlertEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertEvents.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +188,7 @@
 		BBF011722B163D4F00D1287A /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				BBF816DD2B1B75C5006F9B19 /* Events */,
 				BBF0117B2B163DDF00D1287A /* Fonts.swift */,
 			);
 			path = Utilities;
@@ -252,6 +255,14 @@
 				BBF0117D2B163E1200D1287A /* TestServices.swift */,
 				BBB58A002B176A22005FACDC /* EventsServices.swift */,
 				BBB58A022B176A3F005FACDC /* EVError.swift */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
+		BBF816DD2B1B75C5006F9B19 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				BBF816DE2B1B75DC006F9B19 /* AlertEvents.swift */,
 			);
 			path = Events;
 			sourceTree = "<group>";
@@ -391,6 +402,7 @@
 				BB8D99752B16337B00530D28 /* Persistence.swift in Sources */,
 				BBB589FD2B1769C5005FACDC /* HomeView.swift in Sources */,
 				BB8D996E2B16337A00530D28 /* ContentView.swift in Sources */,
+				BBF816DF2B1B75DC006F9B19 /* AlertEvents.swift in Sources */,
 				BBB589FB2B1769A2005FACDC /* AppTabView.swift in Sources */,
 				BBF011842B163E8900D1287A /* Test.swift in Sources */,
 				BBF0117C2B163DDF00D1287A /* Fonts.swift in Sources */,
