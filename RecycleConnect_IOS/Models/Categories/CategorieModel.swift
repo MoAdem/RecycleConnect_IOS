@@ -8,9 +8,10 @@
 import Foundation
 
 
-struct Categorie : Codable
+struct categorie : Decodable, Identifiable, Hashable
 {
-    var IdCategorie : String
+    
+    var id : String
     var PhotoCategorie : String
     var NomCategorie : String
     var NbreTotalArticles : Int

@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct Article : Codable
+struct article : Decodable, Identifiable, Hashable
 {
-    var IdArticle : String
+    var id : String
     var PhotoArticle : String
     var NomArticle : String
     var DescriptionArticle : String
     var EtatArticle : String
-    var Categorie : Categorie
+    var Categorie : categorie
 }

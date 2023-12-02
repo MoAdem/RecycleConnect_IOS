@@ -9,7 +9,7 @@ import SwiftUI
 
 struct categorielist: View {
     @State private var searchText: String = ""
-    @State private var isArticleFormPresented: Bool = false
+    @State private var isCategorieFormPresented: Bool = false
 
     var body: some View {
         NavigationView {
@@ -86,7 +86,7 @@ struct categorielist: View {
                     Spacer()
                     HStack {
                         Spacer()
-                        Button(action: {isArticleFormPresented.toggle()}) {
+                        Button(action: {isCategorieFormPresented.toggle()}) {
                             Image(systemName: "plus.circle.fill")
                                 .resizable()
                                 .frame(width: 50, height: 50)
@@ -95,7 +95,7 @@ struct categorielist: View {
                                 .clipShape(Circle())
                                 .padding(.trailing , 50)
                         }
-                        .sheet(isPresented: $isArticleFormPresented) { categorieform()}
+                        .sheet(isPresented: $isCategorieFormPresented) { categorieform()}
                     }
                 }
             }
