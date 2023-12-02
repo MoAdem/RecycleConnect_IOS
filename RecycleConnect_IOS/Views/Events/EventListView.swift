@@ -13,11 +13,17 @@ struct EventListView: View {
     
     @State private var events: [Events] = []
     @State private var isShowingDetailView = false
+    @State private var searchTerm = ""
+    
+    var filteredEvents: [Events] {
+        guard !searchTerm.isEmpty else {return events}
+        return events.filter { $0.nameEvent.localizedStandardContains(searchTerm)}
+    }
         
     var body: some View {
         ZStack{
             NavigationView {
-                List(events, id: \._id) { event in
+                List(filteredEvents, id: \._id) { event in
                     EventListCell(event: event)
                         .listRowSeparator(.hidden)
                         .onTapGesture {
@@ -26,6 +32,7 @@ struct EventListView: View {
                 }
                 .navigationTitle("Events")
                 .listStyle(.plain)
+                .searchable(text: $searchTerm, prompt: "search events")
             }
             .onAppear() {
                 getEvents()
