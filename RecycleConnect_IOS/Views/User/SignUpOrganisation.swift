@@ -10,7 +10,9 @@ import SwiftUI
 struct SignUpOrganisation: View {
     @State private var isEditing: Bool = false
     @StateObject var userViewModel = UserViewModel()
-
+    @State private var shouldNavigateToSignIn = false
+    @State private var showAlert = false
+    @State private var alertMessage = ""
     @State private var email: String = ""
     @State private var nom: String = ""
     @State private var adresse: String = ""
@@ -184,6 +186,11 @@ struct SignUpOrganisation: View {
             Spacer()
             
         }
+        .background(
+                    NavigationLink("", destination: SignInView(), isActive: $shouldNavigateToSignIn)
+                        .opacity(0)
+                         .buttonStyle(PlainButtonStyle())
+                )
         
     }
     private func validateAndSignUp() {
@@ -193,9 +200,14 @@ struct SignUpOrganisation: View {
             userViewModel.createOrg(username: nom, email: email, address: adresse, telephone: "55658945", password: password, role: "organization", orgDescription: description){ result in
                 switch result {
                 case .success(let message):
-                    print("Success: \(message)")
+                    print("Succès: \(message)")
+                    showAlert = true
+                    alertMessage = "Création du compte est effectuée !"
+                    shouldNavigateToSignIn = true
                 case .failure(let error):
-                    print("Error: \(error.localizedDescription)")
+                    print("Erreur: \(error.localizedDescription)")
+                    showAlert = true
+                    alertMessage = "Création du compte échouée !"
                 }
             }
         }
