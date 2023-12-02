@@ -22,7 +22,7 @@ struct AppTabView: View {
                 }
             NewsListView()
                 .tabItem {
-                    Label("News", systemImage: "calendar")
+                    Label("News", systemImage: "newspaper.fill")
                 }
         }
         .accentColor(Color("ColorGreen"))

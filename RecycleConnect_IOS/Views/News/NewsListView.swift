@@ -12,7 +12,6 @@ import SwiftUI
 struct NewsListView: View {
     
     @StateObject var newsViewModel = NewsViewModel()
-    @State private var isShowingDetailView = false
     @State private var searchTerm = ""
     
     var filteredNews: [News] {
@@ -27,7 +26,8 @@ struct NewsListView: View {
                     NewsListCell(news: news)
                         .listRowSeparator(.hidden)
                         .onTapGesture {
-                            isShowingDetailView = true
+                            newsViewModel.selectedNews = news
+                            newsViewModel.isShowingDetailView = true
                         }
                 }
                 .navigationTitle("News")
@@ -37,12 +37,11 @@ struct NewsListView: View {
             .onAppear() {
                 newsViewModel.getNews()
             }
-            /*
-            .blur(radius: isShowingDetailView ? 20 : 0)
-            if isShowingDetailView {
-                EventDetailView(event: MockData.sampleEvent, isShowingDetailView: $isShowingDetailView)
+            
+            .blur(radius: newsViewModel.isShowingDetailView ? 20 : 0)
+            if newsViewModel.isShowingDetailView {
+                NewsDetailView(news: newsViewModel.selectedNews!, isShowingDetailView: $newsViewModel.isShowingDetailView)
             }
-             */
             if newsViewModel.isLoding{
                 LodingView()
             }

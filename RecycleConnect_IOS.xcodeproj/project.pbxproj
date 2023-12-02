@@ -219,6 +219,7 @@
 		BBF011742B163D7100D1287A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BBF816F42B1BA495006F9B19 /* image */,
 				BBF816E02B1B7E39006F9B19 /* News */,
 				BBF011782B163DC400D1287A /* Events */,
 			);
@@ -307,6 +308,13 @@
 				BBF816F12B1B81FB006F9B19 /* NewsViewModel.swift */,
 			);
 			path = News;
+			sourceTree = "<group>";
+		};
+		BBF816F42B1BA495006F9B19 /* image */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = image;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

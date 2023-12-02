@@ -11,6 +11,8 @@ final class NewsViewModel: ObservableObject {
     @Published var news: [News] = []
     @Published var alertItem: AlertItem?
     @Published var isLoding = false
+    @Published var isShowingDetailView = false
+    @Published var selectedNews: News?
 
     
     func getNews() {

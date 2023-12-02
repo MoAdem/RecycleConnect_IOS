@@ -20,5 +20,9 @@ struct NewsResponse: Decodable {
     let success: Bool
     let news: [News]
 }
+
+struct MockDataNews {
+    //give me sample data
+    static let sampleNews = News(_id: "1", title: "aaaaaaaaa", newsPhoto: "newsPhoto", description: "dzdzdzdzd", source: "fafafafazf")
     
-    
+}
