@@ -260,7 +260,7 @@ struct SignUpUser: View {
             }
 
             if adress.isEmpty {
-                addressError = "Veuillez entrer votre adresse svp !"
+                addressError = "Veuillez entrer votre adresse !"
             } else {
                 addressError = nil
             }

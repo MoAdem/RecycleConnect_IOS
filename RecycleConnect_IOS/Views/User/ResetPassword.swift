@@ -8,11 +8,20 @@
 import SwiftUI
 
 struct ResetPassword: View {
+    enum ResetPasswordStatus {
+        case resetting
+        case resetSent
+        case error
+    }
        @State private var showAlert = false
        @State private var alertMessage = ""
        @State private var verificationCode: String = ""
        @State private var email: String = ""
        @State private var emailError: String? = nil
+       @State private var NavigateToUpdatepassword = false
+       @State private var isResetCodeSent = false
+       @State private var resetPasswordStatus: ResetPasswordStatus = .resetting
+
 
        @StateObject var userViewModel = UserViewModel()
        @State private var isCodeVerified = false
@@ -75,9 +84,10 @@ struct ResetPassword: View {
             
             HStack {
                 Button{
+                    self.resetPasswordStatus = .resetting
                     validInput()
                     sendPasswordReset()
-
+                    
                 } label: {
                     ZStack{
                         RoundedRectangle(cornerRadius: 50)
@@ -89,8 +99,29 @@ struct ResetPassword: View {
                             .font(.system(size: 18))
                     }
                     .alert(isPresented: $showAlert) {
-                               Alert(title: Text("Renitialiser mot de passe"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
-                           }
+                        switch resetPasswordStatus  {
+                        case .resetSent:
+                            return Alert(
+                                title: Text("Renitialiser mot de passe"),
+                                message: Text(alertMessage),
+                                dismissButton: .default(
+                                    Text("OK")
+                                ) {
+                                    isResetCodeSent = true
+                                }
+                            )
+                        case .error:
+                            return Alert(
+                                title: Text("Erreur"),
+                                message: Text(alertMessage),
+                                dismissButton: .default(
+                                    Text("OK")
+                                )
+                            )
+                        default:
+                            return Alert(title: Text(""), message: Text(""), dismissButton: .default(Text("")))
+                        }
+                    }
                 }
                 .padding(.leading, 130)
                 Spacer()
@@ -99,6 +130,26 @@ struct ResetPassword: View {
         }
         .ignoresSafeArea()
         .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, maxHeight: .infinity)
+        .background(
+                   NavigationLink("", destination: UpdatePassword(), isActive: $isResetCodeSent)
+                       .opacity(0)
+                       .buttonStyle(PlainButtonStyle())
+               )
+               .onChange(of: showAlert) { newShowAlert in
+                   if !newShowAlert && alertMessage == "Code envoyé avec succès!" {
+                       isResetCodeSent = true
+                   }
+               }
+               .alert(isPresented: $showAlert) {
+                   Alert(
+                       title: Text("Renitialiser mot de passe"),
+                       message: Text(alertMessage),
+                       dismissButton: .default(
+                           Text("OK")
+                       )
+                   )
+               }
+           
     }
     private func sendPasswordReset() {
         guard emailError == nil && !email.isEmpty else {
@@ -113,7 +164,6 @@ struct ResetPassword: View {
                 print("Password reset code sent: \(message)")
                 showAlert = true
                 alertMessage = "Code envoyé avec succès!"
-                // Handle success state
             case .failure(let error):
                 print("Error sending password reset code: \(error.localizedDescription)")
                 showAlert = true
@@ -135,7 +185,7 @@ struct ResetPassword: View {
    }
 
 
-
 #Preview {
     ResetPassword()
 }
+

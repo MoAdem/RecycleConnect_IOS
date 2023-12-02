@@ -7,21 +7,16 @@
 
 import Foundation
 
-struct User: Codable, Hashable {
+struct User: Codable{
     var username: String
     var email: String
     var address: String
     var password: String
+    var telephone: String
     var role: String
+    
+    enum CodingKeys: String, CodingKey {
+           case username, email, address, password, telephone, role
+       }
 }
-func handleJSONResponse(jsonData: Data) {
-    do {
-        let decodedData = try JSONDecoder().decode(User.self, from: jsonData)
-        print(decodedData) 
-    } catch let error {
-        print("Decoding error:", error)
-        if let decodingError = error as? DecodingError {
-            print("Decoding error:", decodingError)
-        }
-    }
-}
+

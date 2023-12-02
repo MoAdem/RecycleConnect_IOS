@@ -107,7 +107,7 @@ struct SignInView: View {
                                                  .font(.system(size: 18))
                                          }
                                      }
-                                     .padding(.bottom, 12)
+                                     .padding(.bottom,1)
                                     Button(action: {
                                                 isResetPasswordPresented.toggle()
                                                }) {
