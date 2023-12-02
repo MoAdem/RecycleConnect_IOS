@@ -23,6 +23,7 @@ let samplePCs: [PC] = [
     // Ajoutez autant de PCs que nécessaire
 ]
 */
+
 import Foundation
 
 struct PC: Identifiable, Codable {

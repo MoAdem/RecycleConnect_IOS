@@ -86,6 +86,7 @@ struct PcCardView_Previews: PreviewProvider {
     }
 }
 */
+
 import SwiftUI
 
 struct PcCardView: View {
@@ -167,81 +168,75 @@ struct PcCardView_Previews: PreviewProvider {
     }
 }
 
+
 /*
+import SwiftUI
+
 struct PcCardView: View {
     let pc: PC
-    @State private var isReservationActive: Bool = false
+    @StateObject private var reservationViewModel = ReservationPcViewModel()
 
     var body: some View {
-        HStack(spacing: 7) {
-            
-           
+        NavigationLink(destination: MappView(), isActive: $reservationViewModel.isReservationSuccessful) {
+            HStack(spacing: 7) {
                 Image("ImagePos")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 150, height: 150)
                     .clipped()
-            
 
-            VStack(alignment: .leading, spacing: 9) {
-                Text(pc.Nom_Pc)
-                    .font(.system(size: 16))
-                    .fontWeight(.medium)
+                VStack(alignment: .leading, spacing: 9) {
+                    Text(pc.Nom_Pc)
+                        .font(.system(size: 16))
+                        .fontWeight(.medium)
 
-                HStack {
-                    Spacer()
-                    Text(pc.address_Pc)
-                        .font(.body)
-                        .foregroundColor(.secondary)
-                    Spacer()
-                }
+                    HStack {
+                        Spacer()
+                        Text(pc.address_Pc)
+                            .font(.body)
+                            .foregroundColor(.secondary)
+                        Spacer()
+                    }
 
-                HStack {
-                    Spacer()
-                    Text(pc.address_mail_Pc)
-                        .font(.system(size: 9))
-                        .foregroundColor(.secondary)
-                    Spacer()
-                }
+                    HStack {
+                        Spacer()
+                        Text(pc.address_mail_Pc)
+                            .font(.system(size: 9))
+                            .foregroundColor(.secondary)
+                        Spacer()
+                    }
 
-                HStack {
-                    Spacer()
-                    Text(pc.numero_tel)
-                        .font(.body)
-                        .foregroundColor(.secondary)
-                    Spacer()
+                    HStack {
+                        Spacer()
+                        Text(String(pc.numero_tel))
+                            .font(.body)
+                            .foregroundColor(.secondary)
+                        Spacer()
+                    }
+
+                    Button(action: {
+                        reservationViewModel.addReservation(pcId: pc.id.uuidString)
+                    }) {
+                        Text("Sélectionner")
+                            .font(.system(size: 20))
+                            .foregroundColor(.white)
+                            .frame(width: 150, height: 50)
+                            .background(Color.green)
+                            .cornerRadius(50)
+                    }
+                   // .background(NavigationLink("", destination: ReservationPcListView(), isActive: $reservationViewModel.isReservationSuccessful).hidden())
                 }
-                Button(action: {
-                    // Actions à effectuer lors du clic sur le bouton
-                    isReservationActive.toggle()
-                }) {
-                    
-                    NavigationLink(
-                        destination: ReservationPcListView(),
-                        isActive: $isReservationActive,
-                        label: {
-                            Text("Sélectionner")
-                                .font(.system(size: 20))
-                                .foregroundColor(.white)
-                                .frame(width: 150, height: 50)
-                                .background(Color.green)
-                                .cornerRadius(50)
-                        }
-                    )
-                }
+                .padding(16)
             }
-            .padding(16)
+            .background(Color.white)
+            .cornerRadius(8)
+            .shadow(radius: 4)
+            .padding(8)
         }
-        .background(Color.white)
-        .cornerRadius(8)
-        .shadow(radius: 4)
-        .padding(8)
+        .onTapGesture {
+            reservationViewModel.isReservationSuccessful = false
+        }
     }
 }
 
-struct PcCardView_Previews: PreviewProvider {
-    static var previews: some View {
-        PcCardView(pc: samplePCs[0])
-    }
-}
 */

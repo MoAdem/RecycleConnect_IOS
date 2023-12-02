@@ -6,66 +6,178 @@
 //
 /*
 import Foundation
+import Combine
+
+*/
+/*
+import Foundation
 
 class ReservationPcViewModel: ObservableObject {
-    @Published var showErrorMessages = false
-    @Published var isNavigationActive = false
-    @Published var livraisons: [Livraisonn] = []
+    @Published var isReservationSuccessful = false
 
-    // MARK: - POST Method
-    func sendLivraisonToServer(nomArticle: String, nomClient: String, addressMailClient: String, numeroClient: String, selectedVille: String, addressClient: String) {
-        guard validateInputs(nomArticle: nomArticle, nomClient: nomClient, addressMailClient: addressMailClient, numeroClient: numeroClient, selectedVille: selectedVille, addressClient: addressClient) else {
+    func addReservation(reservationPc: ReservationPc) {
+        guard let url = URL(string: "http://localhost:5000/reservationPc") else {
+            print("URL non valide")
             return
         }
 
-        let livraison = Livraisonn(Nom_Article: nomArticle,
-                                   Nom_Client: nomClient,
-                                   address_mail_Client: addressMailClient,
-                                   numero_Client: Double(numeroClient) ?? 0,
-                                   ville: selectedVille,
-                                   address_Client: addressClient)
-
-        // Convert the Swift struct to JSON data
-        let encoder = JSONEncoder()
-        guard let jsonData = try? encoder.encode(livraison) else {
-            print("Failed to encode data")
-            return
-        }
-
-        // Set up the URL for your backend endpoint
-        guard let url = URL(string: "http://localhost:5000/livraison") else {
-            print("Invalid URL")
-            return
-        }
-
-        // Set up the URLRequest
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = jsonData
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
 
-        // Make the network request
+        do {
+            let jsonData = try JSONEncoder().encode(reservationPc)
+            request.httpBody = jsonData
+        } catch {
+            print("Erreur lors de l'encodage des données: \(error.localizedDescription)")
+            return
+        }
+
         URLSession.shared.dataTask(with: request) { data, response, error in
-            DispatchQueue.main.async {
-                if let error = error {
-                    print("Error: \(error)")
-                    // Handle the error (e.g., show an error message)
-                } else if let data = data {
-                    // Parse the response JSON if needed
-                    if let responseJson = try? JSONSerialization.jsonObject(with: data, options: []) {
-                        print("Response: \(responseJson)")
-                        // Handle the successful response (e.g., show a success message)
-                        self.showErrorMessages = true
-                        self.isNavigationActive = true
+            guard let data = data, error == nil else {
+                print("Erreur de réseau: \(error?.localizedDescription ?? "Inconnu")")
+                return
+            }
+
+            if let httpResponse = response as? HTTPURLResponse {
+                print("Code d'état HTTP: \(httpResponse.statusCode)")
+
+                if httpResponse.statusCode == 200 {
+                    // La demande a réussi
+                    DispatchQueue.main.async {
+                        self.isReservationSuccessful = true
                     }
+                } else {
+                    print("Erreur de réponse du serveur")
                 }
             }
         }.resume()
     }
+}
+*/
+/*
+import Foundation
 
-    // MARK: - GET Method
-    func getLivraisonsFromServer() {
-        guard let url = URL(string: "http://localhost:5000/livraison") else {
+class ReservationPcViewModel: ObservableObject {
+    @Published var isReservationSuccessful = false
+
+    func addReservation(pcId: String) {
+        guard let url = URL(string: "http://localhost:5000/reservationPc") else {
+            print("URL non valide")
+            return
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        do {
+            let reservationPc = ReservationPc(Nom_R: "karim_kekli", id_Pc: pcId)
+            let jsonData = try JSONEncoder().encode(reservationPc)
+            request.httpBody = jsonData
+        } catch {
+            print("Erreur lors de l'encodage des données: \(error.localizedDescription)")
+            return
+        }
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {
+                print("Erreur de réseau: \(error?.localizedDescription ?? "Inconnu")")
+                return
+            }
+
+            print("Réponse brute du serveur: \(String(data: data, encoding: .utf8) ?? "Impossible de lire les données")")
+
+            if let httpResponse = response as? HTTPURLResponse {
+                print("Code d'état HTTP: \(httpResponse.statusCode)")
+
+                do {
+                    let decodedData = try JSONDecoder().decode(ResponseModel.self, from: data)
+                    print("Réponse du serveur: \(decodedData)")
+
+                    if httpResponse.statusCode == 200 {
+                        // La demande a réussi
+                        DispatchQueue.main.async {
+                            self.isReservationSuccessful = true
+                        }
+                    } else {
+                        print("Erreur de réponse du serveur")
+                    }
+                } catch {
+                    print("Erreur lors du décodage de la réponse: \(error.localizedDescription)")
+                }
+            }
+        }.resume()
+    }
+}
+*/
+/*
+import SwiftUI
+
+class ReservationPcViewModel: ObservableObject {
+    @Published var isReservationSuccessful = false
+
+    func addReservation(pcId: String) {
+        guard let url = URL(string: "http://localhost:5000/reservationPc") else {
+            print("URL non valide")
+            return
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        do {
+            let reservationPc = ReservationPc(Nom_R: "karim_kekli", id_Pc: pcId)
+            
+            let jsonData = try JSONEncoder().encode(reservationPc)
+            request.httpBody = jsonData
+        } catch {
+            print("Erreur lors de l'encodage des données: \(error.localizedDescription)")
+            return
+        }
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {
+                print("Erreur de réseau: \(error?.localizedDescription ?? "Inconnu")")
+                return
+            }
+
+            print("Réponse brute du serveur: \(String(data: data, encoding: .utf8) ?? "Impossible de lire les données")")
+
+            if let httpResponse = response as? HTTPURLResponse {
+                print("Code d'état HTTP: \(httpResponse.statusCode)")
+
+                do {
+                    // Utilisez le décodage JSON standard de Swift
+                    let decodedData = try JSONDecoder().decode(ResponseModel.self, from: data)
+                    print("Réponse du serveur: \(decodedData)")
+
+                    if httpResponse.statusCode == 200 {
+                        // La demande a réussi
+                        DispatchQueue.main.async {
+                            self.isReservationSuccessful = true
+                        }
+                    } else {
+                        print("Erreur de réponse du serveur")
+                    }
+                } catch {
+                    print("Erreur lors du décodage de la réponse: \(error.localizedDescription)")
+                }
+            }
+        }.resume()
+    }
+}
+*/
+/*
+import Foundation
+
+class ReservationPcViewModel: ObservableObject {
+    @Published var reservationPcs: [ReservationPc] = []
+    @Published var showErrorMessages = false
+
+    func getReservationPcsFromServer() {
+        guard let url = URL(string: "http://localhost:5000/reservationPc") else {
             print("Invalid URL")
             return
         }
@@ -74,26 +186,54 @@ class ReservationPcViewModel: ObservableObject {
             DispatchQueue.main.async {
                 if let error = error {
                     print("Error: \(error)")
-                    // Handle the error (e.g., show an error message)
+                    // Gérer l'erreur (par exemple, afficher un message d'erreur)
+                    self.showErrorMessages = true
                 } else if let data = data {
-                    // Parse the response JSON
+                    // Convertir les données JSON en tableau de ReservationPc
                     do {
-                        let livraisons = try JSONDecoder().decode([Livraisonn].self, from: data)
-                        self.livraisons = livraisons
+                        let reservationPcs = try JSONDecoder().decode([ReservationPc].self, from: data)
+                        self.reservationPcs = reservationPcs
                     } catch {
                         print("Error decoding JSON: \(error)")
-                        // Handle the error (e.g., show an error message)
+                        // Gérer l'erreur de décodage (par exemple, afficher un message d'erreur)
+                        self.showErrorMessages = true
                     }
                 }
             }
         }.resume()
     }
+}
+*/
+import Foundation
 
-    // MARK: - Validation Method
-    private func validateInputs(nomArticle: String, nomClient: String, addressMailClient: String, numeroClient: String, selectedVille: String, addressClient: String) -> Bool {
-        // Add your validation logic here
-        return true
+class ReservationPcViewModel: ObservableObject {
+    @Published var reservationPcs: [ReservationPc] = []
+    @Published var showErrorMessages = false
+
+    func getReservationPcsFromServer() {
+        guard let url = URL(string: "http://localhost:5000/reservationPc") else {
+            print("Invalid URL")
+            return
+        }
+
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    print("Error: \(error)")
+                    // Gérer l'erreur (par exemple, afficher un message d'erreur)
+                    self.showErrorMessages = true
+                } else if let data = data {
+                    // Convertir les données JSON en tableau de ReservationPc
+                    do {
+                        let reservationPcs = try JSONDecoder().decode([ReservationPc].self, from: data)
+                        self.reservationPcs = reservationPcs
+                    } catch {
+                        print("Error decoding JSON: \(error)")
+                        // Gérer l'erreur de décodage (par exemple, afficher un message d'erreur)
+                        self.showErrorMessages = true
+                    }
+                }
+            }
+        }.resume()
     }
 }
-
-*/
