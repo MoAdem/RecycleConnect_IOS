@@ -4,7 +4,7 @@
 //
 //  Created by karimk on 28/11/2023.
 //
-
+/*
 import Foundation
 
 struct PC: Identifiable {
@@ -22,3 +22,16 @@ let samplePCs: [PC] = [
     PC(Nom_Pc: "Point Collecte Sousse", address_Pc: "Kanawi", address_mail_Pc: "karim.kekli2000@gmail.com", numero_tel: "55575541", x: 1.0, y: 1.0),
     // Ajoutez autant de PCs que nécessaire
 ]
+*/
+import Foundation
+
+struct PC: Identifiable, Codable {
+    let id = UUID()
+    let Nom_Pc: String
+    let address_Pc: String
+    let address_mail_Pc: String
+    let numero_tel: Int
+    let x: Double
+    let y: Double
+}
+
