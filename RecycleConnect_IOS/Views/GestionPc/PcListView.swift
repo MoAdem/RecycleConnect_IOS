@@ -52,9 +52,9 @@ struct PcListView: View {
             List(viewModel.pcs) { pc in
                 NavigationLink(destination: PcCardView(pc: pc)) {
                     EmptyView()
-                        .frame(width: 0, height: 0) // Utiliser EmptyView pour rendre la NavigationLink invisible
+                        .frame(width: 0, height: 0)
                 }
-                .buttonStyle(PlainButtonStyle()) // Appliquer un style de bouton plat pour masquer l'apparence de la NavigationLink
+                .buttonStyle(PlainButtonStyle())
 
                 Button(action: {
                     // Action à effectuer lors du clic sur PcCardView
@@ -69,12 +69,6 @@ struct PcListView: View {
             }
             .listStyle(InsetListStyle())
             .listRowBackground(Color.clear)
-            .background(
-                Image("background_splash_screen")
-                    .resizable()
-                    .scaledToFill()
-                    .edgesIgnoringSafeArea(.all)
-            )
             .navigationTitle("Points de Collecte")
             .navigationBarTitleDisplayMode(.inline)
         }
@@ -86,48 +80,3 @@ struct PcListView_Previews: PreviewProvider {
         PcListView()
     }
 }
-/*
-import SwiftUI
-
-struct PcListView: View {
-    @ObservedObject var viewModel = PcViewModel()
-
-    var body: some View {
-        NavigationView {
-            List(viewModel.pcs) { pc in
-                NavigationLink(destination: PcCardView(pc: pc)) {
-                    EmptyView()
-                        .frame(width: 0, height: 0)
-                }
-                .buttonStyle(PlainButtonStyle())
-
-                Button(action: {
-                    // Vous pouvez ajouter des actions supplémentaires ici si nécessaire
-                }) {
-                    PcCardView(pc: pc)
-                        .listRowInsets(EdgeInsets(top: 5, leading: 5, bottom: 4, trailing: 4))
-                }
-            }
-            .onAppear {
-                viewModel.fetchData()
-            }
-            .listStyle(InsetListStyle())
-            .listRowBackground(Color.clear)
-            .background(
-                Image("background_splash_screen")
-                    .resizable()
-                    .scaledToFill()
-                    .edgesIgnoringSafeArea(.all)
-            )
-            .navigationTitle("Points de Collecte")
-            .navigationBarTitleDisplayMode(.inline)
-        }
-    }
-}
-
-struct PcListView_Previews: PreviewProvider {
-    static var previews: some View {
-        PcListView()
-    }
-}
-*/

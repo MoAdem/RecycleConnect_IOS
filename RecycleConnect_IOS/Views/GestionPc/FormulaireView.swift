@@ -127,6 +127,7 @@ struct LivraisonFormView_Previews: PreviewProvider {
 }
 
 */
+/*
 import SwiftUI
 
 struct LivraisonFormView: View {
@@ -151,18 +152,20 @@ struct LivraisonFormView: View {
                         .padding(.top, 16)
 
                     VStack(alignment: .center, spacing: 8) {
-                        CustomTextField(placeholder: "Nom de l'article", text: $nomArticle, borderColor: .green)
-                        CustomTextField(placeholder: "Nom du client", text: $nomClient, borderColor: .green)
-                        CustomTextField(placeholder: "Adresse e-mail du client", text: $addressMailClient, borderColor: .green)
-                        CustomTextField(placeholder: "Numéro du client", text: $numeroClient, borderColor: .green)
+                        CustomTextField(placeholder: "Nom de l'article", text: $nomArticle, borderColor: Color(red: 0.05, green: 0.54, blue: 0.48))
+                        CustomTextField(placeholder: "Nom du client", text: $nomClient, borderColor: Color(red: 0.05, green: 0.54, blue: 0.48))
+                        CustomTextField(placeholder: "Adresse e-mail du client", text: $addressMailClient, borderColor: Color(red: 0.05, green: 0.54, blue: 0.48))
+                        CustomTextField(placeholder: "Numéro du client", text: $numeroClient, borderColor: Color(red: 0.05, green: 0.54, blue: 0.48))
                         Picker(selection: $selectedVille, label: Text("Ville")) {
                             ForEach(["Tunis", "Nabeul", "Gafsa", "Sfax", "Sousse"], id: \.self) { city in
                                 Text(city)
                             }
                         }
                         .pickerStyle(MenuPickerStyle())
-                        CustomTextField(placeholder: "Adresse du client", text: $addressClient, borderColor: .green)
+                      
+                        CustomTextField(placeholder: "Adresse du client", text: $addressClient, borderColor: Color(red: 0.05, green: 0.54, blue: 0.48))
                     }
+
                     .padding(.top, 16)
 
                     Button(action: {
@@ -176,7 +179,7 @@ struct LivraisonFormView: View {
                         Text("Enregistrer")
                             .padding()
                             .foregroundColor(.white)
-                            .background(Color.green)
+                            .background(Color(red: 0.05, green: 0.54, blue: 0.48))
                             .cornerRadius(15)
                     }
                     .padding(.top, 16)
@@ -221,7 +224,108 @@ struct FailedText: View {
 
     var body: some View {
         Text(message)
-            .foregroundColor(.green)
+            .foregroundColor(Color(red: 0.05, green: 0.54, blue: 0.48))
+            .padding(.top, 8)
+    }
+}*/
+// LivraisonFormView.swift
+
+import SwiftUI
+
+struct LivraisonFormView: View {
+    @State private var nomArticle = ""
+    @State private var nomClient = ""
+    @State private var addressMailClient = ""
+    @State private var numeroClient = ""
+    @State private var selectedVille = "Tunis"
+    @State private var addressClient = ""
+
+    @ObservedObject var livraisonViewModel = LivraisonViewModel()
+
+    var body: some View {
+        NavigationView {
+            VStack {
+                Spacer()
+
+                VStack(alignment: .center, spacing: 20) {
+                    Image("Image1")
+                        .resizable()
+                        .frame(width: 202, height: 174)
+                        .padding(.top, 16)
+
+                    VStack(alignment: .center, spacing: 8) {
+                        CustomTextField(placeholder: "Nom de l'article", text: $nomArticle, borderColor: Color(red: 0.05, green: 0.54, blue: 0.48))
+                        CustomTextField(placeholder: "Nom du client", text: $nomClient, borderColor: Color(red: 0.05, green: 0.54, blue: 0.48))
+                        CustomTextField(placeholder: "Adresse e-mail du client", text: $addressMailClient, borderColor: Color(red: 0.05, green: 0.54, blue: 0.48))
+                        CustomTextField(placeholder: "Numéro du client", text: $numeroClient, borderColor: Color(red: 0.05, green: 0.54, blue: 0.48))
+                        Picker(selection: $selectedVille, label: Text("Ville")) {
+                            ForEach(["Tunis", "Nabeul", "Gafsa", "Sfax", "Sousse"], id: \.self) { city in
+                                Text(city)
+                            }
+                        }
+                        .pickerStyle(MenuPickerStyle())
+                        CustomTextField(placeholder: "Adresse du client", text: $addressClient, borderColor: Color(red: 0.05, green: 0.54, blue: 0.48))
+                    }
+
+                    .padding(.top, 16)
+
+                    Button(action: {
+                        livraisonViewModel.sendLivraisonToServer(nomArticle: nomArticle,
+                                                                  nomClient: nomClient,
+                                                                  addressMailClient: addressMailClient,
+                                                                  numeroClient: numeroClient,
+                                                                  selectedVille: selectedVille,
+                                                                  addressClient: addressClient)
+                    }) {
+                        Text("Enregistrer")
+                            .padding()
+                            .foregroundColor(.white)
+                            .background(Color(red: 0.05, green: 0.54, blue: 0.48))
+                            .cornerRadius(15)
+                    }
+                    .padding(.top, 16)
+                    .padding(.horizontal, 10)
+
+                    if livraisonViewModel.showErrorMessages {
+                        FailedText(message: "Votre livraison a été enregistrée")
+                    }
+                }
+                .padding(.horizontal, 16)
+
+                Spacer()
+            }
+            .background(
+                NavigationLink(destination: DetailsLivListView(), isActive: $livraisonViewModel.isNavigationActive) {
+                    EmptyView()
+                }
+            )
+        }
+    }
+}
+
+struct CustomTextField: View {
+    var placeholder: String
+    @Binding var text: String
+    var borderColor: Color
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            TextField(placeholder, text: $text)
+                .padding()
+                .background(
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(borderColor, lineWidth: 2)
+                )
+        }
+    }
+}
+
+struct FailedText: View {
+    let message: String
+
+    var body: some View {
+        Text(message)
+            .foregroundColor(Color(red: 0.05, green: 0.54, blue: 0.48))
             .padding(.top, 8)
     }
 }

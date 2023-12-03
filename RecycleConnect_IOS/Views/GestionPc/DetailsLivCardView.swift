@@ -77,9 +77,10 @@ struct DetailsLivCardView_Previews: PreviewProvider {
 
 
 import SwiftUI
+
 struct DetailsLivCardView: View {
     var livraison: Livraisonn
-
+    @ObservedObject var livraisonViewModel: LivraisonViewModel
     @State private var isEditing = false
 
     var body: some View {
@@ -118,14 +119,15 @@ struct DetailsLivCardView: View {
         .padding(8)
         .swipeActions {
             Button("Supprimer") {
-                // Action de suppression
+                livraisonViewModel.deleteLivraisonFromServer(id: livraison.id)
+                // Optionally, update the UI or perform any other actions after deletion
             }
             .tint(.red)
 
             Button("Modifier") {
                 isEditing.toggle()
             }
-            .tint(.green)
+            .tint(Color(red: 0.05, green: 0.54, blue: 0.48))
         }
         .background(
             NavigationLink(

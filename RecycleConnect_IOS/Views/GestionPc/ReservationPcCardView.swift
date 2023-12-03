@@ -51,53 +51,7 @@ struct ReservationPcCardView_Previews: PreviewProvider {
 }
 
 */
-/*
-import SwiftUI
 
-struct ReservationPcCardView: View {
-    let reservationPc: ReservationPc
-
-    var body: some View {
-        HStack(spacing: 7) {
-            VStack(alignment: .leading, spacing: 9) {
-                Text("Votre commande a été ajoutée dans cette Point Collecte  ")
-                    .font(.system(size: 15))
-                    .fontWeight(.medium)
-                    .frame(maxWidth: .infinity, alignment: .center)
-
-                Text(reservationPc.Nom_R)
-                    .font(.body)
-                    .foregroundColor(.secondary)
-                    .frame(maxWidth: .infinity, alignment: .center)
-
-                Text(reservationPc.id_Pc)
-                    .font(.body)
-                    .foregroundColor(.secondary)
-                    .frame(maxWidth: .infinity, alignment: .center)
-            }
-            .padding(16)
-        }
-        .background(Color.white)
-        .cornerRadius(8)
-        .shadow(radius: 4)
-        .padding(8)
-        .swipeActions {
-            Button("Supprimer") {
-                // Action de suppression
-                print("Supprimer")
-            }
-            .tint(.red)
-        }
-    }
-}
-
-struct ReservationPcCardView_Previews: PreviewProvider {
-    static var previews: some View {
-        ReservationPcCardView(reservationPc: ReservationPc(Nom_R: "Commande 1", id_Pc: "Point Collecte 1"))
-    }
-}
-
-*/
 /*
 import SwiftUI
 
@@ -144,10 +98,11 @@ struct ReservationPcCardView_Previews: PreviewProvider {
         ReservationPcCardView(reservationPc: ReservationPcViewModel().reservationPcs[0])
     }
 }
-                              
-*/
+  */
+/*
 import SwiftUI
 
+// Vue pour afficher une carte de réservation PC
 struct ReservationPcCardView: View {
     let reservationPc: ReservationPc
 
@@ -185,9 +140,58 @@ struct ReservationPcCardView: View {
     }
 }
 
+// Aperçu de la vue
 struct ReservationPcCardView_Previews: PreviewProvider {
     static var previews: some View {
         ReservationPcCardView(reservationPc: ReservationPcViewModel().reservationPcs[0])
+    }
+}
+*/
+import SwiftUI
+struct ReservationPcCardView: View {
+    let reservationPc: ReservationPc
+    @State private var showAlert = false
+
+    var body: some View {
+        HStack(spacing: 7) {
+            VStack(alignment: .leading, spacing: 9) {
+                Text("Votre commande a été ajoutée dans cette Point Collecte  ")
+                    .font(.system(size: 15))
+                    .fontWeight(.medium)
+                    .frame(maxWidth: .infinity, alignment: .center)
+
+                Text(reservationPc.Nom_R)
+                    .font(.body)
+                    .foregroundColor(.secondary)
+                    .frame(maxWidth: .infinity, alignment: .center)
+
+                Text(reservationPc.id_Pc)
+                    .font(.body)
+                    .foregroundColor(.secondary)
+                    .frame(maxWidth: .infinity, alignment: .center)
+            }
+            .padding(16)
+        }
+        .background(Color.white)
+        .cornerRadius(8)
+        .shadow(radius: 4)
+        .padding(8)
+        .contextMenu {
+            Button("Supprimer") {
+                showAlert = true
+            }
+        }
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text("Confirmer la suppression"),
+                message: Text("Êtes-vous sûr de vouloir supprimer cette réservation ?"),
+                primaryButton: .destructive(Text("Supprimer")) {
+                    // Action de suppression (appelez la méthode de suppression ici)
+                    print("Supprimer")
+                },
+                secondaryButton: .cancel()
+            )
+        }
     }
 }
 

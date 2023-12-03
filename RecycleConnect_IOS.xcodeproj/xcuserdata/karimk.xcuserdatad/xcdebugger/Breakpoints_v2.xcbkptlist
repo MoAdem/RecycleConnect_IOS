@@ -7,22 +7,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "2B8BC5E3-7239-47C7-A292-A674745257E2"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RecycleConnect_IOS/ViewModels/GestionPC/ReservationPcViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "unknown"
-            landmarkType = "0">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "437CDC4A-1AA2-43E9-92B9-77D9633DF4E4"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -46,10 +30,8 @@
             filePath = "RecycleConnect_IOS/Views/GestionPc/ReservationPcCardView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            startingLineNumber = "199"
+            endingLineNumber = "199">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

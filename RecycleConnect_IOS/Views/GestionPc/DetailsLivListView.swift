@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+//import SwiftUI
+
 /*
 import SwiftUI
 struct DetailsLivListView: View {
@@ -151,8 +153,9 @@ struct DetailsLivListView_Previews: PreviewProvider {
     }
 }
 */
-import SwiftUI
 
+import SwiftUI
+/*
 struct DetailsLivListView: View {
     @ObservedObject var livraisonViewModel = LivraisonViewModel()
 
@@ -164,12 +167,27 @@ struct DetailsLivListView: View {
             }
             .listStyle(InsetListStyle())
             .listRowBackground(Color.clear)
-            .background(
-                Image("background_splash_screen")
-                    .resizable()
-                    .scaledToFill()
-                    .edgesIgnoringSafeArea(.all)
-            )
+            .onAppear {
+                livraisonViewModel.getLivraisonsFromServer()
+            }
+            .navigationTitle("Details Livraison")
+            .navigationBarTitleDisplayMode(.inline)
+        }
+    }
+}
+*/
+
+struct DetailsLivListView: View {
+    @ObservedObject var livraisonViewModel = LivraisonViewModel()
+
+    var body: some View {
+        NavigationView {
+            List(livraisonViewModel.livraisons) { livraison in
+                DetailsLivCardView(livraison: livraison, livraisonViewModel: livraisonViewModel)
+                    .listRowInsets(EdgeInsets(top: 5, leading: 5, bottom: 4, trailing: 4))
+            }
+            .listStyle(InsetListStyle())
+            .listRowBackground(Color.clear)
             .onAppear {
                 livraisonViewModel.getLivraisonsFromServer()
             }
@@ -184,4 +202,6 @@ struct DetailsLivListView_Previews: PreviewProvider {
         DetailsLivListView()
     }
 }
+
+
 

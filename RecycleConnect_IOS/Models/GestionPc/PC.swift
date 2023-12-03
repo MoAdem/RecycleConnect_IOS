@@ -34,5 +34,15 @@ struct PC: Identifiable, Codable {
     let numero_tel: Int
     let x: Double
     let y: Double
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "_id"
+        case Nom_Pc = "Nom_Pc"
+        case address_Pc = "address_Pc"
+        case address_mail_Pc = "address_mail_Pc"
+        case numero_tel = "numero_tel"
+        case x = "x"
+        case y = "y"
+        
+    }
 }
-

@@ -13,9 +13,10 @@ struct RecycleConnect_IOSApp: App {
 
     var body: some Scene {
         WindowGroup {
-          //  ContentView()
-              //  .environment(\.managedObjectContext, persistenceController.container.viewContext)
+          
         NavView()
         }
     }
 }
+//  ContentView()
+    //  .environment(\.managedObjectContext, persistenceController.container.viewContext)
