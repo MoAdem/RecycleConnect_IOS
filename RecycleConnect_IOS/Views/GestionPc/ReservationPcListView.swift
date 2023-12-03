@@ -101,6 +101,7 @@ struct ReservationPcListView_Previews: PreviewProvider {
     }
 }
 */
+/*
 import SwiftUI
 
 struct ReservationPcListView: View {
@@ -153,6 +154,59 @@ struct ReservationPcListView: View {
         }
         let reservationPc = viewModel.reservationPcs[index]
         viewModel.deleteReservationPc(id: reservationPc.safeID)
+    }
+}
+*/
+import SwiftUI
+struct ReservationPcListView: View {
+    @ObservedObject var viewModel = ReservationPcViewModel()
+    @State private var showAddReservationView = false
+
+    var body: some View {
+        NavigationView {
+            List {
+                ForEach(viewModel.reservationPcs.indices, id: \.self) { index in
+                    let reservationPc = viewModel.reservationPcs[index]
+                    ReservationPcCardView(reservationPc: reservationPc, viewModel: viewModel)
+                        .listRowInsets(EdgeInsets(top: 5, leading: 5, bottom: 4, trailing: 4))
+                        .onTapGesture {
+                            // Handle tap on the card if needed
+                        }
+                        .swipeActions(edge: .trailing) {
+                            Button("Supprimer") {
+                                viewModel.deleteReservationPc(id: reservationPc.safeID)
+                            }
+                            .tint(.red)
+                        }
+                        .id(index)
+                }
+            }
+            .listStyle(InsetListStyle())
+            .listRowBackground(Color.clear)
+            .onAppear {
+                viewModel.getReservationPcsFromServer()
+            }
+            .navigationTitle("Reservation PC")
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarItems(trailing:
+                Button(action: {
+                    // Action pour ajouter une nouvelle réservation (si nécessaire)
+                    showAddReservationView = true
+                }) {
+                    Image(systemName: "plus")
+                }
+            )
+            .alert(isPresented: $viewModel.showErrorMessages) {
+                Alert(
+                    title: Text("Erreur"),
+                    message: Text("Une erreur s'est produite lors du chargement des données."),
+                    dismissButton: .default(Text("OK"))
+                )
+            }
+        }
+        .sheet(isPresented: $showAddReservationView) {
+            // Afficher ici la vue pour ajouter une nouvelle réservation, si nécessaire
+        }
     }
 }
 
