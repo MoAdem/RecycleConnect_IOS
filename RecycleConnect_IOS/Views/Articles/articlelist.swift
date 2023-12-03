@@ -80,9 +80,6 @@ struct articlelist: View {
         }
     }
 
-
-
-
 #Preview {
     articlelist()
 }

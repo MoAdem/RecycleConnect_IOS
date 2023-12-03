@@ -67,7 +67,6 @@ struct categorieform: View {
     }
 }
 
-
 #Preview {
     categorieform()
 }

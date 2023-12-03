@@ -40,4 +40,3 @@ struct categorie : Identifiable, Codable //Decodable,Hashable,
     }
 
 }
-

@@ -81,7 +81,6 @@ struct articlereview: View {
       }
   }
 
-
 #Preview {
     articlereview()
 }

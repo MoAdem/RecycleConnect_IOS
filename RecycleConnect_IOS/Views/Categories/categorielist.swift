@@ -95,8 +95,6 @@ struct CategorieRowView: View {
 }
 
 
-
-
 #Preview {
     categorielist()
 }

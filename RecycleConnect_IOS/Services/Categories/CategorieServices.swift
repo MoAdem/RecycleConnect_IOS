@@ -58,27 +58,6 @@ class CategorieServices {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     
     
     

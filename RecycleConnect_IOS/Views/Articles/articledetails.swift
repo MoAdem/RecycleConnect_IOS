@@ -58,7 +58,6 @@ struct articledetails: View {
 
 }
 
-
 #Preview {
     articledetails()
 }

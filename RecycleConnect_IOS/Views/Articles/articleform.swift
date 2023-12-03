@@ -81,8 +81,6 @@ struct articleform: View {
     }
 }
 
-
-
 #Preview {
     articleform()
 }

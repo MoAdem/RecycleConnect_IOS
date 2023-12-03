@@ -24,6 +24,8 @@ class CategorieViewModel: ObservableObject {
         }
     }
 
+    
+    
     func createCategorie(NomCategorie: String, NbreTotalArticles: Int) {
         CategorieServices.shared.CreateCategorie(NomCategorie: NomCategorie, NbreTotalArticles: NbreTotalArticles) { result in
             switch result {
