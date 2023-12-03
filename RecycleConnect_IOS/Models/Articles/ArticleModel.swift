@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct article : Decodable, Identifiable, Hashable
+struct article : Decodable, Identifiable
+//, Hashable
 {
     var id : String
     var PhotoArticle : String
