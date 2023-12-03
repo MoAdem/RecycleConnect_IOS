@@ -72,15 +72,11 @@ struct DetailsLivCardView_Previews: PreviewProvider {
         DetailsLivCardView()
     }
 }*/
-
-
-
 /*
 import SwiftUI
-
 struct DetailsLivCardView: View {
     var livraison: Livraisonn
-    @ObservedObject var livraisonViewModel: LivraisonViewModel
+
     @State private var isEditing = false
 
     var body: some View {
@@ -119,8 +115,7 @@ struct DetailsLivCardView: View {
         .padding(8)
         .swipeActions {
             Button("Supprimer") {
-                livraisonViewModel.deleteLivraisonFromServer(id: livraison.id)
-                // Optionally, update the UI or perform any other actions after deletion
+                // Action de suppression
             }
             .tint(.red)
 
@@ -141,52 +136,13 @@ struct DetailsLivCardView: View {
     }
 }
 */
-/*
 import SwiftUI
-
-struct DeleteConfirmationView: View {
-    let title: String
-    let message: String
-    @Binding var isPresented: Bool
-    var onConfirm: () -> Void
-
-    var body: some View {
-        if isPresented {
-            VStack {
-                Text(title)
-                    .font(.title)
-                    .padding()
-
-                Text(message)
-                    .padding()
-
-                HStack {
-                    Button("Annuler") {
-                        isPresented = false
-                    }
-                    .padding()
-
-                    Button("Supprimer") {
-                        onConfirm()
-                        isPresented = false
-                    }
-                    .foregroundColor(.red)
-                    .padding()
-                }
-            }
-            .background(Color.white)
-            .cornerRadius(8)
-            .shadow(radius: 4)
-            .padding()
-        }
-    }
-}
 
 struct DetailsLivCardView: View {
     var livraison: Livraisonn
-    @ObservedObject var livraisonViewModel: LivraisonViewModel
+    @ObservedObject var viewModel: LivraisonViewModel  // Assurez-vous que cette ligne est présente
+
     @State private var isEditing = false
-    @State private var showDeleteConfirmation = false
 
     var body: some View {
         HStack(spacing: 7) {
@@ -222,150 +178,26 @@ struct DetailsLivCardView: View {
         .cornerRadius(8)
         .shadow(radius: 4)
         .padding(8)
-        .swipeActions {
-            Button("Supprimer") {
-                showDeleteConfirmation = true
-            }
-            .tint(.red)
+        .overlay(
+            HStack(spacing: 20) {
+                Button(action: {
+                    viewModel.deleteLivraisonFromServer(livraisonID: livraison.id)
 
-            Button("Modifier") {
-                isEditing.toggle()
-            }
-            .tint(Color(red: 0.05, green: 0.54, blue: 0.48))
-        }
-        .background(
-            DeleteConfirmationView(
-                title: "Confirmer la suppression",
-                message: "Êtes-vous sûr de vouloir supprimer cette livraison ?",
-                isPresented: $showDeleteConfirmation,
-                onConfirm: {
-                    // Action de suppression (appelez la méthode de suppression ici)
-                    livraisonViewModel.deleteLivraisonFromServer(id: livraison.id)
-                }
-            )
-        )
-        .background(
-            NavigationLink(
-                destination: LivraisonFormView(),
-                isActive: $isEditing
-            ) {
-                EmptyView()
-            }
-            .hidden()
-        )
-    }
-}
-*/
-import SwiftUI
-
-struct DetailsLivCardView: View {
-    var livraison: Livraisonn
-    @ObservedObject var livraisonViewModel: LivraisonViewModel
-    @State private var isEditing = false
-    @State private var showDeleteConfirmation = false
-    struct DeleteConfirmationView: View {
-        let title: String
-        let message: String
-        @Binding var isPresented: Bool
-        var onConfirm: () -> Void
-
-        var body: some View {
-            if isPresented {
-                VStack {
-                    Text(title)
-                        .font(.title)
-                        .padding()
-
-                    Text(message)
-                        .padding()
-
-                    HStack {
-                        Button("Annuler") {
-                            isPresented = false
-                        }
-                        .padding()
-
-                        Button("Supprimer") {
-                            onConfirm()
-                            isPresented = false
-                        }
+                }) {
+                    Label("Supprimer", systemImage: "trash")
                         .foregroundColor(.red)
-                        .padding()
-                    }
                 }
-                .background(Color.white)
-                .cornerRadius(8)
-                .shadow(radius: 4)
-                .padding()
-            }
-        }
-    }
 
-    var body: some View {
-        HStack(spacing: 7) {
-            VStack(alignment: .leading, spacing: 9) {
-                Text("Votre commande a été ajoutée avec succès sous les coordonnées  ")
-                    .font(.system(size: 15))
-                    .fontWeight(.medium)
-                    .frame(maxWidth: .infinity, alignment: .center)
-
-                Text(livraison.Nom_Client)
-                    .font(.body)
-                    .foregroundColor(.secondary)
-                    .frame(maxWidth: .infinity, alignment: .center)
-
-                Text(livraison.address_mail_Client)
-                    .font(.body)
-                    .foregroundColor(.secondary)
-                    .frame(maxWidth: .infinity, alignment: .center)
-
-                Text("\(livraison.numero_Client)")
-                    .font(.body)
-                    .foregroundColor(.secondary)
-                    .frame(maxWidth: .infinity, alignment: .center)
-
-                Text(livraison.address_Client)
-                    .font(.body)
-                    .foregroundColor(.secondary)
-                    .frame(maxWidth: .infinity, alignment: .center)
-            }
-            .padding(16)
-        }
-        .background(Color.white)
-        .cornerRadius(8)
-        .shadow(radius: 4)
-        .padding(8)
-        .swipeActions {
-            Button("Supprimer") {
-                showDeleteConfirmation = true
-            }
-            .tint(.red)
-
-            Button("Modifier") {
-                isEditing.toggle()
-            }
-            .tint(Color(red: 0.05, green: 0.54, blue: 0.48))
-        }
-        .background(
-            DeleteConfirmationView(
-                title: "Confirmer la suppression",
-                message: "Êtes-vous sûr de vouloir supprimer cette livraison ?",
-                isPresented: $showDeleteConfirmation,
-                onConfirm: {
-                    // Action de suppression (appelez la méthode de suppression ici)
-                    livraisonViewModel.deleteLivraisonFromServer(id: livraison.id)
+                Button(action: {
+                    isEditing.toggle()
+                }) {
+                    Label("Modifier", systemImage: "pencil")
+                        .foregroundColor(Color(red: 0.05, green: 0.54, blue: 0.48))
                 }
-            )
-        )
-        .background(
-            NavigationLink(
-                destination: LivraisonFormView(),
-                isActive: $isEditing
-            ) {
-                EmptyView()
             }
-            .hidden()
+            .padding(.horizontal, 16)
+            .padding(.vertical, 8)
+            , alignment: .bottom
         )
     }
 }
-

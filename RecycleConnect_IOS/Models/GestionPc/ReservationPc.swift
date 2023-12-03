@@ -29,32 +29,6 @@ struct ReservationPc: Identifiable, Codable {
 }
 */
 
-/*
-import Foundation
-
-struct ReservationPc: Identifiable, Codable {
-    var id: UUID?
-    let Nom_R: String
-    let id_Pc: String
-
-    // Ajoutez un enum CodingKeys pour spécifier la correspondance entre les noms des propriétés et les clés JSON
-    enum CodingKeys: String, CodingKey {
-        case id
-        case Nom_R
-        case id_Pc
-    }
-
-    // Implémentez l'init(from:) pour personnaliser le décodage
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-
-        // Utilisez decodeIfPresent pour id afin qu'il soit facultatif
-        id = try container.decodeIfPresent(UUID.self, forKey: .id)
-        Nom_R = try container.decode(String.self, forKey: .Nom_R)
-        id_Pc = try container.decode(String.self, forKey: .id_Pc)
-    }
-}
-*/
 import Foundation
 
 // Modèle pour représenter une réservation PC

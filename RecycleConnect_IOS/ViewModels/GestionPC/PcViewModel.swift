@@ -4,42 +4,6 @@
 //
 //  Created by karimk on 2/12/2023.
 //
-/*
-import Foundation
-import Combine
-
-class PcViewModel: ObservableObject {
-    @Published var pcs = [PC]()
-
-    private var cancellables: Set<AnyCancellable> = []
-
-    init() {
-        fetchData()
-    }
-
-    func fetchData() {
-        guard let url = URL(string: "http://localhost:5000/pointCollecte") else {
-            return
-        }
-
-        URLSession.shared.dataTaskPublisher(for: url)
-            .map(\.data)
-            .decode(type: [PC].self, decoder: JSONDecoder())
-            .receive(on: DispatchQueue.main)
-            .sink { completion in
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    print("Error fetching data: \(error.localizedDescription)")
-                }
-            } receiveValue: { pcs in
-                self.pcs = pcs
-            }
-            .store(in: &cancellables)
-    }
-}
-*/
 
 import Foundation
 import Combine

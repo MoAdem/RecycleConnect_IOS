@@ -1,41 +1,5 @@
-/*import Foundation
-import Combine
 
-class LivraisonViewModel: ObservableObject {
-    @Published var livraisons = [Livraisonn]()
-    
-    private var cancellables: Set<AnyCancellable> = []
-    func fetchData() {
-        guard let url = URL(string: "http://localhost:5000/livraison") else {
-            return
-        }
-        
-        URLSession.shared.dataTaskPublisher(for: url)
-            .tryMap { output in
-                guard let response = output.response as? HTTPURLResponse,
-                      response.statusCode == 200 else {
-                    throw URLError(.badServerResponse)
-                }
-                return output.data
-            }
-            .decode(type: [Livraisonn].self, decoder: JSONDecoder())
-            .receive(on: DispatchQueue.main)
-            .sink { completion in
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    print("Error fetching data: \(error.localizedDescription)")
-                }
-            } receiveValue: { livraisons in
-                self.livraisons = livraisons
-            }
-            .store(in: &cancellables)
-    }
-}
- */
 /*
-
 import Foundation
 
 class LivraisonViewModel: ObservableObject {
@@ -119,30 +83,6 @@ class LivraisonViewModel: ObservableObject {
             }
         }.resume()
     }
-    func deleteLivraisonFromServer(id: UUID) {
-        guard let url = URL(string: "http://localhost:5000/livraison/\(id)") else {
-            print("Invalid URL")
-            return
-        }
-
-        // Set up the URLRequest
-        var request = URLRequest(url: url)
-        request.httpMethod = "DELETE"
-
-        // Make the network request
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            DispatchQueue.main.async {
-                if let error = error {
-                    print("Error: \(error)")
-                    // Handle the error (e.g., show an error message)
-                } else if let response = response as? HTTPURLResponse, response.statusCode == 200 {
-                    // Handle successful deletion
-                    print("Livraison deleted successfully")
-                }
-            }
-        }.resume()
-    }
-    
 
     // MARK: - Validation Method
     private func validateInputs(nomArticle: String, nomClient: String, addressMailClient: String, numeroClient: String, selectedVille: String, addressClient: String) -> Bool {
@@ -150,7 +90,6 @@ class LivraisonViewModel: ObservableObject {
         return true
     }
 }
-
 */
 import Foundation
 
@@ -195,7 +134,7 @@ class LivraisonViewModel: ObservableObject {
         URLSession.shared.dataTask(with: request) { data, response, error in
             DispatchQueue.main.async {
                 if let error = error {
-                    print("Error sending Livraison: \(error)")
+                    print("Error: \(error)")
                     // Handle the error (e.g., show an error message)
                 } else if let data = data {
                     // Parse the response JSON if needed
@@ -220,7 +159,7 @@ class LivraisonViewModel: ObservableObject {
         URLSession.shared.dataTask(with: url) { data, response, error in
             DispatchQueue.main.async {
                 if let error = error {
-                    print("Error getting Livraisons: \(error)")
+                    print("Error: \(error)")
                     // Handle the error (e.g., show an error message)
                 } else if let data = data {
                     // Parse the response JSON
@@ -237,8 +176,8 @@ class LivraisonViewModel: ObservableObject {
     }
 
     // MARK: - DELETE Method
-    func deleteLivraisonFromServer(id: UUID) {
-        guard let url = URL(string: "http://localhost:5000/livraison/\(id)") else {
+    func deleteLivraisonFromServer(livraisonID: String) {
+        guard let url = URL(string: "http://localhost:5000/livraison/\(livraisonID)") else {
             print("Invalid URL")
             return
         }
@@ -246,17 +185,22 @@ class LivraisonViewModel: ObservableObject {
         var request = URLRequest(url: url)
         request.httpMethod = "DELETE"
 
-        // Make the network request
         URLSession.shared.dataTask(with: request) { data, response, error in
             DispatchQueue.main.async {
                 if let error = error {
-                    print("Error deleting Livraison: \(error)")
+                    print("Error: \(error)")
                     // Handle the error (e.g., show an error message)
                 } else if let response = response as? HTTPURLResponse {
-                    print("Response Status Code: \(response.statusCode)")
-                    if response.statusCode == 200 {
-                        // Handle successful deletion
-                        print("Livraison deleted successfully")
+                    if (200..<300).contains(response.statusCode) {
+                        // Handle successful deletion (e.g., update the list)
+                        self.getLivraisonsFromServer()
+                    } else {
+                        print("HTTP Status Code: \(response.statusCode)")
+                        if let responseData = data {
+                            let responseString = String(data: responseData, encoding: .utf8)
+                            print("Response Data: \(responseString ?? "")")
+                        }
+                        // Handle the error (e.g., show an error message)
                     }
                 }
             }
@@ -269,3 +213,4 @@ class LivraisonViewModel: ObservableObject {
         return true
     }
 }
+
