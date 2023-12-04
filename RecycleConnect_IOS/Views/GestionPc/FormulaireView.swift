@@ -358,14 +358,14 @@ struct LivraisonFormView: View {
                     EmptyView()
                 }
             )
-            .navigationBarTitle("Livraison Details", displayMode: .inline)
+            /*.navigationBarTitle("Livraison Details", displayMode: .inline)
             .navigationBarItems(trailing:
                 Button(action: {
                     isEditing = false
                 }) {
                     Text("Annuler")
                 }
-            )
+            )*/
         }
     }
 }

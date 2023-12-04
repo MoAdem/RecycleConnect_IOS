@@ -40,6 +40,7 @@ struct ReservationPcListView_Previews: PreviewProvider {
     }
 }
 */
+/*
 import SwiftUI
 struct ReservationPcListView: View {
     @ObservedObject var viewModel = ReservationPcViewModel()
@@ -91,4 +92,40 @@ struct ReservationPcListView: View {
             // Afficher ici la vue pour ajouter une nouvelle réservation, si nécessaire
         }
     }
+}*/
+import SwiftUI
+
+struct ReservationPcListView: View {
+    @ObservedObject var viewModel = ReservationPcViewModel()
+
+    var body: some View {
+        NavigationView {
+            List {
+                ForEach(viewModel.reservationPcs.indices, id: \.self) { index in
+                    let reservationPc = viewModel.reservationPcs[index]
+                    ReservationPcCardView(reservationPc: reservationPc, viewModel: viewModel)
+                        .listRowInsets(EdgeInsets(top: 5, leading: 5, bottom: 4, trailing: 4))
+                        .onTapGesture {
+                            // Handle tap on the card if needed
+                        }
+                        .id(index)
+                }
+            }
+            .listStyle(InsetListStyle())
+            .listRowBackground(Color.clear)
+            .onAppear {
+                viewModel.getReservationPcsFromServer()
+            }
+      
+        }
+    }
 }
+/*   .navigationTitle("Reservation PC")
+   .navigationBarTitleDisplayMode(.inline)
+   .alert(isPresented: $viewModel.showErrorMessages) {
+       Alert(
+           title: Text("Erreur"),
+           message: Text("Une erreur s'est produite lors du chargement des données."),
+           dismissButton: .default(Text("OK"))
+       )
+   }*/

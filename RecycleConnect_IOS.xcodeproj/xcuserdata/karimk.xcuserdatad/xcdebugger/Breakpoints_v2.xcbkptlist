@@ -18,20 +18,38 @@
             endingLineNumber = "29"
             landmarkName = "unknown"
             landmarkType = "0">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "B6BD6ACE-FD2E-417C-AF4C-2F5427502D0E"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RecycleConnect_IOS/Views/GestionPc/ReservationPcCardView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "146"
-            endingLineNumber = "146">
+            <Locations>
+               <Location
+                  uuid = "437CDC4A-1AA2-43E9-92B9-77D9633DF4E4 - 48f4524ac4b0436c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RecycleConnect_IOS.ReservationPc.CodingKeys.rawValue.getter : Swift.String"
+                  moduleName = "RecycleConnect_IOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/karimk/Desktop/karimIOS/RecycleConnect_IOS/RecycleConnect_IOS/Models/GestionPc/ReservationPc.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "152"
+                  endingLineNumber = "152"
+                  offsetFromSymbolStart = "104">
+               </Location>
+               <Location
+                  uuid = "437CDC4A-1AA2-43E9-92B9-77D9633DF4E4 - 48f4524ac4b0434f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RecycleConnect_IOS.ReservationPc.CodingKeys.rawValue.getter : Swift.String"
+                  moduleName = "RecycleConnect_IOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/karimk/Desktop/karimIOS/RecycleConnect_IOS/RecycleConnect_IOS/Models/GestionPc/ReservationPc.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "153"
+                  endingLineNumber = "153"
+                  offsetFromSymbolStart = "88">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
