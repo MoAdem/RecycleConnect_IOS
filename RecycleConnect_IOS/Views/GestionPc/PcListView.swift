@@ -41,7 +41,7 @@ struct PcListView_Previews: PreviewProvider {
 }
 
 */
-
+/*
 import SwiftUI
 
 struct PcListView: View {
@@ -79,4 +79,31 @@ struct PcListView_Previews: PreviewProvider {
     static var previews: some View {
         PcListView()
     }
+}*/
+import SwiftUI
+
+struct PcListView: View {
+    @ObservedObject var viewModel = PcViewModel()
+
+    var body: some View {
+        NavigationView {
+            List(viewModel.pcs) { pc in
+                PcCardView(pc: pc)
+            }
+            .onAppear {
+                viewModel.fetchData()
+            }
+            .listStyle(InsetListStyle())
+            .listRowBackground(Color.clear)
+            .navigationTitle("Points de Collecte")
+            .navigationBarTitleDisplayMode(.inline)
+        }
+    }
 }
+
+struct PcListView_Previews: PreviewProvider {
+    static var previews: some View {
+        PcListView()
+    }
+}
+

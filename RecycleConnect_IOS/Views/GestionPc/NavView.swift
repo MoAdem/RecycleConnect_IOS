@@ -21,9 +21,9 @@ struct NavView: View {
                     Text("Go to Formulaire")
                 }
 
-                NavigationLink(destination: MappView()) {
+                /*NavigationLink(destination: MappView()) {
                     Text("Go to Mapp")
-                }
+                }*/
             }
         }
     }

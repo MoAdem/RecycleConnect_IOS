@@ -72,6 +72,7 @@ class ReservationPcViewModel: ObservableObject {
     }
 
 }*/
+
 import Foundation
 
 class ReservationPcViewModel: ObservableObject {
@@ -136,5 +137,3 @@ class ReservationPcViewModel: ObservableObject {
         }.resume()
     }
 }
-
-
