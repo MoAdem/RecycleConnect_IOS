@@ -51,7 +51,6 @@ struct ReservationPcCardView_Previews: PreviewProvider {
 }
 
 */
-
 import SwiftUI
 
 struct ReservationPcCardView: View {
@@ -139,5 +138,8 @@ struct ConfirmationView: View {
         }
     }
 }
+
+
+
 
 

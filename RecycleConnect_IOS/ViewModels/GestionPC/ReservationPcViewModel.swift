@@ -72,8 +72,3 @@ class ReservationPcViewModel: ObservableObject {
     }
 
 }
-
-
-
-
-

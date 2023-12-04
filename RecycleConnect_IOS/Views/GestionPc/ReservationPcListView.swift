@@ -40,7 +40,6 @@ struct ReservationPcListView_Previews: PreviewProvider {
     }
 }
 */
-
 import SwiftUI
 struct ReservationPcListView: View {
     @ObservedObject var viewModel = ReservationPcViewModel()
@@ -93,7 +92,3 @@ struct ReservationPcListView: View {
         }
     }
 }
-
-
-
-

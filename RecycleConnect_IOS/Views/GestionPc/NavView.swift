@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct NavView: View {
+    @State private var isEditing = false
+
     var body: some View {
         NavigationView {
             VStack(spacing: 20) {
@@ -15,7 +17,7 @@ struct NavView: View {
                     Text("Go to Pc")
                 }
 
-                NavigationLink(destination: LivraisonFormView()) {
+                NavigationLink(destination: LivraisonFormView(isEditing: $isEditing)) {
                     Text("Go to Formulaire")
                 }
 
@@ -23,11 +25,9 @@ struct NavView: View {
                     Text("Go to Mapp")
                 }
             }
-            // .navigationTitle("Navigation Example")
         }
     }
 }
-
 
 
 struct NavView_Previews: PreviewProvider {

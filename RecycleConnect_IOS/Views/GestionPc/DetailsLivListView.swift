@@ -65,7 +65,9 @@ struct DetailsLivListView_Previews: PreviewProvider {
     }
 }
 */
+
 import SwiftUI
+
 struct DetailsLivListView: View {
     @ObservedObject var livraisonViewModel = LivraisonViewModel()
 
