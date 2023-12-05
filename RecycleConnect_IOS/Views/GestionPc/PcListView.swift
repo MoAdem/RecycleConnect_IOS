@@ -41,7 +41,7 @@ struct PcListView_Previews: PreviewProvider {
 }
 
 */
-/*
+
 import SwiftUI
 
 struct PcListView: View {
@@ -50,11 +50,11 @@ struct PcListView: View {
     var body: some View {
         NavigationView {
             List(viewModel.pcs) { pc in
-                NavigationLink(destination: PcCardView(pc: pc)) {
+              /*  NavigationLink(destination: PcCardView(pc: pc)) {
                     EmptyView()
                         .frame(width: 0, height: 0)
-                }
-                .buttonStyle(PlainButtonStyle())
+                }*/
+               // .buttonStyle(PlainButtonStyle())
 
                 Button(action: {
                     // Action à effectuer lors du clic sur PcCardView
@@ -79,7 +79,7 @@ struct PcListView_Previews: PreviewProvider {
     static var previews: some View {
         PcListView()
     }
-}*/
+}/*
 import SwiftUI
 
 struct PcListView: View {
@@ -106,4 +106,4 @@ struct PcListView_Previews: PreviewProvider {
         PcListView()
     }
 }
-
+*/
