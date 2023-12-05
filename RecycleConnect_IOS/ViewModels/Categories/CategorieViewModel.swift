@@ -26,7 +26,7 @@ class CategorieViewModel: ObservableObject {
 
     
     
-    func createCategorie(NomCategorie: String, NbreTotalArticles: Int) {
+   /* func createCategorie(NomCategorie: String, NbreTotalArticles: Int) {
         CategorieServices.shared.CreateCategorie(NomCategorie: NomCategorie, NbreTotalArticles: NbreTotalArticles) { result in
             switch result {
             case .success(let nouvCategorie):
@@ -37,6 +37,6 @@ class CategorieViewModel: ObservableObject {
                 print("Error creating category: \(error.localizedDescription)")
             }
         }
-    }
+    }*/
 }
 

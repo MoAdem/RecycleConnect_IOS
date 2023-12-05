@@ -7,6 +7,7 @@
 
 import Foundation
 
+
 class CategorieServices {
     static let shared = CategorieServices()
         
@@ -18,6 +19,13 @@ class CategorieServices {
             case decodingError
         }
         
+    
+    func replaceHttpWithHttps(in jsonString: String) -> String {
+       let replacedString = jsonString.replacingOccurrences(of: "\"http://", with: "\"https://")
+      return replacedString }
+    
+    
+    
     func GetAllCategories(completion: @escaping (Result<[categorie], Error>) -> Void) {
         guard let url = URL(string: baseURL) else {
             completion(.failure(NetworkError.invalidURL))
@@ -41,7 +49,9 @@ class CategorieServices {
             }
 
             if let jsonString = String(data: data, encoding: .utf8) {
-                print("Received JSON string: \(jsonString)")
+                //print("Received JSON string: \(jsonString)")
+                let updatedJsonString = self.replaceHttpWithHttps(in: jsonString)
+                //print("updated",updatedJsonString)
             } else {
                 print("Received data is not a valid UTF-8 string.")
             }

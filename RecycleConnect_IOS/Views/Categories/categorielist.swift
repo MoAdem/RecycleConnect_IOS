@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-import SwiftUI
 import URLImage
 
 struct categorielist: View {
@@ -74,13 +73,13 @@ struct CategorieRowView: View {
     var body: some View {
         NavigationLink(destination: articlelist()) {
             VStack(alignment: .center, spacing: 8) {
-                URLImage(categorie.PhotoCategorie) { image in
-                    image
+                URLImage(categorie.PhotoCategorie, content: { image in
+                                   image
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 400, height: 200)
                         .cornerRadius(8)
-                }
+                })
                 Text(categorie.NomCategorie)
                     .font(.headline)
                     .foregroundColor(.primary)
@@ -93,6 +92,8 @@ struct CategorieRowView: View {
         }
     }
 }
+
+
 
 
 #Preview {
