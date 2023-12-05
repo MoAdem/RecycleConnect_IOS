@@ -168,26 +168,33 @@ struct PcCardView_Previews: PreviewProvider {
     }
 }
 */
+
 import SwiftUI
 import MapKit
 struct PcCardView: View {
     let pc: PC
+    @State private var isReservationActive: Bool = false
     @State private var isMapViewActive: Bool = false
 
     var body: some View {
-        NavigationLink(destination: MappView(mapRegion: MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: pc.x, longitude: pc.y), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)), annotations: [AnnotationItem(annotation: MKPointAnnotation(__coordinate: CLLocationCoordinate2D(latitude: pc.x, longitude: pc.y), title: pc.Nom_Pc, subtitle: pc.address_Pc))]), isActive: $isMapViewActive) {
+        VStack {
             HStack(spacing: 7) {
-                Image("ImagePos")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 150, height: 150)
-                    .clipped()
+                Button(action: {
+                    // Actions à effectuer lors du clic sur l'image
+                    isMapViewActive.toggle()
+                }) {
+                    Image("ImagePos")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 150, height: 150)
+                        .clipped()
+                }
 
                 VStack(alignment: .leading, spacing: 9) {
                     Text(pc.Nom_Pc)
                         .font(.system(size: 16))
                         .fontWeight(.medium)
-
+                    
                     HStack {
                         Spacer()
                         Text(pc.address_Pc)
@@ -195,7 +202,7 @@ struct PcCardView: View {
                             .foregroundColor(.secondary)
                         Spacer()
                     }
-
+                    
                     HStack {
                         Spacer()
                         Text(pc.address_mail_Pc)
@@ -203,7 +210,7 @@ struct PcCardView: View {
                             .foregroundColor(.secondary)
                         Spacer()
                     }
-
+                    
                     HStack {
                         Spacer()
                         Text(String(pc.numero_tel))
@@ -211,17 +218,27 @@ struct PcCardView: View {
                             .foregroundColor(.secondary)
                         Spacer()
                     }
-
+                    
                     Button(action: {
-                        isMapViewActive.toggle()
+                        // Actions à effectuer lors du clic sur le bouton "Sélectionner"
+                        isReservationActive.toggle()
                     }) {
-                        Text("Afficher sur la carte")
+                        Text("Sélectionner")
                             .font(.system(size: 20))
                             .foregroundColor(.white)
-                            .frame(width: 200, height: 50)
+                            .frame(width: 150, height: 50)
                             .background(Color(red: 0.05, green: 0.54, blue: 0.48))
                             .cornerRadius(50)
                     }
+                    .background(
+                        NavigationLink(
+                            destination: ReservationPcListView(),
+                            isActive: $isReservationActive,
+                            label: {
+                                EmptyView()
+                            })
+                            .hidden()
+                    )
                 }
                 .padding(16)
             }
@@ -230,5 +247,14 @@ struct PcCardView: View {
             .shadow(radius: 4)
             .padding(8)
         }
+        .background(
+            NavigationLink(
+                destination: MappView(mapRegion: MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: pc.x, longitude: pc.y), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)), annotations: [AnnotationItem(annotation: MKPointAnnotation(__coordinate: CLLocationCoordinate2D(latitude: pc.x, longitude: pc.y), title: pc.Nom_Pc, subtitle: pc.address_Pc))]),
+                isActive: $isMapViewActive) {
+                EmptyView()
+            }
+            .hidden()
+        )
     }
 }
+
