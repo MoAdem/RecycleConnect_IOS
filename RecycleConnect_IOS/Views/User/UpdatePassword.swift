@@ -13,7 +13,7 @@ struct UpdatePassword: View {
        @State private var verificationCode: String = ""
        @State private var password: String = ""
        @State private var passwordError: String? = nil
-      @State private var code: String = ""
+       @State private var code: String = ""
 
 
        @StateObject var userViewModel = UserViewModel()

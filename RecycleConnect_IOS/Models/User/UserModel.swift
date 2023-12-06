@@ -6,17 +6,28 @@
 //
 
 import Foundation
+import SwiftUI
+import CoreData
 
-struct User: Decodable{
-    var username: String
-    var email: String
-    var address: String
-    var password: String
-    var telephone: String
-    var role: String
+struct UserResponse: Codable {
+    let message: String
+    let user: User
+    let token: String
+}
+
+struct User: Codable {
+    let _id: String
+    let username: String
+    let email: String
+    let address: String
+    let password: String
+    let telephone: Int
+    let role: String
+    let __v: Int
     
     enum CodingKeys: String, CodingKey {
-           case username, email, address, password, telephone, role
-       }
+        case _id, username, email, address, password, telephone, role, __v
+    }
 }
+
 

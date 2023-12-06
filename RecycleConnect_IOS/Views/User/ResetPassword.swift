@@ -8,11 +8,14 @@
 import SwiftUI
 
 struct ResetPassword: View {
+    
     enum ResetPasswordStatus {
         case resetting
         case resetSent
         case error
     }
+    @Environment(\.presentationMode) var presentationMode
+
        @State private var showAlert = false
        @State private var alertMessage = ""
        @State private var verificationCode: String = ""
@@ -106,6 +109,7 @@ struct ResetPassword: View {
                                 message: Text(alertMessage),
                                 dismissButton: .default(
                                     Text("OK")
+                                    
                                 ) {
                                     isResetCodeSent = true
                                 }

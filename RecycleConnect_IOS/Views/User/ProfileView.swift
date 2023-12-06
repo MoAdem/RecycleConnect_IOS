@@ -15,7 +15,7 @@ struct ProfileView: View {
                         .font(.title)
                         .bold()
                     
-                    Text("bouguerra.hanine@gmail.com")
+                    Text("bouguerrahanine4@gmail.com")
                         .font(.subheadline)
                         .foregroundColor(.gray)
                 }
