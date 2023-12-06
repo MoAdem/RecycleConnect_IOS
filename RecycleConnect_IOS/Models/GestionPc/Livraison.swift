@@ -160,7 +160,7 @@ struct Livraisonn: Codable, Identifiable {
     let Nom_Article: String
     let Nom_Client: String
     let address_mail_Client: String
-    let numero_Client: Double
+    let numero_Client: Int
     let ville: String
     let address_Client: String
 
@@ -178,7 +178,7 @@ struct Livraisonn: Codable, Identifiable {
          Nom_Article: String,
          Nom_Client: String,
          address_mail_Client: String,
-         numero_Client: Double,
+         numero_Client: Int,
          ville: String,
          address_Client: String) {
         self.id = id
@@ -197,7 +197,7 @@ struct Livraisonn: Codable, Identifiable {
         Nom_Article = try container.decode(String.self, forKey: .Nom_Article)
         Nom_Client = try container.decode(String.self, forKey: .Nom_Client)
         address_mail_Client = try container.decode(String.self, forKey: .address_mail_Client)
-        numero_Client = try container.decode(Double.self, forKey: .numero_Client)
+        numero_Client = try container.decode(Int.self, forKey: .numero_Client)
         ville = try container.decode(String.self, forKey: .ville)
         address_Client = try container.decode(String.self, forKey: .address_Client)
     }

@@ -224,7 +224,7 @@ struct DetailsLivCardView: View {
                 isActive: $isEditing
             ) {
                 EmptyView()
-            }
+            } 
             .hidden()
         )
     }

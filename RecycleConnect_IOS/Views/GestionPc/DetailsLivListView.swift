@@ -83,8 +83,10 @@ struct DetailsLivListView: View {
         }
         .navigationTitle("Details Livraison")
         .navigationBarTitleDisplayMode(.inline)
+
     }
 }
+
 
 struct DetailsLivListView_Previews: PreviewProvider {
     static var previews: some View {

@@ -233,7 +233,7 @@ class LivraisonViewModel: ObservableObject {
         let livraison = Livraisonn(Nom_Article: nomArticle,
                                    Nom_Client: nomClient,
                                    address_mail_Client: addressMailClient,
-                                   numero_Client: Double(numeroClient) ?? 0,
+                                   numero_Client: Int(numeroClient) ?? 0,
                                    ville: selectedVille,
                                    address_Client: addressClient)
 
@@ -344,7 +344,7 @@ class LivraisonViewModel: ObservableObject {
             Nom_Article: nomArticle,
             Nom_Client: nomClient,
             address_mail_Client: addressMailClient,
-            numero_Client: Double(numeroClient) ?? 0,
+            numero_Client: Int(numeroClient) ?? 0,
             ville: selectedVille,
             address_Client: addressClient
         )
@@ -389,9 +389,51 @@ class LivraisonViewModel: ObservableObject {
 
 
     // MARK: - Validation Method
-    private func validateInputs(nomArticle: String, nomClient: String, addressMailClient: String, numeroClient: String, selectedVille: String, addressClient: String) -> Bool {
+   private func validateInputs(nomArticle: String, nomClient: String, addressMailClient: String, numeroClient: String, selectedVille: String, addressClient: String) -> Bool {
         // Add your validation logic here
         return true
     }
+    /*private func validateInputs(nomArticle: String, nomClient: String, addressMailClient: String, numeroClient: String, selectedVille: String, addressClient: String) -> Bool {
+        // Ajoutez votre logique de validation ici
+        var isValid = true
+
+        if nomArticle.isEmpty {
+            showErrorMessages = true
+            isValid = false
+        }
+
+        if nomClient.isEmpty {
+            showErrorMessages = true
+            isValid = false
+        }
+
+        if !isValidEmail(addressMailClient) {
+            showErrorMessages = true
+            isValid = false
+        }
+
+        if numeroClient.isEmpty || numeroClient.count != 8 {
+            showErrorMessages = true
+            isValid = false
+        }
+
+        if selectedVille.isEmpty {
+            showErrorMessages = true
+            isValid = false
+        }
+
+        if addressClient.isEmpty {
+            showErrorMessages = true
+            isValid = false
+        }
+
+        return isValid
+    }
+
+    private func isValidEmail(_ email: String) -> Bool {
+        // Ajoutez votre propre logique de validation pour l'e-mail ici
+        return email.contains("@") && email.contains(".")
+    }
+*/
 }
 

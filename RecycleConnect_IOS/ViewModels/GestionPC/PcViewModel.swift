@@ -16,6 +16,7 @@ class PcViewModel: ObservableObject {
     init() {
         fetchData()
     }
+    
 
     func fetchData() {
         guard let url = URL(string: "http://localhost:5000/pointCollecte") else {

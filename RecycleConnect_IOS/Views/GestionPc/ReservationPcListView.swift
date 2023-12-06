@@ -100,24 +100,29 @@ struct ReservationPcListView: View {
 
     var body: some View {
         NavigationView {
-            List {
-                ForEach(viewModel.reservationPcs.indices, id: \.self) { index in
-                    let reservationPc = viewModel.reservationPcs[index]
-                    ReservationPcCardView(reservationPc: reservationPc, viewModel: viewModel)
-                        .listRowInsets(EdgeInsets(top: 5, leading: 5, bottom: 4, trailing: 4))
-                        .onTapGesture {
-                            // Handle tap on the card if needed
-                        }
-                        .id(index)
+            ZStack{
+                List {
+                    ForEach(viewModel.reservationPcs.indices, id: \.self) { index in
+                        let reservationPc = viewModel.reservationPcs[index]
+                        ReservationPcCardView(reservationPc: reservationPc, viewModel: viewModel)
+                            .listRowInsets(EdgeInsets(top: 5, leading: 5, bottom: 4, trailing: 4))
+                            .onTapGesture {
+                                // Handle tap on the card if needed
+                            }
+                        
+                            .id(index)
+                        
+                    }
+                }
+                .listStyle(InsetListStyle())
+                .listRowBackground(Color.clear)
+                .onAppear {
+                    viewModel.getReservationPcsFromServer()
                 }
             }
-            .listStyle(InsetListStyle())
-            .listRowBackground(Color.clear)
-            .onAppear {
-                viewModel.getReservationPcsFromServer()
-            }
-      
-        }
+                
+            }//.navigationBarBackButtonHidden(true)
+        
     }
 }
 /*   .navigationTitle("Reservation PC")

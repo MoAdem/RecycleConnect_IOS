@@ -14,16 +14,20 @@ struct NavView: View {
         NavigationView {
             VStack(spacing: 20) {
                 NavigationLink(destination: PcListView()) {
-                    Text("Go to Pc")
+                    Text("Go to Point Collecte")
                 }
 
                 NavigationLink(destination: LivraisonFormView(isEditing: $isEditing)) {
                     Text("Go to Formulaire")
                 }
+                NavigationLink(destination: DetailsLivListView()){
+                    Text ("Go to Details Livraison")
+                }
+                NavigationLink(destination: ReservationPcListView()){
+                    Text ("Go to Reservation")
+                }
 
-                /*NavigationLink(destination: MappView()) {
-                    Text("Go to Mapp")
-                }*/
+
             }
         }
     }
@@ -35,3 +39,6 @@ struct NavView_Previews: PreviewProvider {
         NavView()
     }
 }
+/*NavigationLink(destination: MappView()) {
+    Text("Go to Mapp")
+}*/
