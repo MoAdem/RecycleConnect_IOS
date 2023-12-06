@@ -11,7 +11,7 @@ struct articleform: View {
     @State private var NomArticle: String = ""
     @State private var DescriptionArticle: String = ""
     @State private var EtatArticle: String = ""
-    @State private var CategorieArticle: String = ""
+    @State private var ArticleArticle: String = ""
     @State private var PhotoArticle: UIImage?
 
     var body: some View {
@@ -58,7 +58,7 @@ struct articleform: View {
                     .stroke(Color(red: 0.05, green: 0.54, blue: 0.48), lineWidth: 2))
                     .padding(.bottom , 10)
                 
-                TextField("Catégorie de l'article", text: $CategorieArticle)
+                TextField("Catégorie de l'article", text: $ArticleArticle)
                     .padding(10)
                     .overlay(RoundedRectangle(cornerRadius: 10)
                     .stroke(Color(red: 0.05, green: 0.54, blue: 0.48), lineWidth: 2))

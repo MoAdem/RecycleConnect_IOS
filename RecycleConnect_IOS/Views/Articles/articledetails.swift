@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct articledetails: View {
+    
     var body: some View {
         ZStack {
             Color(.white)
@@ -60,4 +61,5 @@ struct articledetails: View {
 
 #Preview {
     articledetails()
+        //article: article(id: "1", PhotoArticle: URL(string: "")!, NomArticle: "a", DescriptionArticle: "a", EtatArticle:"a" , Categorie: //categorie(id: "b", PhotoCategorie: URL(string: "")!, NomCategorie: "b", NbreTotalArticles: 0, __v: 0), __v: 0))
 }

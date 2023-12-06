@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct categorie : Identifiable, Codable //Decodable,Hashable,
+struct categorie : Identifiable, Codable , Equatable
 {
     
     var id : String

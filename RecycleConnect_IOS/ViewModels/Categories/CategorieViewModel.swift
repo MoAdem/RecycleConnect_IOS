@@ -16,7 +16,6 @@ class CategorieViewModel: ObservableObject {
             case .success(let categories):
                 DispatchQueue.main.async {
                     self.categories = categories
-                    print("voici la liste des categories du viewmodel",categories)
                 }
             case .failure(let error):
                 print("Error fetching categories: \(error.localizedDescription)")

@@ -11,7 +11,7 @@ import Foundation
 class CategorieServices {
     static let shared = CategorieServices()
         
-        let baseURL = "https://recycleconnect.onrender.com/api/categories"
+        let baseURL = "http://localhost:5000/api/categories"
         
         enum NetworkError: Error {
             case invalidURL
@@ -20,51 +20,48 @@ class CategorieServices {
         }
         
     
-    func replaceHttpWithHttps(in jsonString: String) -> String {
-       let replacedString = jsonString.replacingOccurrences(of: "\"http://", with: "\"https://")
-      return replacedString }
-    
-    
-    
     func GetAllCategories(completion: @escaping (Result<[categorie], Error>) -> Void) {
-        guard let url = URL(string: baseURL) else {
-            completion(.failure(NetworkError.invalidURL))
-            return
+            guard let url = URL(string: baseURL) else {
+                completion(.failure(NetworkError.invalidURL))
+                return
+            }
+
+
+            var request = URLRequest(url: url)
+            request.httpMethod = "GET"
+
+
+            URLSession.shared.dataTask(with: request) { data, response, error in
+                if let error = error {
+                    print("Error: \(error.localizedDescription)")
+                    completion(.failure(error))
+                    return
+                }
+
+
+                guard let data = data else {
+                    print("No data received")
+                    completion(.failure(NetworkError.decodingError))
+                    return
+                }
+
+
+                if let jsonString = String(data: data, encoding: .utf8) {
+                    print("Received Categories JSON string: \(jsonString)")
+                } else {
+                    print("Received data is not a valid UTF-8 string.")
+                }
+
+
+                do {
+                    let categories = try JSONDecoder().decode([categorie].self, from: data)
+                    completion(.success(categories))
+                } catch {
+                    print("Decoding error: \(error)")
+                    completion(.failure(error))
+                }
+            }.resume()
         }
-
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if let error = error {
-                print("Error: \(error.localizedDescription)")
-                completion(.failure(error))
-                return
-            }
-
-            guard let data = data else {
-                print("No data received")
-                completion(.failure(NetworkError.decodingError))
-                return
-            }
-
-            if let jsonString = String(data: data, encoding: .utf8) {
-                //print("Received JSON string: \(jsonString)")
-                let updatedJsonString = self.replaceHttpWithHttps(in: jsonString)
-                //print("updated",updatedJsonString)
-            } else {
-                print("Received data is not a valid UTF-8 string.")
-            }
-
-            do {
-                let categories = try JSONDecoder().decode([categorie].self, from: data)
-                completion(.success(categories))
-            } catch {
-                print("Decoding error: \(error)")
-                completion(.failure(error))
-            }
-        }.resume()
-    }
 
 
 

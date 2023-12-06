@@ -7,19 +7,21 @@
 
 import SwiftUI
 
-
+import URLImage
 
 struct articlelist: View {
-    @State private var searchText: String = ""
-    @State private var isArticleFormPresented: Bool = false
+    @StateObject private var articleViewModel = ArticleViewModel()
+        @State private var searchText: String = ""
+        @State private var isArticleFormPresented: Bool = false
 
-    var body: some View {
+
+        var body: some View {
             ZStack {
                 ScrollView {
                     VStack {
                         HStack {
                             Image(systemName: "magnifyingglass")
-                            TextField("          Rechercher un article ", text: $searchText)
+                            TextField("Rechercher un article", text: $searchText)
                                 .frame(width: 270)
                                 .foregroundColor(.primary)
                         }
@@ -29,33 +31,19 @@ struct articlelist: View {
                         .overlay(RoundedRectangle(cornerRadius: 10)
                         .stroke(Color(red: 0.05, green: 0.54, blue: 0.48), lineWidth: 2))
                         .padding(.top , 10)
-                    }  .frame(maxHeight: .infinity)
-                    
+                    }
+                    .frame(maxHeight: .infinity)
+
+
                     LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 20) {
-                        ForEach(0..<10) { _ in
-                            NavigationLink(destination: articledetails()) {
-                                VStack(alignment: .center) {
-                                    Image("bag")
-                                        .resizable()
-                                        .frame(width: 140, height: 140)
-                                        .cornerRadius(8)
-
-                                    Text("Sac")
-                                        .font(.headline)
-                                        .foregroundColor(.primary)
-
-                                    Text("Neuf")
-                                        .font(.subheadline)
-                                        .foregroundColor(.secondary)
-                                }
-                                .padding(.top , 10)
-                                .background(Color(.white))
-                                .cornerRadius(10)
-                            }
+                        ForEach(articleViewModel.articles) { article in
+                            //NavigationLink(destination: articledetails(article : article)){}
                         }
                     }
                     .padding(.top , 30)
                 }
+
+
                 VStack {
                     Spacer()
                     HStack {
@@ -69,7 +57,7 @@ struct articlelist: View {
                                 .foregroundColor(.white)
                                 .background(Color(red: 0.05, green: 0.54, blue: 0.48))
                                 .clipShape(Circle())
-                                .padding(.trailing , 50)
+                                .padding(.trailing, 50)
                         }
                         .sheet(isPresented: $isArticleFormPresented) {
                             articleform()
@@ -77,8 +65,45 @@ struct articlelist: View {
                     }
                 }
             }
+            .onAppear {
+                articleViewModel.GetAllArticles()
+            }
+            .onChange(of: articleViewModel.articles)
+            {
+                articleViewModel.GetAllArticles()
+            }
         }
     }
+
+
+    struct ArticleItemView: View {
+        let article: article
+
+
+        var body: some View {
+            VStack(alignment: .center) {
+                URLImage(article.PhotoArticle, content: { image in
+                                   image
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 140, height: 140)
+                        .cornerRadius(8)
+                })
+
+
+                Text(article.NomArticle)
+                    .font(.headline)
+                    .foregroundColor(.primary)
+                Text(article.EtatArticle)
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+            }
+            .padding(.top , 10)
+            .background(Color(.white))
+            .cornerRadius(10)
+        }
+    }
+
 
 #Preview {
     articlelist()

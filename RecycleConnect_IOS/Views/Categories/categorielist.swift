@@ -29,9 +29,9 @@ struct categorielist: View {
                         .background(Color(.white))
                         .cornerRadius(10)
                         .overlay(RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color(red: 0.05, green: 0.54, blue: 0.48), lineWidth: 2))
+                            .stroke(Color(red: 0.05, green: 0.54, blue: 0.48), lineWidth: 2))
                         .padding(.top , -30)
-
+                        
                         ForEach(categorieViewModel.categories) { categorie in
                             NavigationLink(destination: articlelist()) {
                                 CategorieRowView(categorie: categorie)
@@ -63,6 +63,10 @@ struct categorielist: View {
             .onAppear {
                 categorieViewModel.GetAllCategories()
             }
+            .onChange(of: categorieViewModel.categories)
+            {
+                categorieViewModel.GetAllCategories()
+            }
         }
     }
 }
@@ -77,9 +81,13 @@ struct CategorieRowView: View {
                                    image
                         .resizable()
                         .aspectRatio(contentMode: .fill)
-                        .frame(width: 400, height: 200)
+                        .frame(maxWidth: 400, maxHeight: 200)
                         .cornerRadius(8)
                 })
+                .frame(maxWidth: .infinity, maxHeight: 200)
+                                .background(Color(.white))
+                                .cornerRadius(10)
+
                 Text(categorie.NomCategorie)
                     .font(.headline)
                     .foregroundColor(.primary)
