@@ -24,7 +24,6 @@ struct NewsListView: View {
             NavigationView {
                 List(filteredNews, id: \._id) { news in
                     NewsListCell(news: news)
-                        .listRowSeparator(.hidden)
                         .onTapGesture {
                             newsViewModel.selectedNews = news
                             newsViewModel.isShowingDetailView = true
