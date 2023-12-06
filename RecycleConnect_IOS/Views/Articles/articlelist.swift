@@ -35,7 +35,7 @@ struct articlelist: View {
                 
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
                     ForEach(articleViewModel.articles) { article in
-                        NavigationLink(destination: articledetails()) {
+                        NavigationLink(destination: articledetails(article: article)) {
                             ArticleItemView(article: article)
                         }
                     }

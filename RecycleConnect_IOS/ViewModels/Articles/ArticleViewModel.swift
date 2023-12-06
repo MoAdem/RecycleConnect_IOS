@@ -9,6 +9,7 @@ import Foundation
 
 class ArticleViewModel: ObservableObject {
     @Published var articles: [article] = []
+    @Published var article: article?
 
     func GetAllArticles() {
         ArticleServices.shared.GetAllArticles{ result in
@@ -24,6 +25,21 @@ class ArticleViewModel: ObservableObject {
         }
     }
 
+    
+    func GetArticleById(articleId: String) {
+            ArticleServices.shared.GetArticleById(articleId: articleId) { result in
+                switch result {
+                case .success(let fetchedArticle):
+                    DispatchQueue.main.async {
+                        self.article = fetchedArticle
+                    }
+                case .failure(let error):
+                    print("Failed to fetch article details: \(error)")
+                }
+            }
+        }
+
+    
     
     
    /* func createCategorie(NomCategorie: String, NbreTotalArticles: Int) {

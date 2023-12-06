@@ -64,6 +64,29 @@ class ArticleServices {
 
 
     
+    func GetArticleById(articleId: String, completion: @escaping (Result<article, Error>) -> Void) {
+            guard let url = URL(string: "http://localhost:5000/api/articles/\(articleId)") else {
+                completion(.failure(NetworkError.invalidURL))
+                return
+            }
+            
+            URLSession.shared.dataTask(with: url) { data, response, error in
+                if let error = error {
+                    print("Error: \(error.localizedDescription)")
+                    completion(.failure(error))
+                    return
+                }
+                
+                do {
+                    let article = try JSONDecoder().decode(article.self, from: data!)
+                    completion(.success(article))
+                } catch {
+                    completion(.failure(NetworkError.decodingError))
+                }
+            }.resume()
+        }
+    
+
     
     
     
