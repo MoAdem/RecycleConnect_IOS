@@ -41,5 +41,41 @@ final class EventViewModel: ObservableObject {
             }
         }
     }
+    func deleteEvent(at index: Int) {
+            let eventIdToDelete = events[index]._id
+            isLoding = true
+            EventsServices.shared.deleteEvent(id: eventIdToDelete) { [self] result in
+                DispatchQueue.main.async {
+                    isLoding = false
+                    switch result {
+                    case .success(let response):
+                        if response.success {
+                            events.remove(at: index)
+                        } else {
+                            alertItem = AlertItem(title: Text("Delete Failed"), message: Text(response.message), dismissButton: .default(Text("OK")))
+                        }
+                    case .failure(let error):
+                        handleServiceError(error)
+                    }
+                }
+            }
+        }
+
+        private func handleServiceError(_ error: EVError) {
+            switch error {
+            case .invalidURL:
+                alertItem = AlertContext.invalidURL
+            case .invalidResponse:
+                alertItem = AlertContext.invalidResponse
+            case .invalidData:
+                alertItem = AlertContext.invalidData
+            case .unableToComplete:
+                alertItem = AlertContext.unableToComplete
+            }
+        }
+
+
+
+
     
 }

@@ -24,7 +24,6 @@ struct EventListView: View {
             NavigationView {
                 List(filteredEvents, id: \._id) { event in
                     EventListCell(event: event)
-                        .listRowSeparator(.hidden)
                         .onTapGesture {
                             eventViewModel.isShowingDetailView = true
                             eventViewModel.selectedEvent = event

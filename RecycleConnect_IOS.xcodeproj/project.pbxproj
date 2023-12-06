@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB51DBDA2B20854B00FB167F /* OrgEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB51DBD92B20854B00FB167F /* OrgEventsView.swift */; };
+		BB51DBDC2B208C0E00FB167F /* OrgEventListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB51DBDB2B208C0E00FB167F /* OrgEventListCell.swift */; };
 		BB8D996C2B16337A00530D28 /* RecycleConnect_IOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8D996B2B16337A00530D28 /* RecycleConnect_IOSApp.swift */; };
 		BB8D996E2B16337A00530D28 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8D996D2B16337A00530D28 /* ContentView.swift */; };
 		BB8D99702B16337B00530D28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB8D996F2B16337B00530D28 /* Assets.xcassets */; };
@@ -60,6 +62,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BB51DBD92B20854B00FB167F /* OrgEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrgEventsView.swift; sourceTree = "<group>"; };
+		BB51DBDB2B208C0E00FB167F /* OrgEventListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrgEventListCell.swift; sourceTree = "<group>"; };
 		BB8D99682B16337A00530D28 /* RecycleConnect_IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecycleConnect_IOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB8D996B2B16337A00530D28 /* RecycleConnect_IOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecycleConnect_IOSApp.swift; sourceTree = "<group>"; };
 		BB8D996D2B16337A00530D28 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -253,6 +257,8 @@
 				BBB589F82B176919005FACDC /* EventDetailView.swift */,
 				BBB589FE2B1769EF005FACDC /* EventListCell.swift */,
 				BBB58A042B176A57005FACDC /* XDismissButton.swift */,
+				BB51DBD92B20854B00FB167F /* OrgEventsView.swift */,
+				BB51DBDB2B208C0E00FB167F /* OrgEventListCell.swift */,
 			);
 			path = Events;
 			sourceTree = "<group>";
@@ -465,10 +471,12 @@
 				BBF816E92B1B7EE7006F9B19 /* NewsServices.swift in Sources */,
 				BBB58A032B176A3F005FACDC /* EVError.swift in Sources */,
 				BBF011822B163E7200D1287A /* TestView.swift in Sources */,
+				BB51DBDA2B20854B00FB167F /* OrgEventsView.swift in Sources */,
 				BBF816D82B1B6634006F9B19 /* EventViewModel.swift in Sources */,
 				BBF011802B163E2A00D1287A /* TestViewModel.swift in Sources */,
 				BBB589FF2B1769EF005FACDC /* EventListCell.swift in Sources */,
 				BB8D99782B16337B00530D28 /* RecycleConnect_IOS.xcdatamodeld in Sources */,
+				BB51DBDC2B208C0E00FB167F /* OrgEventListCell.swift in Sources */,
 				BBF816ED2B1B7FC2006F9B19 /* News.swift in Sources */,
 				BBB589F72B1768CA005FACDC /* EventCard.swift in Sources */,
 				BBB58A052B176A57005FACDC /* XDismissButton.swift in Sources */,
