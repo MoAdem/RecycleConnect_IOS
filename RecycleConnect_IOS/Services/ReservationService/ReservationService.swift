@@ -4,9 +4,11 @@ class ReservationService {
     static let shared = ReservationService()
     private init() {}
 
+    // Mettez l'adresse de votre serveur local ici
+    private let baseUrl = "http://localhost:5000/" // Remplacez le port par celui de votre serveur
+
     func addReservation(commentaire: String, completion: @escaping (Result<Void, Error>) -> Void) {
-        let baseUrl = "https://recycleconnect.onrender.com/"
-        let urlString = baseUrl + "api/reservation/"
+        let urlString = baseUrl + "api/reservation/create"
 
         guard let url = URL(string: urlString) else {
             completion(.failure(NSError(domain: "Invalid URL", code: 0, userInfo: nil)))
@@ -17,9 +19,15 @@ class ReservationService {
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
 
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+
         let reservationData: [String: Any] = [
             "commentaire": commentaire,
-            // Ajoutez d'autres champs de réservation selon les besoins
+            "dateReservation": formatter.string(from: Date()),
+            "dateLivraison": formatter.string(from: Date()),
+            "lieuReservation": "Votre lieu de réservation",
+            "etatReservation": "Votre état de réservation",
         ]
 
         do {

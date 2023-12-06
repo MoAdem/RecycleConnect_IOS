@@ -5,7 +5,7 @@ struct ReservationView: View {
     let buttonTextColor = Color.white
     @State private var commentaire: String = ""
     @State private var showAlert = false
-    @State private var showSuccessAlert = false
+    @State private var isPanierViewActive = false
 
     var body: some View {
         NavigationView {
@@ -36,18 +36,17 @@ struct ReservationView: View {
                                 .padding([.horizontal, .top], 16)
 
                             Button("Ajouter au panier") {
-                                withAnimation {
-                                    // Ajouter la réservation avec le commentaire
-                                    ReservationService.shared.addReservation(commentaire: commentaire) { result in
-                                        switch result {
-                                        case .success:
-                                            print("Commentaire ajouté avec succès")
-                                            showAlert = true
-                                            showSuccessAlert = true
-                                        case .failure(let error):
-                                            print("Erreur lors de l'ajout du commentaire : \(error.localizedDescription)")
-                                            // Gérer l'erreur, par exemple, afficher une alerte à l'utilisateur
-                                        }
+                                // Ajouter la réservation avec le commentaire
+                                // (Supposons que vous utilisez ReservationService.shared.addReservation)
+
+                                ReservationService.shared.addReservation(commentaire: commentaire) { result in
+                                    switch result {
+                                    case .success:
+                                        print("Commentaire ajouté avec succès")
+                                        showAlert = true
+                                    case .failure(let error):
+                                        print("Erreur lors de l'ajout du commentaire : \(error.localizedDescription)")
+                                        // Gérer l'erreur, par exemple, afficher une alerte à l'utilisateur
                                     }
                                 }
                             }
@@ -71,12 +70,21 @@ struct ReservationView: View {
                     title: Text("Ajout au panier"),
                     message: Text("Votre article a été ajouté au panier."),
                     dismissButton: .default(Text("OK")) {
-                        // Après avoir appuyé sur OK, vous pouvez naviguer vers la page PanierView
-                        // Vous devrez peut-être définir une variable de présentation pour NavigationLink
-                        // et la modifier ici pour déclencher la navigation
+                        // Après avoir appuyé sur OK, vous pouvez activer la navigation
+                        isPanierViewActive = true
                     }
                 )
             }
+            .background(
+                NavigationLink(
+                    destination: PanierView(),
+                    isActive: $isPanierViewActive,
+                    label: {
+                        EmptyView()
+                    }
+                )
+                .hidden()
+            )
         }
     }
 }
