@@ -169,9 +169,9 @@ struct ResetPassword: View {
                 showAlert = true
                 alertMessage = "Code envoyé avec succès!"
             case .failure(let error):
-                print("Error sending password reset code: \(error.localizedDescription)")
+                print("Error sending password reset code: Réessayer")
                 showAlert = true
-                alertMessage = "Envoi de code a échoué: \(error.localizedDescription)"
+                alertMessage = "Envoi de code a échoué: Réessayer "
             }
         }
     }

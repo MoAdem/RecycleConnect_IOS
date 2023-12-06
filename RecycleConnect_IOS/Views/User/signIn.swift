@@ -3,6 +3,7 @@ import SwiftUI
 enum ViewStack {
     case ResetPassword
     case SignUp
+    case Home
 }
 
 struct SignInView: View {
@@ -82,10 +83,12 @@ struct SignInView: View {
                         print("Login successful for user: \(user)")
                         showAlert = true
                         alertMessage = "Login successful"
+                        nextView = .Home
+                        presentNextView = true
                     case .failure(let error):
                         print("Login failed with error: \(error)")
                         showAlert = true
-                        alertMessage = "Login failed: \(error)"                 
+                        alertMessage = "Login failed: please try again "
                     }
                 }
             }) {
@@ -99,7 +102,7 @@ struct SignInView: View {
                         .font(.system(size: 18))
                 }
                 .alert(isPresented: $showAlert) {
-                           Alert(title: Text("Login Status"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+                           Alert(title: Text("Login "), message: Text(alertMessage), dismissButton: .default(Text("OK")))
                        }
                    }
             }
@@ -143,7 +146,12 @@ struct SignInView: View {
                                                                                        SignUpView()
                                                                                    }else if nextView == .ResetPassword {
                                                                                        ResetPassword()
-                                                                                   }                                 }
+                                                                                   }
+                                                                                   else if nextView == .Home {
+                                                                                                   
+                                                                                                   HomeScreen()
+                                                                                               }
+                                                                               }
                                                                            }
     private func validInput() {
         if username.isEmpty {
