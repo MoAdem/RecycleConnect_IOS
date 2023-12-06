@@ -405,6 +405,7 @@ struct PcCardView: View {
                     Button(action: {
                         // Actions à effectuer lors du clic sur le bouton "Sélectionner"
                         viewModel.createReservation(nomR: pc.Nom_Pc, idPc: pc.id)
+                        //viewModel.createReservation(nomR: "votre_Article", idPc: pc.id)
                         isReservationActive.toggle()
                     }) {
                         Text("Sélectionner")
