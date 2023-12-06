@@ -15,7 +15,7 @@ struct article : Identifiable, Codable , Equatable
     var NomArticle : String
     var DescriptionArticle : String
     var EtatArticle : String
-    var Categorie : categorie
+    var Categorie : String?
     var __v : Int
     
     enum CodingKeys: String, CodingKey {

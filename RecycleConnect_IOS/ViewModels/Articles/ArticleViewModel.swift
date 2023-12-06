@@ -13,9 +13,10 @@ class ArticleViewModel: ObservableObject {
     func GetAllArticles() {
         ArticleServices.shared.GetAllArticles{ result in
             switch result {
-            case .success(let categories):
+            case .success(let articles):
                 DispatchQueue.main.async {
-                    self.articles = categories
+                    self.articles = articles
+                    print("voici la liste des articles viewmodel",articles)
                 }
             case .failure(let error):
                 print("Error fetching articles: \(error.localizedDescription)")
