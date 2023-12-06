@@ -11,6 +11,8 @@ final class EventViewModel: ObservableObject {
     @Published var events: [Events] = []
     @Published var alertItem: AlertItem?
     @Published var isLoding = false
+    @Published var isShowingDetailView = false
+    @Published var selectedEvent: Events?
 
     
     func getEvents() {

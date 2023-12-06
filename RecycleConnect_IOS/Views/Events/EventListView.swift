@@ -12,7 +12,6 @@ import SwiftUI
 struct EventListView: View {
     
     @StateObject var eventViewModel = EventViewModel()
-    @State private var isShowingDetailView = false
     @State private var searchTerm = ""
     
     var filteredEvents: [Events] {
@@ -27,7 +26,8 @@ struct EventListView: View {
                     EventListCell(event: event)
                         .listRowSeparator(.hidden)
                         .onTapGesture {
-                            isShowingDetailView = true
+                            eventViewModel.isShowingDetailView = true
+                            eventViewModel.selectedEvent = event
                         }
                 }
                 .navigationTitle("Events")
@@ -37,9 +37,9 @@ struct EventListView: View {
             .onAppear() {
                 eventViewModel.getEvents()
             }
-            .blur(radius: isShowingDetailView ? 20 : 0)
-            if isShowingDetailView {
-                EventDetailView(event: MockData.sampleEvent, isShowingDetailView: $isShowingDetailView)
+            .blur(radius: eventViewModel.isShowingDetailView ? 20 : 0)
+            if eventViewModel.isShowingDetailView {
+                EventDetailView(event: eventViewModel.selectedEvent!, isShowingDetailView: $eventViewModel.isShowingDetailView)
             }
             if eventViewModel.isLoding{
                 LodingView()
