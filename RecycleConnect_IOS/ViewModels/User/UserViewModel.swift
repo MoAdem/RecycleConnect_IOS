@@ -111,12 +111,12 @@ class UserViewModel: ObservableObject {
                 return
             }
             
-            print("Response data: \(String(data: data, encoding: .utf8) ?? "No data")") // Print response data
+            print("Response data: \(String(data: data, encoding: .utf8) ?? "No data")")
             
             do {
                 let decoder = JSONDecoder()
                 let userResponse = try decoder.decode(UserResponse.self, from: data)
-                let user = userResponse.user // Access the user object from the response
+                let user = userResponse.user
                 DispatchQueue.main.async {
                     completion(.success(user))
                 }
