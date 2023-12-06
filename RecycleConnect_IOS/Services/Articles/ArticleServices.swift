@@ -24,8 +24,7 @@ class ArticleServices {
                 completion(.failure(NetworkError.invalidURL))
                 return
             }
-
-
+        
             var request = URLRequest(url: url)
             request.httpMethod = "GET"
 
