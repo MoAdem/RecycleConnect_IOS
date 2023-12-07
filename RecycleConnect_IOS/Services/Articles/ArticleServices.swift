@@ -90,6 +90,31 @@ class ArticleServices {
     
     
     
+    func DeleteArticle(articleId: String, completion: @escaping (Result<Void, Error>) -> Void) {
+            guard let url = URL(string: "\(baseURL)/\(articleId)") else {
+                completion(.failure(NetworkError.invalidURL))
+                return
+            }
+            var request = URLRequest(url: url)
+            request.httpMethod = "DELETE"
+
+            URLSession.shared.dataTask(with: request) { data, response, error in
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
+
+                if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
+                    completion(.success(()))
+                } else {
+                    completion(.failure(NetworkError.decodingError))
+                }
+            }.resume()
+        }
+
+    
+    
+    
     func CreateArticle(NomArticle: String, NbreTotalArticles: Int, completion: @escaping (Result<article, Error>) -> Void) {
         let parameters: [String: Any] = [
             "NomArticle": NomArticle,

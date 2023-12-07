@@ -38,6 +38,19 @@ class ArticleViewModel: ObservableObject {
                 }
             }
         }
+    
+    
+    func DeleteArticle(articleId: String) {
+        ArticleServices.shared.DeleteArticle(articleId: articleId) { result in
+                switch result {
+                case .success:
+                    print("article supprimé")
+                case .failure(let error):
+                   print("erreur de suppression: \(error)")
+                }
+            }
+        }
+
 
     
     
