@@ -32,6 +32,7 @@ struct ResetPassword: View {
        @StateObject var userViewModel = UserViewModel()
        @State private var isCodeVerified = false
        @State private var nextView: ViewStack = .UpdatePassword
+        @State private var isUpdatePasswordPresent = false
 
     var body: some View {
         VStack{
@@ -115,9 +116,8 @@ struct ResetPassword: View {
                                 dismissButton: .default(
                                               Text("OK"),
                                               action: {
-                                                  if isResetCodeSent {
-                                                      NavigateToUpdatepassword = true
-                                                  }
+                                                  nextView = .UpdatePassword
+                                                  presentNextView = true
                                               }
                                           )
                                       )
