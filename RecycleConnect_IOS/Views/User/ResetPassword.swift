@@ -14,6 +14,9 @@ struct ResetPassword: View {
         case resetSent
         case error
     }
+    enum ViewStack {
+        case UpdatePassword
+    }
     @Environment(\.presentationMode) var presentationMode
 
        @State private var showAlert = false
@@ -25,9 +28,11 @@ struct ResetPassword: View {
        @State private var isResetCodeSent = false
        @State private var resetPasswordStatus: ResetPasswordStatus = .resetting
 
-
+       @State private var presentNextView = false
        @StateObject var userViewModel = UserViewModel()
        @State private var isCodeVerified = false
+       @State private var nextView: ViewStack = .UpdatePassword
+
     var body: some View {
         VStack{
             Image("")
@@ -108,12 +113,14 @@ struct ResetPassword: View {
                                 title: Text("Renitialiser mot de passe"),
                                 message: Text(alertMessage),
                                 dismissButton: .default(
-                                    Text("OK")
-                                    
-                                ) {
-                                    isResetCodeSent = true
-                                }
-                            )
+                                              Text("OK"),
+                                              action: {
+                                                  if isResetCodeSent {
+                                                      NavigateToUpdatepassword = true
+                                                  }
+                                              }
+                                          )
+                                      )
                         case .error:
                             return Alert(
                                 title: Text("Erreur"),
@@ -141,7 +148,7 @@ struct ResetPassword: View {
                )
                .onChange(of: showAlert) { newShowAlert in
                    if !newShowAlert && alertMessage == "Code envoyé avec succès!" {
-                       isResetCodeSent = true
+                       presentNextView = true
                    }
                }
                .alert(isPresented: $showAlert) {
@@ -168,6 +175,8 @@ struct ResetPassword: View {
                 print("Password reset code sent: \(message)")
                 showAlert = true
                 alertMessage = "Code envoyé avec succès!"
+                nextView = .UpdatePassword
+
             case .failure(let error):
                 print("Error sending password reset code: Réessayer")
                 showAlert = true

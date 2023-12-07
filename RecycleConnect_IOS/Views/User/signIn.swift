@@ -84,7 +84,6 @@ struct SignInView: View {
                         showAlert = true
                         alertMessage = "Login successful"
                         nextView = .Home
-                        presentNextView = true
                     case .failure(let error):
                         print("Login failed with error: \(error)")
                         showAlert = true
@@ -102,7 +101,11 @@ struct SignInView: View {
                         .font(.system(size: 18))
                 }
                 .alert(isPresented: $showAlert) {
-                           Alert(title: Text("Login "), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+                    Alert(title: Text("Login "), message: Text(alertMessage), dismissButton: .default(Text("OK"), action: {
+                        if alertMessage == "Login successful" {
+                            presentNextView = true
+                        }
+                    }));
                        }
                    }
             }
@@ -149,8 +152,7 @@ struct SignInView: View {
                                                                                    }
                                                                                    else if nextView == .Home {
                                                                                                    
-                                                                                                   HomeScreen()
-                                                                                               }
+                                                                                          ProfileView(user: User(_id: "", username: "", email: "", address: "", password: "", telephone: 5658742, role: "", __v: 0))   }
                                                                                }
                                                                            }
     private func validInput() {

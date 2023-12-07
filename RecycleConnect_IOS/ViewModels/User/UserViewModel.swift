@@ -15,6 +15,9 @@ class UserViewModel: ObservableObject {
     @Published var token = ""
     @Published var user: User?
     @Published var signupSuccessful = false
+    var loggedInUserID: String?
+    @Published var loggedInUserEmail: String?
+    @Published var loggedInUsername: String?
     
     func createUser(email: String, username: String,
                     telephone:String, address: String, password: String, role: String, completion: @escaping (Result<String, Error>) -> Void) {
@@ -114,21 +117,23 @@ class UserViewModel: ObservableObject {
             print("Response data: \(String(data: data, encoding: .utf8) ?? "No data")")
             
             do {
-                let decoder = JSONDecoder()
-                let userResponse = try decoder.decode(UserResponse.self, from: data)
-                let user = userResponse.user
-                DispatchQueue.main.async {
-                    completion(.success(user))
-                }
-            } catch {
-                print("Error decoding response:", error)
-                completion(.failure(error))
-            }
-
-        }.resume()
-    }
-
-    
+                           let decoder = JSONDecoder()
+                           let userResponse = try decoder.decode(UserResponse.self, from: data)
+                           
+                           DispatchQueue.main.async {
+                               self.user = userResponse.user
+                               self.loggedInUserID = userResponse.user._id
+                               self.loggedInUserEmail = userResponse.user.email
+                               self.loggedInUsername = userResponse.user.username
+                               self.isLoggedIn = true
+                               completion(.success(userResponse.user))
+                           }
+                       } catch {
+                           print("Error decoding response:", error)
+                           completion(.failure(error))
+                       }
+                   }.resume()
+               }
     //reset password
     
     func forgotPassword(email: String, completion: @escaping (Result<String, Error>) -> Void) {
@@ -161,7 +166,31 @@ class UserViewModel: ObservableObject {
         }
     }
     
+    //get user by id
     
+    func fetchUser(_id: String) {
+            guard let url = URL(string: "http://localhost:5000/api/user\(_id)") else {
+                print("Invalid URL")
+                return
+            }
+            
+            URLSession.shared.dataTask(with: url) { data, response, error in
+                guard let data = data else {
+                    print("No data returned: Unknown error")
+                    return
+                }
+                
+                do {
+                    let decodedUser = try JSONDecoder().decode(User.self, from: data)
+                    DispatchQueue.main.async {
+                        self.user = decodedUser
+                    }
+                } catch {
+                    print("Error decoding user data")
+                }
+            }
+            .resume()
+        }
+    }
     
-    
-}
+

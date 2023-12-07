@@ -2,26 +2,40 @@ import SwiftUI
 
 
 struct ProfileView: View {
-    var body: some View {
-        VStack(alignment: .leading, spacing: 15) {
-            HStack {
-                Image("admin")
-                    .resizable()
-                    .frame(width: 100, height: 100)
-                    .cornerRadius(50)
-                
-                VStack(alignment: .leading, spacing: 5) {
-                    Text("Hanine bouguerra")
-                        .font(.title)
-                        .bold()
-                    
-                    Text("bouguerrahanine4@gmail.com")
-                        .font(.subheadline)
-                        .foregroundColor(.gray)
-                }
-            }
-            .padding(.bottom, 30)
+    @StateObject var viewModel = UserViewModel()
+    var user : User
 
+    var body: some View {
+        
+        VStack(alignment: .leading, spacing: 15) {
+            if let user = viewModel.user {
+                            HStack {
+                                Image("admin")
+                                    .resizable()
+                                    .frame(width: 100, height: 100)
+                                    .cornerRadius(50)
+                                
+                                VStack(alignment: .leading, spacing: 5) {
+                                    Text(user.username)
+                                        .font(.title)
+                                        .bold()
+                                    
+                                    Text(user.email)
+                                        .font(.subheadline)
+                                        .foregroundColor(.gray)
+                                }
+                            }
+                            .padding(.bottom, 30)
+                            } else {
+                ProgressView()
+                                    .onAppear {
+                                                            if let loggedInUserID = viewModel.loggedInUserID {
+                                                                viewModel.fetchUser(_id: loggedInUserID)
+                                                            }
+                                                        }
+            }
+               
+          
             NavigationLink(destination: Text("Change profile")) {
                 Text("Changer profile")
                     .font(.headline)
@@ -100,11 +114,14 @@ struct ProfileView: View {
                                          .frame(maxWidth: .infinity)
                                          .cornerRadius(8)
                                          .buttonStyle(PlainButtonStyle())
+                                         .onAppear {
+                                             viewModel.fetchUser(_id:user._id )
+                                                     }
+                                                 }
+                                             }
                    }
-               }
-           }
 
 
 #Preview {
-    ProfileView()
+    ProfileView(user: User(_id: "", username: "", email: "", address: "", password: "", telephone: 5658742, role: "", __v: 0))
 }
