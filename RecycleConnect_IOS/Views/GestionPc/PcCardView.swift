@@ -29,14 +29,14 @@ struct PcCardView: View {
 
                 VStack(alignment: .leading, spacing: 9) {
                     Text(pc.Nom_Pc)
-                        .font(.system(size: 16))
+                        .font(.system(size: 18))
                         .fontWeight(.medium)
 
                     HStack {
                         Spacer()
                         Text(pc.address_Pc)
-                            .font(.body)
-                            .foregroundColor(.secondary)
+                            .font(.system(size: 12))
+                            .foregroundColor(.black)
                         Spacer()
                     }
 
@@ -44,15 +44,15 @@ struct PcCardView: View {
                         Spacer()
                         Text(pc.address_mail_Pc)
                             .font(.system(size: 9))
-                            .foregroundColor(.secondary)
+                            .foregroundColor(.black)
                         Spacer()
                     }
 
                     HStack {
                         Spacer()
                         Text(String(pc.numero_tel))
-                            .font(.body)
-                            .foregroundColor(.secondary)
+                            .font(.system(size: 12))
+                            .foregroundColor(.black)
                         Spacer()
                     }
 
@@ -83,6 +83,10 @@ struct PcCardView: View {
             }
             .background(Color.white)
             .cornerRadius(8)
+            .overlay(
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(Color(red: 0.05, green: 0.54, blue: 0.48), lineWidth: 2)
+            )
             .shadow(radius: 4)
             .padding(8)
         }

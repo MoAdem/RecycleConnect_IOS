@@ -21,18 +21,23 @@ struct ReservationPcCardView: View {
 
                 Text(reservationPc.nomR)
                     .font(.body)
-                    .foregroundColor(.secondary)
+                    .foregroundColor(.black)
                     .frame(maxWidth: .infinity, alignment: .center)
 
                 Text(reservationPc.idPc)
                     .font(.body)
-                    .foregroundColor(.secondary)
+                    .foregroundColor(.black)
                     .frame(maxWidth: .infinity, alignment: .center)
             }
             .padding(16)
         }
         .background(Color.white)
         .cornerRadius(8)
+        .overlay(
+            RoundedRectangle(cornerRadius: 8)
+                .stroke(Color(red: 0.05, green: 0.54, blue: 0.48), lineWidth: 2)
+        )
+
         .shadow(radius: 4)
         .padding(8)
         .swipeActions(edge: .trailing) {
