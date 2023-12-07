@@ -46,7 +46,6 @@ struct articledetails: View {
                     .padding(.bottom, 10)
                     
                     Button(action: {
-                        // Perform the reservation action or navigate to a reservation view
                     }) {
                         Text("Réserver")
                             .frame(maxWidth: .infinity)
