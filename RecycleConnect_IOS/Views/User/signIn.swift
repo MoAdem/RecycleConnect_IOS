@@ -66,10 +66,10 @@ struct SignInView: View {
                 .padding(.leading, 20)
                 .padding(.trailing, 20)
                 .padding(.bottom,20)
-                .padding(.top, 13)
+                .padding(.top, 20)
                 .background(Image("pass").resizable().scaledToFit().frame(
                     width: 25, height:40).padding(.leading, 30), alignment: .leading)
-                .padding(.bottom, 18)
+                .padding(.bottom,18)
             if let error = passwordError {
                 Text(error)
                     .foregroundColor(.red)
