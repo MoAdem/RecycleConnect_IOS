@@ -2,6 +2,8 @@
 
 import SwiftUI
 
+import SwiftUI
+
 struct Splashscreen: View {
     
     @State private var isActive = false
@@ -14,8 +16,7 @@ struct Splashscreen: View {
         } else {
             VStack {
                 ZStack {
-                    Image("")
-                    Image("logo")
+                    Image("logos")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .scaleEffect(size)
@@ -30,7 +31,6 @@ struct Splashscreen: View {
             
             }
             .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, maxHeight: .infinity)
-            .background(Color.white)
             .onAppear{
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2.0){
                     withAnimation(.linear){

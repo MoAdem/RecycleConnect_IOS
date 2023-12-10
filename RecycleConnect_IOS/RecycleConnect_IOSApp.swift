@@ -13,9 +13,8 @@ struct RecycleConnect_IOSApp: App {
 
     var body: some Scene {
         WindowGroup {
-            /*ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)*/
-            SignInView()
+            Splashscreen()
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }
