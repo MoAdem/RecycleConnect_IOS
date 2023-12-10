@@ -10,7 +10,7 @@ import Foundation
 struct article : Identifiable, Codable , Equatable
 //, Hashable
 {
-    var id : String
+    var id : String?
     var PhotoArticle : URL
     var NomArticle : String
     var DescriptionArticle : String

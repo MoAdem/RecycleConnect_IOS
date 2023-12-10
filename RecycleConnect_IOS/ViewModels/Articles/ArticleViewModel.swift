@@ -12,6 +12,7 @@ class ArticleViewModel: ObservableObject {
     @Published var articles: [article] = []
     @Published var article: article?
     
+    @Published var id: String = ""
         @Published var NomArticle: String = ""
         @Published var DescriptionArticle: String = ""
         @Published var EtatArticle: String = ""
@@ -27,7 +28,6 @@ class ArticleViewModel: ObservableObject {
             case .success(let articles):
                 DispatchQueue.main.async {
                     self.articles = articles
-                    print("voici la liste des articles viewmodel",articles)
                 }
             case .failure(let error):
                 print("Error fetching articles: \(error.localizedDescription)")
@@ -71,6 +71,7 @@ class ArticleViewModel: ObservableObject {
 
 
             ArticleServices.shared.CreateArticle(
+                //id: id,
                 NomArticle: NomArticle,
                 DescriptionArticle: DescriptionArticle,
                 EtatArticle: EtatArticle,

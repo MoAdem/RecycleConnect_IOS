@@ -47,7 +47,7 @@ class CategorieServices {
 
 
                 if let jsonString = String(data: data, encoding: .utf8) {
-                    print("Received Categories JSON string: \(jsonString)")
+                   // print("Received Categories JSON string: \(jsonString)")
                 } else {
                     print("Received data is not a valid UTF-8 string.")
                 }

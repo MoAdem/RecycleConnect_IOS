@@ -79,7 +79,7 @@ struct articlelist: View {
         private func onDelete(_ article: article) {
             if let index = articleViewModel.articles.firstIndex(of: article) {
                 articleViewModel.articles.remove(at: index)
-                articleViewModel.DeleteArticle(articleId: article.id)
+                articleViewModel.DeleteArticle(articleId: article.id!)
             }
         }
     }

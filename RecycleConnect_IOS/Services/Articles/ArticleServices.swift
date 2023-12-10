@@ -19,7 +19,6 @@ class ArticleServices {
             case decodingError
             case photoNotProvided
             case serverError(String)
-
         }
         
     
@@ -49,7 +48,7 @@ class ArticleServices {
 
 
                 if let jsonString = String(data: data, encoding: .utf8) {
-                    print("Received Articles JSON string: \(jsonString)")
+                    //print("Received Articles JSON string: \(jsonString)")
                 } else {
                     print("Received data is not a valid UTF-8 string.")
                 }
@@ -120,63 +119,75 @@ class ArticleServices {
     
     
     func CreateArticle(
-            NomArticle: String,
-            DescriptionArticle: String,
-            EtatArticle: String,
-            CategorieId: String,
-            PhotoArticleData: Data?,
-            completion: @escaping (Result<article, NetworkError>) -> Void
-        ) {
-            guard let url = URL(string: "http://localhost:5000/api/articles/") else {
-                completion(.failure(.invalidURL))
-                return
-            }
-
-
-            var request = URLRequest(url: url)
-            request.httpMethod = "POST"
-            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-
-
-            var requestBody: [String: Any] = [
-                "NomArticle": NomArticle,
-                "DescriptionArticle": DescriptionArticle,
-                "EtatArticle": EtatArticle,
-                "CategorieId": CategorieId
-            ]
-
-
-            if let photoData = PhotoArticleData {
-                // Adjust the parameter name based on your server expectations
-                requestBody["PhotoArticleData"] = photoData.base64EncodedString()
-            }
-
-
-            do {
-                let jsonData = try JSONSerialization.data(withJSONObject: requestBody)
-                request.httpBody = jsonData
-            } catch {
-                completion(.failure(.serializationError))
-                return
-            }
-
-
-            URLSession.shared.dataTask(with: request) { data, response, error in
-                guard let data = data, error == nil else {
-                    completion(.failure(.serializationError))
-                    return
-                }
-
-
-                do {
-                    let decoder = JSONDecoder()
-                    let article = try decoder.decode(article.self, from: data)
-                    completion(.success(article))
-                } catch {
-                    completion(.failure(.serializationError))
-                }
-            }.resume()
+        //id: String,
+        NomArticle: String,
+        DescriptionArticle: String,
+        EtatArticle: String,
+        CategorieId: String,
+        PhotoArticleData: Data?,
+        completion: @escaping (Result<article, NetworkError>) -> Void
+    ) {
+        guard let url = URL(string: "http://localhost:5000/api/articles/") else {
+            completion(.failure(.invalidURL))
+            return
         }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+       let id = ""
+        var requestBody: [String: Any] = [
+            //"_id": id,
+            "NomArticle": NomArticle,
+            "DescriptionArticle": DescriptionArticle,
+            "EtatArticle": EtatArticle,
+            "CategorieId": CategorieId
+        ]
+        
+        // Convert image data to base64 if available
+        if let photoData = PhotoArticleData {
+            let base64String = photoData.base64EncodedString()
+            requestBody["PhotoArticleData"] = base64String
+        }
+        
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: requestBody)
+            request.httpBody = jsonData
+        } catch {
+            completion(.failure(.serializationError))
+            return
+        }
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {
+                completion(.failure(error as! ArticleServices.NetworkError))
+                return
+            }
+            do {
+                let decoder = JSONDecoder()
+                let article = try decoder.decode(article.self, from: data)
+                completion(.success(article))
+            } catch {
+                print("Decoding error:", error)
+                if let decodingError = error as? DecodingError {
+                    switch decodingError {
+                    case .dataCorrupted(let context):
+                        print("Data corrupted:", context)
+                    case .keyNotFound(let key, let context):
+                        print("Key '\(key)' not found:", context.debugDescription)
+                    case .valueNotFound(let value, let context):
+                        print("Value '\(value)' not found:", context.debugDescription)
+                    case .typeMismatch(let type, let context):
+                        print("Type '\(type)' mismatch:", context.debugDescription)
+                    default:
+                        break
+                    }
+                }
+                completion(.failure(.decodingError))
+            }
+        }.resume()
+    }
+
 
 
 

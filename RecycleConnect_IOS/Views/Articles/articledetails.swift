@@ -60,7 +60,7 @@ struct articledetails: View {
                 }
             }
             .onAppear {
-                articleViewModel.GetArticleById(articleId: article.id)
+                articleViewModel.GetArticleById(articleId: article.id!)
             }
         }
     }
