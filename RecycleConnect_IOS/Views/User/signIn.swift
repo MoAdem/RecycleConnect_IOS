@@ -46,12 +46,7 @@ struct SignInView: View {
                 .padding(.top, 20)
                 .background(Image("profile").resizable().scaledToFit().frame(
                     width: 25, height:25).padding(.leading, 30), alignment: .leading)
-            if let error = fullNameError {
-                Text(error)
-                    .foregroundColor(.red)
-                    .padding(.bottom, 1)
-                
-            }
+        
 
             SecureField("", text: $password, prompt: Text("Mot de passe").foregroundColor(Color.gray))
                 .disableAutocorrection(true)
@@ -70,24 +65,20 @@ struct SignInView: View {
                 .background(Image("pass").resizable().scaledToFit().frame(
                     width: 25, height:40).padding(.leading, 30), alignment: .leading)
                 .padding(.bottom,18)
-            if let error = passwordError {
-                Text(error)
-                    .foregroundColor(.red)
-                
-            }
+        
             Button(action: {
                 validInput()
                 userViewModel.loginUser(username: username, password: password) { result in
                     switch result {
                     case .success(let user):
                         print("Login successful for user: \(user)")
-                        showAlert = true
-                        alertMessage = "Login successful"
+                        presentNextView = true
                         nextView = .Home
                     case .failure(let error):
-                        print("Login failed with error: \(error)")
+                        alertMessage = "Veuillez entrer vos coordonnées "
                         showAlert = true
-                        alertMessage = "Login failed: please try again "
+                        print("Login failed with error: \(error)")
+                       
                     }
                 }
             }) {
@@ -157,14 +148,23 @@ struct SignInView: View {
                                                                            }
     private func validInput() {
         if username.isEmpty {
-            fullNameError = "Veuillez entrer votre nom !"
+            fullNameError = "Le nom ne peut pas être vide"
+            showAlert = true
+            alertMessage = fullNameError!
+               return
         } else if username.count < 6 {
             fullNameError = "Au moins 6 caractères!"
+            showAlert = true
+            alertMessage = fullNameError!
         } else {
             fullNameError = nil
         }
+        
         if password.isEmpty {
-            passwordError = "Veuillez entrer votre mot de passe !"
+            passwordError = "Veuillez entrer votre mot de passe!"
+            showAlert = true
+            alertMessage = passwordError!
+           
         } else {
             passwordError = nil
         }
@@ -172,7 +172,6 @@ struct SignInView: View {
     }
                                                                        }
 
-                                                  
                                               #Preview {
                                                   SignInView()
                                               }

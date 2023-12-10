@@ -12,7 +12,6 @@ struct SignUpUser: View {
     @State private var isEditing: Bool = false
     @State private var shouldNavigateToSignIn = false
     @State private var showAlert = false
-    @State private var showAlert1 = false
     @State private var alertMessage = ""
     @State private var email: String = ""
     @State private var nom: String = ""
