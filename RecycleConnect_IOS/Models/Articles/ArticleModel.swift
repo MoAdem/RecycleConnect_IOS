@@ -27,4 +27,6 @@ struct article : Identifiable, Codable , Equatable
             case Categorie = "Categorie"
             case __v = "__v"
         }
+    
+    
 }
