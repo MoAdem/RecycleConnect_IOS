@@ -6,10 +6,20 @@
 //
 
 import Foundation
+import SwiftUI
 
 class ArticleViewModel: ObservableObject {
     @Published var articles: [article] = []
     @Published var article: article?
+    
+        @Published var NomArticle: String = ""
+        @Published var DescriptionArticle: String = ""
+        @Published var EtatArticle: String = ""
+        @Published var Categorie: String = ""
+        @Published var PhotoArticleData: Data?
+
+
+
 
     func GetAllArticles() {
         ArticleServices.shared.GetAllArticles{ result in
@@ -53,20 +63,26 @@ class ArticleViewModel: ObservableObject {
 
 
     
-    
-    
-   /* func createCategorie(NomCategorie: String, NbreTotalArticles: Int) {
-        CategorieServices.shared.CreateCategorie(NomCategorie: NomCategorie, NbreTotalArticles: NbreTotalArticles) { result in
-            switch result {
-            case .success(let nouvCategorie):
-                print("New category created: \(nouvCategorie)")
-                // You may want to update the list of categories after creating a new one
-                self.GetAllCategories()
-            case .failure(let error):
-                print("Error creating category: \(error.localizedDescription)")
+    func CreateArticle(completion: @escaping (Result<article, ArticleServices.NetworkError>) -> Void) {
+            guard let photoData = PhotoArticleData else {
+                completion(.failure(.photoNotProvided))
+                return
+            }
+
+
+            ArticleServices.shared.CreateArticle(
+                NomArticle: NomArticle,
+                DescriptionArticle: DescriptionArticle,
+                EtatArticle: EtatArticle,
+                CategorieId: Categorie,
+                PhotoArticleData: photoData
+            ) { result in
+                DispatchQueue.main.async {
+                    completion(result)
+                }
             }
         }
-    }*/
+    
 }
 
 

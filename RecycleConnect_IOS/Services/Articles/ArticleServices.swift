@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class ArticleServices {
     static let shared = ArticleServices()
@@ -16,6 +17,9 @@ class ArticleServices {
             case invalidURL
             case serializationError
             case decodingError
+            case photoNotProvided
+            case serverError(String)
+
         }
         
     
@@ -115,40 +119,74 @@ class ArticleServices {
     
     
     
-    func CreateArticle(NomArticle: String, NbreTotalArticles: Int, completion: @escaping (Result<article, Error>) -> Void) {
-        let parameters: [String: Any] = [
-            "NomArticle": NomArticle,
-            "NbreTotalArticles": NbreTotalArticles
-        ]
-
-        guard let url = URL(string: baseURL + "CreateArticle") else {
-            completion(.failure(NetworkError.invalidURL))
-            return
-        }
-
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-
-        guard let jsonData = try? JSONSerialization.data(withJSONObject: parameters) else {
-            completion(.failure(NetworkError.serializationError))
-            return
-        }
-
-        request.httpBody = jsonData
-
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if let data = data {
-                do {
-                    let Article = try JSONDecoder().decode(article.self, from: data)
-                    completion(.success(Article))
-                } catch {
-                    completion(.failure(NetworkError.decodingError))
-                }
-            } else if let error = error {
-                completion(.failure(error))
+    func CreateArticle(
+            NomArticle: String,
+            DescriptionArticle: String,
+            EtatArticle: String,
+            CategorieId: String,
+            PhotoArticleData: Data?,
+            completion: @escaping (Result<article, NetworkError>) -> Void
+        ) {
+            guard let url = URL(string: "http://localhost:5000/api/articles/") else {
+                completion(.failure(.invalidURL))
+                return
             }
-        }.resume()
-    }
-    
+
+
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+
+
+            var requestBody: [String: Any] = [
+                "NomArticle": NomArticle,
+                "DescriptionArticle": DescriptionArticle,
+                "EtatArticle": EtatArticle,
+                "CategorieId": CategorieId
+            ]
+
+
+            if let photoData = PhotoArticleData {
+                // Adjust the parameter name based on your server expectations
+                requestBody["PhotoArticleData"] = photoData.base64EncodedString()
+            }
+
+
+            do {
+                let jsonData = try JSONSerialization.data(withJSONObject: requestBody)
+                request.httpBody = jsonData
+            } catch {
+                completion(.failure(.serializationError))
+                return
+            }
+
+
+            URLSession.shared.dataTask(with: request) { data, response, error in
+                guard let data = data, error == nil else {
+                    completion(.failure(.serializationError))
+                    return
+                }
+
+
+                do {
+                    let decoder = JSONDecoder()
+                    let article = try decoder.decode(article.self, from: data)
+                    completion(.success(article))
+                } catch {
+                    completion(.failure(.serializationError))
+                }
+            }.resume()
+        }
+
+
+
+
+
+
+
+
+
+
+
+
 }

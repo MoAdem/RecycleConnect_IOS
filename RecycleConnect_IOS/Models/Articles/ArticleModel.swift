@@ -20,6 +20,11 @@ struct article : Identifiable, Codable , Equatable
     
     enum CodingKeys: String, CodingKey {
             case id = "_id"
-            case PhotoArticle, NomArticle, DescriptionArticle,EtatArticle, Categorie,  __v
+            case PhotoArticle = "PhotoArticle"
+            case NomArticle = "NomArticle"
+            case DescriptionArticle = "DescriptionArticle"
+            case EtatArticle = "EtatArticle"
+            case Categorie = "Categorie"
+            case __v = "__v"
         }
 }
