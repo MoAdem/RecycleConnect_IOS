@@ -53,9 +53,7 @@ struct SignUpUser: View {
                     .stroke(Color(Color(Fonts.darkGreen)),
                             lineWidth: 1.5)
             )
-            // .padding(.bottom, 25)
-            
-            .padding(.bottom, 15)
+            .padding(.bottom, 20)
             
             TextField("", text: $email,
                       prompt: Text("Adresse mail ")
@@ -70,8 +68,8 @@ struct SignUpUser: View {
                     .stroke(Color(Color(Fonts.darkGreen)),
                             lineWidth: 1.5)
             )
-            .padding(.bottom, 15)
-            
+            .padding(.bottom, 20)
+
             
             TextField("", text: $adress,
                       prompt: Text("Adresse ")
@@ -87,8 +85,8 @@ struct SignUpUser: View {
                             lineWidth: 1.5)
             )
             
-            .padding(.bottom, 15)
-            
+            .padding(.bottom, 20)
+
             
             TextField("", text: $tel,
                       prompt: Text("Téléphone")
@@ -107,8 +105,8 @@ struct SignUpUser: View {
                             lineWidth: 1.5)
             )
             
-            .padding(.bottom, 15)
-            
+            .padding(.bottom, 20)
+
             
             
             SecureField("", text: $password,
@@ -124,8 +122,8 @@ struct SignUpUser: View {
                     .stroke(Color(Color(Fonts.darkGreen)),
                             lineWidth: 1.5)
             )
-            .padding(.bottom, 15)
-            
+            .padding(.bottom, 20)
+
             SecureField("", text: $confirmPassword,
                         prompt: Text("Confirmer mot de passe ")
             )
@@ -139,8 +137,8 @@ struct SignUpUser: View {
                     .stroke(Color(Color(Fonts.darkGreen)),
                             lineWidth: 1.5)
             )
-            .padding(.bottom, 10)
-            
+            .padding(.bottom, 20)
+
             HStack {
                 Button(action: {
                     validateAndSignUp()
@@ -156,6 +154,7 @@ struct SignUpUser: View {
                     }
                 }
                 .padding(.leading, 120)
+                Spacer()
                 .alert(isPresented: $showAlert) {
                     Alert(
                         title: Text(shouldNavigateToSignIn ? "Succès" : "Erreur"),
@@ -164,8 +163,8 @@ struct SignUpUser: View {
                             Text("OK"),
                             action: {
                                 if shouldNavigateToSignIn {
-                                    shouldNavigateToSignIn = false // Reset the flag to prevent immediate navigation
-                                    shouldNavigateToSignIn = true // Trigger navigation
+                                    shouldNavigateToSignIn = false
+                                    shouldNavigateToSignIn = true
                                 }
                             }
                         )
@@ -186,11 +185,11 @@ struct SignUpUser: View {
                 case .success(let successMessage):
                     print("Success: \(successMessage)")
                     showAlert(message: "Création du compte est effectuée !")
-                    shouldNavigateToSignIn = true // Set navigation flag to true
+                    shouldNavigateToSignIn = true
                 case .failure(let errorMessage):
                     print("Error: \(errorMessage)")
                     showAlert(message: "Création du compte échouée !")
-                    shouldNavigateToSignIn = false // Set navigation flag to false
+                    shouldNavigateToSignIn = false
                 }
             }
         } else {

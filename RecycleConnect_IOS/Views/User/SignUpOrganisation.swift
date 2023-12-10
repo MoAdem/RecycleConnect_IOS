@@ -54,15 +54,8 @@ struct SignUpOrganisation: View {
                     .stroke(Color(Color(Fonts.darkGreen)),
                             lineWidth: 1.5)
             )
-           // .padding(.bottom, 25)
             
-            .padding(.bottom, 15)
-            if let error = NomError {
-                           Text(error)
-                               .foregroundColor(.red)
-                               .padding(.bottom, 1)
-
-                       }
+            .padding(.bottom, 20)
             
             TextField("", text: $email,
                       prompt: Text("Adresse mail ")
@@ -77,13 +70,7 @@ struct SignUpOrganisation: View {
                     .stroke(Color(Color(Fonts.darkGreen)),
                             lineWidth: 1.5)
             )
-            .padding(.bottom, 15)
-            if let error = emailError {
-                         Text(error)
-                             .foregroundColor(.red)
-                             .padding(.bottom, 1)
-
-                     }
+            .padding(.bottom, 20)
 
             TextField("", text: $adresse,
                       prompt: Text("Adresse ")
@@ -98,13 +85,8 @@ struct SignUpOrganisation: View {
                     .stroke(Color(Color(Fonts.darkGreen)),
                             lineWidth: 1.5)
             )
-            .padding(.bottom, 15)
-            if let error = addressError {
-                         Text(error)
-                             .foregroundColor(.red)
-                             .padding(.bottom, 1)
-
-                     }
+            .padding(.bottom, 20)
+        
             TextField("", text: $description,
                       prompt: Text("Description ")
             )
@@ -118,12 +100,8 @@ struct SignUpOrganisation: View {
                     .stroke(Color(Color(Fonts.darkGreen)),
                             lineWidth: 1.5)
             )
-            .padding(.bottom, 15)
-            if let error = descriptionError {
-                         Text(error)
-                             .foregroundColor(.red)
-
-                     }
+            .padding(.bottom, 20)
+           
             SecureField("", text: $password,
                         prompt: Text("Mot de passe")
             )
@@ -137,12 +115,7 @@ struct SignUpOrganisation: View {
                     .stroke(Color(Color(Fonts.darkGreen)),
                             lineWidth: 1.5)
             )
-            .padding(.bottom, 15)
-            if let error = passwordError {
-                         Text(error)
-                             .foregroundColor(.red)
-                             
-                     }
+            .padding(.bottom, 20)
             
             SecureField("", text: $confirmPassword,
                         prompt: Text("Confirmer mot de passe ")
@@ -157,20 +130,13 @@ struct SignUpOrganisation: View {
                     .stroke(Color(Color(Fonts.darkGreen)),
                             lineWidth: 1.5)
             )
-            .padding(.bottom, 15)
-            
-            if let error = confirmPasswordError {
-                         Text(error)
-                             .foregroundColor(.red)
-                             .padding(.bottom, 1)
-
-                     }
+            .padding(.bottom, 20)
           
             HStack {
                 Button(action: {
-                    validateAndSignUp ()
-                }, label: {
-                    ZStack{
+                    validateAndSignUp()
+                }) {
+                    ZStack {
                         RoundedRectangle(cornerRadius: 50)
                             .frame(width: 150, height: 40)
                             .foregroundColor(Color(Fonts.darkGreen))
@@ -179,87 +145,135 @@ struct SignUpOrganisation: View {
                             .fontWeight(.bold)
                             .font(.system(size: 18))
                     }
-                })
+                }
                 .padding(.leading, 120)
                 Spacer()
-            }
-            Spacer()
-            
-        }
-        .background(
-                    NavigationLink("", destination: SignInView(), isActive: $shouldNavigateToSignIn)
-                        .opacity(0)
-                         .buttonStyle(PlainButtonStyle())
-                )
-        
-    }
-    private func validateAndSignUp() {
-            validateInput()
-
-        if NomError == nil && emailError == nil && passwordError == nil && confirmPasswordError == nil && addressError == nil {
-            userViewModel.createOrg(username: nom, email: email, address: adresse, telephone: "55658945", password: password, role: "organization", orgDescription: description){ result in
-                switch result {
-                case .success(let message):
-                    print("Succès: \(message)")
-                    showAlert = true
-                    alertMessage = "Création du compte est effectuée !"
-                    shouldNavigateToSignIn = true
-                case .failure(let error):
-                    print("Erreur: \(error.localizedDescription)")
-                    showAlert = true
-                    alertMessage = "Création du compte échouée !"
+                .alert(isPresented: $showAlert) {
+                    Alert(
+                        title: Text(shouldNavigateToSignIn ? "Succès" : "Erreur"),
+                        message: Text(alertMessage),
+                        dismissButton: .default(
+                            Text("OK"),
+                            action: {
+                                if shouldNavigateToSignIn {
+                                    shouldNavigateToSignIn = false
+                                    shouldNavigateToSignIn = true
+                                }
+                            }
+                        )
+                    )
                 }
             }
+            .background(
+                NavigationLink("", destination: SignInView(), isActive: $shouldNavigateToSignIn)
+                    .opacity(0)
+                    .buttonStyle(PlainButtonStyle())
+            )
+        }}
+    
+    private func validateAndSignUp() {
+        validateInput()
+        if NomError == nil && emailError == nil && passwordError == nil && confirmPasswordError == nil && addressError == nil && descriptionError == nil {
+            userViewModel.createOrg(username: nom, email: email, address: adresse, telephone: "55658945", password: password, role: "organization", orgDescription: description)
+               { result in
+                switch result {
+                case .success(let successMessage):
+                    print("Success: \(successMessage)")
+                    showAlert(message: "Création du compte est effectuée !")
+                    shouldNavigateToSignIn = true
+                case .failure(let errorMessage):
+                    print("Error: \(errorMessage)")
+                    showAlert(message: "Création du compte échouée !")
+                    shouldNavigateToSignIn = false
+                }
+            }
+        } else {
+            shouldNavigateToSignIn = false
         }
     }
-
-        private func validateInput() {
-            if nom.isEmpty {
-                NomError = "Veuillez remplir ce champ !"
-            } else if nom.count < 6 {
-                NomError = "Au moins 6 caractères!"
-            } else {
-                NomError = nil
-            }
-
-            let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
-            let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailRegex)
-            if email.isEmpty {
-                emailError = "Veuillez remplir ce champ !"
-            } else if !emailPredicate.evaluate(with: email) {
-                emailError = "Adresse email invalide"
-            } else {
-                emailError = nil
-            }
+    private func validateInput() {
+        var errors: [String] = []
+        
+        if nom.isEmpty {
+            NomError = "Le nom ne peut pas être vide"
+            showAlert = true
+            alertMessage = NomError!
+               return
+        } else if nom.count < 6 {
+            NomError = "Au moins 6 caractères!"
+            showAlert = true
+            alertMessage = NomError!
+        } else {
+            NomError = nil
+        }
+        
+        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
+        if email.isEmpty {
+            emailError = "Veuillez entrer votre adresse mail !"
+            showAlert = true
+            alertMessage = emailError!
+        } else if !emailPredicate.evaluate(with: email) {
+            emailError = "Adresse email invalide"
+            showAlert = true
+            alertMessage = emailError!
+        } else {
+            emailError = nil
+        }
+        
+        if password.isEmpty {
+            passwordError = "Veuillez entrer votre mot de passe!"
+            showAlert = true
+            alertMessage = passwordError!
            
-            if password.isEmpty {
-                passwordError = "Veuillez remplir ce champ !"
-            } else {
-                passwordError = nil
-            }
-
-            if confirmPassword.isEmpty {
-                confirmPasswordError = "Veuillez remplir ce champ !"
-            } else if password != confirmPassword {
-                confirmPasswordError = "Les mots de passe sont incompatibles"
-            } else {
-                confirmPasswordError = nil
-            }
-
-            if adresse.isEmpty {
-                addressError = "Veuillez remplir ce champ !"
-            } else {
-                addressError = nil
-            }
-            if description.isEmpty {
-                descriptionError = "Veuillez remplir ce champ !"
-            } else {
-                descriptionError = nil
-            }
+        } else {
+            passwordError = nil
+        }
+        if description.isEmpty {
+            descriptionError = "Veuillez entrer une descritpion de l'organisation!"
+            showAlert = true
+            alertMessage = descriptionError!
+           
+        } else {
+            passwordError = nil
+        }
+        if confirmPassword.isEmpty {
+            confirmPasswordError = "Veuillez confirmer votre mot de passe!"
+            showAlert = true
+            alertMessage = confirmPasswordError!
+          
+        } else if password != confirmPassword {
+            confirmPasswordError = "Les mots de passe sont incompatibles!"
+            showAlert = true
+            alertMessage = confirmPasswordError!
+          
+        } else {
+            confirmPasswordError = nil
+        }
+        
+        if adresse.isEmpty {
+            addressError = "Veuillez entrer votre adresse !"
+            showAlert = true
+            alertMessage = addressError!
+        } else {
+            addressError = nil
+        }
+        
+        for error in errors {
+            showAlert(message: error)
         }
     }
 
+    private func showAlert(message: String) {
+        alertMessage = message
+        showAlert = true
+    }
+    
+    
+}
 
 #Preview {
     SignUpOrganisation()
 }
+
+

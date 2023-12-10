@@ -44,7 +44,6 @@ struct SignInView: View {
                 .padding(.trailing, 20)
                 .padding(.bottom,20)
                 .padding(.top, 20)
-            
                 .background(Image("profile").resizable().scaledToFit().frame(
                     width: 25, height:25).padding(.leading, 30), alignment: .leading)
             if let error = fullNameError {
@@ -53,6 +52,7 @@ struct SignInView: View {
                     .padding(.bottom, 1)
                 
             }
+
             SecureField("", text: $password, prompt: Text("Mot de passe").foregroundColor(Color.gray))
                 .disableAutocorrection(true)
                 .frame(width: 300, height: 40)
