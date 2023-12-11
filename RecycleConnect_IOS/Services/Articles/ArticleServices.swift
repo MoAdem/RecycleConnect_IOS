@@ -118,75 +118,82 @@ class ArticleServices {
     
     
     
-    func CreateArticle(
-        //id: String,
-        NomArticle: String,
-        DescriptionArticle: String,
-        EtatArticle: String,
-        CategorieId: String,
-        PhotoArticleData: Data?,
-        completion: @escaping (Result<article, NetworkError>) -> Void
-    ) {
-        guard let url = URL(string: "http://localhost:5000/api/articles/") else {
-            completion(.failure(.invalidURL))
-            return
-        }
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-       let id = ""
-        var requestBody: [String: Any] = [
-            //"_id": id,
-            "NomArticle": NomArticle,
-            "DescriptionArticle": DescriptionArticle,
-            "EtatArticle": EtatArticle,
-            "CategorieId": CategorieId
-        ]
-        
-        // Convert image data to base64 if available
-        if let photoData = PhotoArticleData {
-            let base64String = photoData.base64EncodedString()
-            requestBody["PhotoArticleData"] = base64String
-        }
-        
-        do {
-            let jsonData = try JSONSerialization.data(withJSONObject: requestBody)
-            request.httpBody = jsonData
-        } catch {
-            completion(.failure(.serializationError))
-            return
-        }
-        
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {
-                completion(.failure(error as! ArticleServices.NetworkError))
+    static func CreateArticle(
+            NomArticle: String,
+            DescriptionArticle: String,
+            EtatArticle: String,
+            Categorie: String,
+            PhotoArticle: Data,
+            completion: @escaping (Result<article, NetworkError>) -> Void
+        ) {
+            guard let url = URL(string: "http://localhost:5000/api/articles") else {
+                completion(.failure(NetworkError.invalidURL))
                 return
             }
-            do {
-                let decoder = JSONDecoder()
-                let article = try decoder.decode(article.self, from: data)
-                completion(.success(article))
-            } catch {
-                print("Decoding error:", error)
-                if let decodingError = error as? DecodingError {
-                    switch decodingError {
-                    case .dataCorrupted(let context):
-                        print("Data corrupted:", context)
-                    case .keyNotFound(let key, let context):
-                        print("Key '\(key)' not found:", context.debugDescription)
-                    case .valueNotFound(let value, let context):
-                        print("Value '\(value)' not found:", context.debugDescription)
-                    case .typeMismatch(let type, let context):
-                        print("Type '\(type)' mismatch:", context.debugDescription)
-                    default:
-                        break
-                    }
+        
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+
+            let boundary = UUID().uuidString
+            request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+
+            var body = Data()
+            
+            // Append image data to the body
+            appendToBody("--\(boundary)\r\n", data: &body)
+            appendToBody("Content-Disposition: form-data; name=\"PhotoArticle\"; filename=\"photo.jpg\"\r\n", data: &body)
+            appendToBody("Content-Type: image/jpeg\r\n\r\n", data: &body)
+            body.append(PhotoArticle)
+            print("photo", PhotoArticle)
+            appendToBody("\r\n", data: &body)
+
+            appendToBody("--\(boundary)\r\n", data: &body)
+            appendToBody("Content-Disposition: form-data; name=\"NomArticle\"\r\n\r\n", data: &body)
+            appendToBody("\(NomArticle)\r\n", data: &body)
+
+
+            appendToBody("--\(boundary)\r\n", data: &body)
+            appendToBody("Content-Disposition: form-data; name=\"DescriptionArticle\"\r\n\r\n", data: &body)
+            appendToBody("\(DescriptionArticle)\r\n", data: &body)
+
+
+            appendToBody("--\(boundary)\r\n", data: &body)
+            appendToBody("Content-Disposition: form-data; name=\"EtatArticle\"\r\n\r\n", data: &body)
+            appendToBody("\(EtatArticle)\r\n", data: &body)
+
+
+            appendToBody("--\(boundary)\r\n", data: &body)
+            appendToBody("Content-Disposition: form-data; name=\"CategorieId\"\r\n\r\n", data: &body)
+            appendToBody("\(Categorie)\r\n", data: &body)
+
+            appendToBody("--\(boundary)--\r\n", data: &body)
+
+            request.httpBody = body
+
+            URLSession.shared.dataTask(with: request) { data, response, error in
+                guard let data = data, error == nil else {
+                    completion(.failure(.serverError(error?.localizedDescription ?? "Unknown error")))
+                    return
                 }
-                completion(.failure(.decodingError))
+                do {
+                    let decoder = JSONDecoder()
+                    let article = try decoder.decode(article.self, from: data)
+                    completion(.success(article))
+                } catch {
+                    print("Decoding error: \(error)")
+                    completion(.failure(.decodingError))
+                }
+            }.resume()
+        }
+
+
+        private static func appendToBody(_ string: String, data: inout Data) {
+            if let stringData = string.data(using: .utf8) {
+                data.append(stringData)
             }
-        }.resume()
-    }
+        }
+
+
 
 
 

@@ -60,7 +60,7 @@ struct articleform: View {
     @State private var NomArticle: String = ""
     @State private var DescriptionArticle: String = ""
     @State private var EtatArticle: String = ""
-    @State private var ArticleArticle: String = ""
+    @State private var Categorie: String = ""
     @State private var PhotoArticle: UIImage?
     @State private var isImagePickerPresented = false
     @StateObject private var articleViewModel = ArticleViewModel()
@@ -92,28 +92,28 @@ struct articleform: View {
                 }
 
 
-                TextField("Nom de l'article", text: $NomArticle)
+                TextField("Nom de l'article", text: $articleViewModel.NomArticle)
                     .padding(10)
                     .overlay(RoundedRectangle(cornerRadius: 10)
                         .stroke(Color(red: 0.05, green: 0.54, blue: 0.48), lineWidth: 2))
                     .padding(.bottom, 10)
 
 
-                TextField("Description de l'article", text: $DescriptionArticle)
+                TextField("Description de l'article", text: $articleViewModel.DescriptionArticle)
                     .padding(10)
                     .overlay(RoundedRectangle(cornerRadius: 10)
                         .stroke(Color(red: 0.05, green: 0.54, blue: 0.48), lineWidth: 2))
                     .padding(.bottom, 10)
 
 
-                TextField("Etat de l'article", text: $EtatArticle)
+                TextField("Etat de l'article", text: $articleViewModel.EtatArticle)
                     .padding(10)
                     .overlay(RoundedRectangle(cornerRadius: 10)
                         .stroke(Color(red: 0.05, green: 0.54, blue: 0.48), lineWidth: 2))
                     .padding(.bottom, 10)
 
 
-                TextField("Catégorie de l'article", text: $ArticleArticle)
+                TextField("Catégorie de l'article", text: $articleViewModel.Categorie)
                     .padding(10)
                     .overlay(RoundedRectangle(cornerRadius: 10)
                         .stroke(Color(red: 0.05, green: 0.54, blue: 0.48), lineWidth: 2))
@@ -127,21 +127,7 @@ struct articleform: View {
                                 articleViewModel.PhotoArticleData = imageData
                             }
                         }
-
-
-                        articleViewModel.CreateArticle { result in
-                            switch result {
-                            case .success(let article):
-                                // Handle success, you may want to show an alert or navigate to a new view
-                                print("Article created: \(article)")
-                            case .failure(let error):
-                                // Handle error, you may want to show an alert
-                                print("Error creating article: \(error)")
-                            }
-                        }
-
-
-
+                        articleViewModel.CreateArticle()
                 }) {
                     Text("Valider")
                         .foregroundColor(.white)
