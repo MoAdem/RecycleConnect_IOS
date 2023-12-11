@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB39FB2C2B2705D70047ECB1 /* AddEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB39FB2B2B2705D70047ECB1 /* AddEventView.swift */; };
 		BB51DBDA2B20854B00FB167F /* OrgEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB51DBD92B20854B00FB167F /* OrgEventsView.swift */; };
 		BB51DBDC2B208C0E00FB167F /* OrgEventListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB51DBDB2B208C0E00FB167F /* OrgEventListCell.swift */; };
 		BB8D996C2B16337A00530D28 /* RecycleConnect_IOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8D996B2B16337A00530D28 /* RecycleConnect_IOSApp.swift */; };
@@ -62,6 +63,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BB39FB2B2B2705D70047ECB1 /* AddEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventView.swift; sourceTree = "<group>"; };
 		BB51DBD92B20854B00FB167F /* OrgEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrgEventsView.swift; sourceTree = "<group>"; };
 		BB51DBDB2B208C0E00FB167F /* OrgEventListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrgEventListCell.swift; sourceTree = "<group>"; };
 		BB8D99682B16337A00530D28 /* RecycleConnect_IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecycleConnect_IOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -259,6 +261,7 @@
 				BBB58A042B176A57005FACDC /* XDismissButton.swift */,
 				BB51DBD92B20854B00FB167F /* OrgEventsView.swift */,
 				BB51DBDB2B208C0E00FB167F /* OrgEventListCell.swift */,
+				BB39FB2B2B2705D70047ECB1 /* AddEventView.swift */,
 			);
 			path = Events;
 			sourceTree = "<group>";
@@ -477,6 +480,7 @@
 				BBB589FF2B1769EF005FACDC /* EventListCell.swift in Sources */,
 				BB8D99782B16337B00530D28 /* RecycleConnect_IOS.xcdatamodeld in Sources */,
 				BB51DBDC2B208C0E00FB167F /* OrgEventListCell.swift in Sources */,
+				BB39FB2C2B2705D70047ECB1 /* AddEventView.swift in Sources */,
 				BBF816ED2B1B7FC2006F9B19 /* News.swift in Sources */,
 				BBB589F72B1768CA005FACDC /* EventCard.swift in Sources */,
 				BBB58A052B176A57005FACDC /* XDismissButton.swift in Sources */,

@@ -12,7 +12,15 @@ struct HomeView: View {
                         .cornerRadius(10)
                 }
                 .padding()
+                NavigationLink(destination: AddEventView()) {
+                    Text("Add Event")
+                        .padding()
+                        .background(Color.colorGreen)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                }
                     .navigationTitle("Home")
+                
             }
         }
     }
