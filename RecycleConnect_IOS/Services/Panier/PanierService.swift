@@ -13,8 +13,8 @@ class PanierService {
     private init() {}
 
     func deletePanier(panierId: String, completion: @escaping (Result<Void, Error>) -> Void) {
-        let baseUrl = "https://recycleconnect.onrender.com/"
-        let urlString = baseUrl + "api/panier/"
+        let baseUrl = "http://localhost:5000/"
+        let urlString = baseUrl + "api/panier/delete"
 
         guard let url = URL(string: urlString) else {
             completion(.failure(NSError(domain: "Invalid URL", code: 0, userInfo: nil)))

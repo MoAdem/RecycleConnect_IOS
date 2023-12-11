@@ -5,7 +5,7 @@ class ReservationService {
     private init() {}
 
     // Mettez l'adresse de votre serveur local ici
-    private let baseUrl = "http://localhost:5000/" // Remplacez le port par celui de votre serveur
+    private let baseUrl = "http://localhost:5000/" 
 
     func addReservation(commentaire: String, completion: @escaping (Result<Void, Error>) -> Void) {
         let urlString = baseUrl + "api/reservation/create"

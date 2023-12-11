@@ -29,35 +29,37 @@ struct PanierView: View {
                     .padding(.bottom, 16)
                     .foregroundColor(Color(hex: "0C8A7B"))
 
-                VStack(alignment: .leading, spacing: 8) {
+                List {
                     ForEach(articles) { article in
-                        RoundedRectangle(cornerRadius: 8)
-                            .strokeBorder(Color(hex: "0C8A7B"), lineWidth: 1)
-                            .padding(.vertical, 8)
-                            .overlay(
-                                Text(article.name)
-                                    .foregroundColor(Color.black)
-                                    .padding()
-                                    .onTapGesture {
-                                        toggleSelection(for: article)
+                        VStack {
+                            Text(article.name)
+                                .font(.headline)
+                                .padding()
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .background(Color.white)
+                                .cornerRadius(10)
+                                .shadow(radius: 5)
+                                .swipeActions {
+                                    Button("Supprimer") {
+                                        deletePanierItem(article: article)
                                     }
-                                    .rotation3DEffect(
-                                        .degrees(article.isSelected ? 10 : 0), // Angle de rotation pour l'article sélectionné
-                                        axis: (x: 0.5, y: 10.0, z:0.5) // Axe de rotation (rotation autour de l'axe Y)
-                                    )
-                                    .animation(.spring()) // Ajout d'une animation fluide
-)
+                                    .tint(.red)
+                                }
+                                .foregroundColor(Color.black)
+                                .onTapGesture {
+                                    toggleSelection(for: article)
+                                }
+                                .rotation3DEffect(
+                                    .degrees(article.isSelected ? 10 : 0),
+                                    axis: (x: 0.5, y: 10.0, z: 0.5)
+                                )
+                                .animation(.spring())
+                        }
+                        .listRowBackground(Color.clear)
                     }
+                    .onDelete(perform: deletePanierItems)
                 }
-
-                Button("Vider le panier") {
-                    withAnimation {
-                        deletePanier()
-                    }
-                }
-                .buttonStyle(DynamicButtonStyle(color: "0C8A7B", shape: .capsule))
-                .foregroundColor(.white)
-                .padding(.top, 16)
+                .listStyle(PlainListStyle())
 
                 HStack {
                     RadioButton(text: "Livraison", isSelected: $livraisonSelected, otherSelected: $recupererSelected)
@@ -70,18 +72,26 @@ struct PanierView: View {
                 .padding(.top, 16)
 
                 Button("Valider la commande") {
-                    if livraisonSelected && !recupererSelected {
-                        isDetailsLivListViewActive = true
-                    } else if recupererSelected && !livraisonSelected {
-                        isPcCardViewActive = true
+                    if articles.isEmpty {
+                        showAlert = true
+                    } else {
+                        if livraisonSelected && !recupererSelected {
+                            isDetailsLivListViewActive = true
+                        } else if recupererSelected && !livraisonSelected {
+                            isPcCardViewActive = true
+                        }
+                        showAlert = true
                     }
-                    showAlert = true
                 }
                 .buttonStyle(DynamicButtonStyle(color: "0C8A7B", shape: .capsule))
                 .foregroundColor(.white)
                 .padding(.top, 16)
                 .alert(isPresented: $showAlert) {
-                    Alert(title: Text("Commande validée"), message: Text("Votre commande a été validée avec succès."), dismissButton: .default(Text("OK")))
+                    if articles.isEmpty {
+                        return Alert(title: Text("Panier vide"), message: Text("Ajoutez des articles à votre panier pour valider la commande."), dismissButton: .default(Text("OK")))
+                    } else {
+                        return Alert(title: Text("Commande validée"), message: Text("Votre commande a été validée avec succès."), dismissButton: .default(Text("OK")))
+                    }
                 }
 
                 Spacer()
@@ -89,26 +99,18 @@ struct PanierView: View {
             .padding(16)
             .background(Color.white.edgesIgnoringSafeArea(.all))
             .navigationBarTitle("", displayMode: .inline)
-            .navigationBarItems(leading:
-                Image("logo-panier-vert1")
-                    .resizable()
-                    .frame(width: 80, height: 80)
-            )
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
 
-    private func deletePanier() {
-        let selectedArticles = articles.filter { $0.isSelected }
-        for article in selectedArticles {
-            print("Article à supprimer avec l'ID : \(article.id)")
+    private func deletePanierItem(article: Article) {
+        if let index = articles.firstIndex(where: { $0.id == article.id }) {
+            articles.remove(at: index)
         }
+    }
 
-        // Appel à votre fonction de suppression du panier
-        // ...
-
-        // Supprimer les articles sélectionnés du tableau
-        articles.removeAll(where: { $0.isSelected })
+    private func deletePanierItems(offsets: IndexSet) {
+        articles.remove(atOffsets: offsets)
     }
 
     private func toggleSelection(for article: Article) {
@@ -177,20 +179,3 @@ enum ButtonShape {
         Color(hex: color)
     }
 }
-
-
-/*struct DetailsLivListView: View {
-
-    // Contenu de la vue "DetailsLivListView"
-
-}
-
-
-
-struct PcCardView: View {
-
-    // Contenu de la vue "PcCardView"
-
-}
-
-*/
