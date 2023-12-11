@@ -7,13 +7,8 @@ struct Article: Identifiable {
 }
 
 struct PanierView: View {
-    @State private var livraisonSelected = false
-    @State private var recupererSelected = false
-    @State private var isDetailsLivListViewActive = false
-    @State private var isPcCardViewActive = false
+    @State private var isLivraisonSelected = true
     @State private var showAlert = false
-    @State private var selectedArticleId: String? = nil
-
     @State private var articles: [Article] = [
         Article(name: "Article 1"),
         Article(name: "Article 2"),
@@ -23,38 +18,20 @@ struct PanierView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Text("Article Selectionné: \(articles.filter { $0.isSelected }.count)")
+                Text("Article Sélectionné: \(articles.filter { $0.isSelected }.count)")
                     .font(.title)
                     .fontWeight(.bold)
+                    .padding(40)
                     .padding(.bottom, 16)
                     .foregroundColor(Color(hex: "0C8A7B"))
 
                 List {
                     ForEach(articles) { article in
-                        VStack {
-                            Text(article.name)
-                                .font(.headline)
-                                .padding()
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .background(Color.white)
-                                .cornerRadius(10)
-                                .shadow(radius: 5)
-                                .swipeActions {
-                                    Button("Supprimer") {
-                                        deletePanierItem(article: article)
-                                    }
-                                    .tint(.red)
-                                }
-                                .foregroundColor(Color.black)
-                                .onTapGesture {
-                                    toggleSelection(for: article)
-                                }
-                                .rotation3DEffect(
-                                    .degrees(article.isSelected ? 10 : 0),
-                                    axis: (x: 0.5, y: 10.0, z: 0.5)
-                                )
-                                .animation(.spring())
-                        }
+                        ArticleRow(article: article, onDelete: {
+                            deletePanierItem(article: article)
+                        }, onTap: {
+                            toggleSelection(for: article)
+                        })
                         .listRowBackground(Color.clear)
                     }
                     .onDelete(perform: deletePanierItems)
@@ -62,12 +39,32 @@ struct PanierView: View {
                 .listStyle(PlainListStyle())
 
                 HStack {
-                    RadioButton(text: "Livraison", isSelected: $livraisonSelected, otherSelected: $recupererSelected)
-                        .padding(.trailing, 16)
-                        .animation(.easeInOut)
-                    RadioButton(text: "Récupérer au point de collecte", isSelected: $recupererSelected, otherSelected: $livraisonSelected)
-                        .padding(.leading, 16)
-                        .animation(.easeInOut)
+                    Text("Méthode de Récupération  ")
+                        .font(.headline)
+                    Image( "voit_liv")
+                        .resizable()
+                        .frame(width: 30, height: 30)
+                        .padding()
+                        .foregroundColor(isLivraisonSelected ? Color.blue : Color.gray)
+                        .background(isLivraisonSelected ? Color.blue.opacity(0.3) : Color.clear)
+                        .cornerRadius(8)
+                        .onTapGesture {
+                            isLivraisonSelected = true
+                        }
+
+                    Spacer()
+
+                    Image(systemName: "building.2.fill")
+                        .resizable()
+                        .frame(width: 30, height: 30)
+                        .padding()
+                        .foregroundColor(isLivraisonSelected ? Color.gray : Color.blue)
+                        .background(isLivraisonSelected ? Color.clear : Color.blue.opacity(0.3))
+                        .cornerRadius(8)
+                        .onTapGesture {
+                            isLivraisonSelected = false
+                            
+                        }
                 }
                 .padding(.top, 16)
 
@@ -75,23 +72,14 @@ struct PanierView: View {
                     if articles.isEmpty {
                         showAlert = true
                     } else {
-                        if livraisonSelected && !recupererSelected {
-                            isDetailsLivListViewActive = true
-                        } else if recupererSelected && !livraisonSelected {
-                            isPcCardViewActive = true
-                        }
-                        showAlert = true
+                        // Gérer la logique de validation
                     }
                 }
                 .buttonStyle(DynamicButtonStyle(color: "0C8A7B", shape: .capsule))
                 .foregroundColor(.white)
                 .padding(.top, 16)
                 .alert(isPresented: $showAlert) {
-                    if articles.isEmpty {
-                        return Alert(title: Text("Panier vide"), message: Text("Ajoutez des articles à votre panier pour valider la commande."), dismissButton: .default(Text("OK")))
-                    } else {
-                        return Alert(title: Text("Commande validée"), message: Text("Votre commande a été validée avec succès."), dismissButton: .default(Text("OK")))
-                    }
+                    Alert(title: Text("Panier Vide"), message: Text("Ajoutez des articles à votre panier avant de valider la commande."), dismissButton: .default(Text("OK")))
                 }
 
                 Spacer()
@@ -109,42 +97,46 @@ struct PanierView: View {
         }
     }
 
-    private func deletePanierItems(offsets: IndexSet) {
+    private func deletePanierItems(at offsets: IndexSet) {
         articles.remove(atOffsets: offsets)
     }
 
     private func toggleSelection(for article: Article) {
         if let index = articles.firstIndex(where: { $0.id == article.id }) {
             articles[index].isSelected.toggle()
-            selectedArticleId = articles[index].isSelected ? article.id.uuidString : nil
         }
     }
 }
 
-struct PanierView_Previews: PreviewProvider {
-    static var previews: some View {
-        PanierView()
-    }
-}
-
-struct RadioButton: View {
-    var text: String
-    @Binding var isSelected: Bool
-    @Binding var otherSelected: Bool
+struct ArticleRow: View {
+    let article: Article
+    var onDelete: () -> Void
+    var onTap: () -> Void
 
     var body: some View {
-        Button(action: {
-            withAnimation {
-                isSelected = true
-                otherSelected = false
-            }
-        }) {
-            HStack {
-                Text(text)
-                    .padding()
-                    .background(RoundedRectangle(cornerRadius: 8).strokeBorder(Color(hex: "0C8A7B")))
-                    .foregroundColor(isSelected ? .blue : .black)
-            }
+        VStack {
+            Text(article.name)
+                .font(.headline)
+                .padding()
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(Color.white)
+                .cornerRadius(10)
+                .shadow(radius: 5)
+                .swipeActions {
+                    Button("Supprimer") {
+                        onDelete()
+                    }
+                    .tint(.red)
+                }
+                .foregroundColor(Color.black)
+                .onTapGesture {
+                    onTap()
+                }
+                .rotation3DEffect(
+                    .degrees(article.isSelected ? 10 : 0),
+                    axis: (x: 0.5, y: 10.0, z: 0.5)
+                )
+                .animation(.spring())
         }
     }
 }
@@ -177,5 +169,11 @@ enum ButtonShape {
 
     func background(color: String) -> some View {
         Color(hex: color)
+    }
+}
+
+struct PanierView_Previews: PreviewProvider {
+    static var previews: some View {
+        PanierView()
     }
 }
