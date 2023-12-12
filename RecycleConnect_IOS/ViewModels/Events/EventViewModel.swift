@@ -63,7 +63,7 @@ final class EventViewModel: ObservableObject {
         }
     
     // Add this method to your EventViewModel
-    func createEvent(name: String, description: String, address: String, start: Date, photo: Data?) {
+    func createEvent(name: String, description: String, address: String, start: Date, photo: String) {
         isLoding = true
         
         // Format the start date to a string
@@ -71,10 +71,9 @@ final class EventViewModel: ObservableObject {
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let startEventString = dateFormatter.string(from: start)
         
-        // Convert photo data to base64-encoded string
-        let photoString = photo?.base64EncodedString() ?? ""
+
         
-        EventsServices.shared.createEvent(nameEvent: name, descriptionEvent: description, addressEvent: address, startEvent: startEventString, PhotoEvent: photoString) { [self] result in
+        EventsServices.shared.createEvent(nameEvent: name, descriptionEvent: description, addressEvent: address, startEvent: startEventString, PhotoEvent: photo) { [self] result in
             DispatchQueue.main.async {
                 isLoding = false
                 switch result {

@@ -27,7 +27,7 @@ struct AddEventView: View {
                     DatePicker("Event Start Date", selection: $startEvent , displayedComponents: .date)
                     
                 }
-                Section(header: Text("Event Photo") .font(.headline)){
+                Section(header: Text("Pick Event Photo") .font(.headline)){
                     PhotosPicker(selection: $photopickerItem, matching: .images){
                         Image(uiImage: PhotoEvent ?? UIImage( resource: .placeholder))
                             .resizable()
@@ -47,7 +47,6 @@ struct AddEventView: View {
                                 print("image loaded", image)
                             }
                         }
-                        photopickerItem = nil
                     }
                 }
                 
@@ -62,9 +61,22 @@ struct AddEventView: View {
                         Image (systemName: "keyboard.chevron.compact.down")
                     }
                     Button("Save") {
-                        eventViewModel.createEvent(name: nameEvent, description: descriptionEvent, address: adressEvent, start: startEvent, photo: PhotoEvent?.jpegData(compressionQuality: 0.5))
-                            
+                        if let photoData = PhotoEvent?.jpegData(compressionQuality: 0.5) {
+                            let base64String = photoData.base64EncodedString(options: [])
+                            print("Base64 Encoded String:", base64String)
+                            eventViewModel.createEvent(
+                                name: nameEvent,
+                                description: descriptionEvent,
+                                address: adressEvent,
+                                start: startEvent,
+                                photo: base64String
+                            )
+                        } else {
+                            // Handle the case where PhotoEvent is nil or couldn't be converted to data
+                            print("Error converting image to data.")
+                        }
                     }
+
                     .alert(item: $eventViewModel.alertItem) { alertitem in
                                 Alert(title: alertitem.title,message: alertitem.message, dismissButton: alertitem.dismissButton)
                             }
