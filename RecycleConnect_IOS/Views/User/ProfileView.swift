@@ -3,39 +3,26 @@ import SwiftUI
 
 struct ProfileView: View {
     @StateObject var viewModel = UserViewModel()
-    var user : User
+    var user: User
 
     var body: some View {
-        
         VStack(alignment: .leading, spacing: 15) {
-            if let user = viewModel.user {
-                            HStack {
-                                Image("admin")
-                                    .resizable()
-                                    .frame(width: 100, height: 100)
-                                    .cornerRadius(50)
-                                
-                                VStack(alignment: .leading, spacing: 5) {
-                                    Text(user.username)
-                                        .font(.title)
-                                        .bold()
-                                    
-                                    Text(user.email)
-                                        .font(.subheadline)
-                                        .foregroundColor(.gray)
-                                }
+            VStack {
+                if let loggedInUsername = viewModel.loggedInUsername,
+                   let loggedInUserEmail = viewModel.loggedInUserEmail {
+                    Text("Username: \(loggedInUsername)")
+                    Text("Email: \(loggedInUserEmail)")
+                    
+                } else {
+                    ProgressView()
+                        .onAppear {
+                            if let loggedInUserID = viewModel.loggedInUserID {
+                                viewModel.fetchUser(_id: loggedInUserID)
                             }
-                            .padding(.bottom, 30)
-                            } else {
-                ProgressView()
-                                    .onAppear {
-                                                            if let loggedInUserID = viewModel.loggedInUserID {
-                                                                viewModel.fetchUser(_id: loggedInUserID)
-                                                            }
-                                                        }
+                        }
+                }
             }
-               
-          
+            .padding()
             NavigationLink(destination: Text("Change profile")) {
                 Text("Changer profile")
                     .font(.headline)

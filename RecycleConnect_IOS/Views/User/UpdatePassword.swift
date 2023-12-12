@@ -8,16 +8,13 @@
 import SwiftUI
 
 struct UpdatePassword: View {
-       @State private var showAlert = false
-       @State private var alertMessage = ""
-       @State private var verificationCode: String = ""
-       @State private var password: String = ""
-       @State private var passwordError: String? = nil
-       @State private var code: String = ""
-
-
-       @StateObject var userViewModel = UserViewModel()
-       @State private var isCodeVerified = false
+    
+        @State private var isCodeVerified = false
+        @State private var showAlert = false
+        @State private var alertMessage = ""
+        @State private var verificationCode: String = ""
+        @StateObject var userViewModel = UserViewModel()
+    
     var body: some View {
         VStack{
             Image("changePass")
@@ -25,11 +22,11 @@ struct UpdatePassword: View {
                 .scaledToFill()
                 .frame(width: 200, height: 200)
                 .padding(.bottom, 1)
-                .padding(.top ,100)
+                .padding(.top ,180)
                 
           
             .padding(.leading, 4)
-            .padding(.bottom, 50)
+            .padding(.bottom, 60)
             HStack{
                 Text("Veuillez entrer le code d'abord ! ")
                     .fontWeight(.bold)
@@ -40,7 +37,7 @@ struct UpdatePassword: View {
             .padding(.leading, 35)
             .padding(.bottom, 15)
             
-            TextField("", text: $password,
+            TextField("", text: $verificationCode,
                       prompt: Text("*  *  *  *  *  *  *  *")
                 
             )
@@ -53,33 +50,11 @@ struct UpdatePassword: View {
                             lineWidth: 1.5)
             )
             .padding(.bottom, 30)
-            HStack{
-                Text("Entrer votre nouveau mot de passe")
-                    .font(.system(size: 20))
-                    .fontWeight(.bold)
-        
-                    .font(.system(size: 20))
-                Spacer()
-            }
-            .padding(.leading, 35)
-            .padding(.bottom, 15)
-            TextField("", text: $code,
-                      prompt: Text("Mot de passe")
-                
-            )
-            .disableAutocorrection(true)
-            .frame(width: 300, height: 50)
-            .padding(.leading, 20)
-            .overlay(
-                RoundedRectangle(cornerRadius: 50)
-                    .stroke(Color(Fonts.darkGreen),
-                            lineWidth: 1.5)
-            )
-            .padding(.bottom, 30)
+           
             
             HStack {
                 Button{
-                    validInput()
+                    validateAndVerifyCode()
 
                 } label: {
                     ZStack{
@@ -104,17 +79,27 @@ struct UpdatePassword: View {
         .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, maxHeight: .infinity)
     }
   
-    private func validInput() {
-        if password.isEmpty {
-            passwordError = "Veuillez entrer votre mot de passe !"
-        } else {
-            passwordError = nil
-        }
+    private func validateAndVerifyCode() {
+         if verificationCode.isEmpty {
+             alertMessage = "Please enter both password and verification code."
+             showAlert = true
+             return
+         }
 
-    }
-   }
-
-
+         userViewModel.verifyResetCode(resetCode: verificationCode, email: "Bouguerrahanine4@gmail.com") { success in
+             DispatchQueue.main.async {
+                 if success {
+                     isCodeVerified = true
+                     alertMessage = "Code verified.Now you can change your password ! "
+                     showAlert = true
+                 } else {
+                     alertMessage = "Incorrect verification code."
+                     showAlert = true
+                 }
+             }
+         }
+     }
+ }
 
 #Preview {
     UpdatePassword()

@@ -15,7 +15,7 @@ class UserViewModel: ObservableObject {
     @Published var token = ""
     @Published var user: User?
     @Published var signupSuccessful = false
-    var loggedInUserID: String?
+    @Published var loggedInUserID: String?
     @Published var loggedInUserEmail: String?
     @Published var loggedInUsername: String?
     
@@ -92,6 +92,8 @@ class UserViewModel: ObservableObject {
             completion(.failure(error))
         }
     }
+    // login method
+    
     func loginUser(username: String, password: String, completion: @escaping (Result<User, Error>) -> Void) {
         guard let url = URL(string: "http://localhost:5000/api/user/login") else {
             completion(.failure(NSError(domain: "Invalid URL", code: 0, userInfo: nil)))
@@ -117,23 +119,23 @@ class UserViewModel: ObservableObject {
             print("Response data: \(String(data: data, encoding: .utf8) ?? "No data")")
             
             do {
-                           let decoder = JSONDecoder()
-                           let userResponse = try decoder.decode(UserResponse.self, from: data)
-                           
-                           DispatchQueue.main.async {
-                               self.user = userResponse.user
-                               self.loggedInUserID = userResponse.user._id
-                               self.loggedInUserEmail = userResponse.user.email
-                               self.loggedInUsername = userResponse.user.username
-                               self.isLoggedIn = true
-                               completion(.success(userResponse.user))
-                           }
-                       } catch {
-                           print("Error decoding response:", error)
-                           completion(.failure(error))
-                       }
-                   }.resume()
-               }
+                let decoder = JSONDecoder()
+                let userResponse = try decoder.decode(UserResponse.self, from: data)
+                
+                DispatchQueue.main.async {
+                    self.user = userResponse.user
+                    self.loggedInUserID = userResponse.user._id
+                    self.loggedInUserEmail = userResponse.user.email
+                    self.loggedInUsername = userResponse.user.username
+                    self.isLoggedIn = true
+                    completion(.success(userResponse.user))
+                }
+            } catch {
+                print("Error decoding response:", error)
+                completion(.failure(error))
+            }
+        }.resume()
+    }
     //reset password
     
     func forgotPassword(email: String, completion: @escaping (Result<String, Error>) -> Void) {
@@ -167,30 +169,81 @@ class UserViewModel: ObservableObject {
     }
     
     //get user by id
-    
     func fetchUser(_id: String) {
-            guard let url = URL(string: "http://localhost:5000/api/user\(_id)") else {
-                print("Invalid URL")
+        guard let url = URL(string: "http://localhost:5000/api/user/\(_id)") else { return }
+
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            if let error = error {
+                print("Error fetching user data: \(error)")
                 return
             }
-            
-            URLSession.shared.dataTask(with: url) { data, response, error in
-                guard let data = data else {
-                    print("No data returned: Unknown error")
-                    return
-                }
-                
-                do {
-                    let decodedUser = try JSONDecoder().decode(User.self, from: data)
-                    DispatchQueue.main.async {
-                        self.user = decodedUser
-                    }
-                } catch {
-                    print("Error decoding user data")
-                }
+
+            guard let data = data else {
+                print("No data received")
+                return
             }
-            .resume()
-        }
+
+            do {
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                let fetchedUsers = try decoder.decode([User].self, from: data)
+
+                if let user = fetchedUsers.first {
+                    DispatchQueue.main.async {
+                        self.user = user
+                    }
+                }
+            } catch {
+                print("Error decoding user data:", error)
+            }
+        }.resume()
     }
+
     
+    // verify code
+    
+    func verifyResetCode(resetCode: String, email: String, completion: @escaping (Bool) -> Void) {
+          guard let url = URL(string: "http://localhost:5000/api/user/verify") else {
+              completion(false)
+              return
+          }
+          
+          let body: [String: Any] = [
+              "resetCode": resetCode,
+              "email": email
+          ]
+          
+          guard let jsonData = try? JSONSerialization.data(withJSONObject: body) else {
+              completion(false)
+              return
+          }
+          
+          var request = URLRequest(url: url)
+          request.httpMethod = "POST"
+          request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+          request.httpBody = jsonData
+          
+          URLSession.shared.dataTask(with: request) { data, response, error in
+              guard let data = data, error == nil else {
+                  completion(false)
+                  return
+              }
+              
+              if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
+                  do {
+                      let result = try JSONDecoder().decode([String: String].self, from: data)
+                      if let message = result["message"], message == "true" {
+                          completion(true)
+                      } else {
+                          completion(false)
+                      }
+                  } catch {
+                      completion(false)
+                  }
+              } else {
+                  completion(false)
+              }
+          }.resume()
+      }
+    }
 

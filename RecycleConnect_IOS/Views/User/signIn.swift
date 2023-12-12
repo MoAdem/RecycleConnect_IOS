@@ -142,8 +142,8 @@ struct SignInView: View {
                                                                                        ResetPassword()
                                                                                    }
                                                                                    else if nextView == .Home {
-                                                                                                   
-                                                                                          ProfileView(user: User(_id: "", username: "", email: "", address: "", password: "", telephone: 5658742, role: "", __v: 0))   }
+                                                                                                   UpdatePassword()
+                                                                                          }
                                                                                }
                                                                            }
     private func validInput() {

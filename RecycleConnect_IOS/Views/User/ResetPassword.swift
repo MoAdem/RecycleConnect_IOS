@@ -6,7 +6,26 @@
 //
 
 import SwiftUI
+struct CustomNavigationBarStyle: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .navigationBarBackButtonHidden(true)
+            .navigationBarItems(leading: BackButton())
+    }
+}
 
+struct BackButton: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
+    var body: some View {
+        Button(action: {
+            presentationMode.wrappedValue.dismiss()
+        }) {
+            Image(systemName: "chevron.left")
+                .foregroundColor(.blue) // Customize the color as needed
+        }
+    }
+}
 struct ResetPassword: View {
     
     enum ResetPasswordStatus {
@@ -17,8 +36,10 @@ struct ResetPassword: View {
     enum ViewStack {
         case UpdatePassword
     }
+    
+  
     @Environment(\.presentationMode) var presentationMode
-
+       @State private var isResetPasswordPresented = false
        @State private var showAlert = false
        @State private var alertMessage = ""
        @State private var verificationCode: String = ""
@@ -93,11 +114,13 @@ struct ResetPassword: View {
             
             HStack {
                 Button{
-                    self.resetPasswordStatus = .resetting
+                    isResetPasswordPresented.toggle()
                     validInput()
                     sendPasswordReset()
                     
-                } label: {
+                } 
+                
+            label: {
                     ZStack{
                         RoundedRectangle(cornerRadius: 50)
                             .frame(width: 150, height: 40)
@@ -111,7 +134,7 @@ struct ResetPassword: View {
                         switch resetPasswordStatus  {
                         case .resetSent:
                             return Alert(
-                                title: Text("Renitialiser mot de passe"),
+                                title: Text("Réinitialiser mot de passe"),
                                 message: Text(alertMessage),
                                 dismissButton: .default(
                                               Text("OK"),
