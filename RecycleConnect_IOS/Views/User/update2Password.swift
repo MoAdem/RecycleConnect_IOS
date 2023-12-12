@@ -1,20 +1,20 @@
 //
-//  ResetPassword.swift
+//  update2Password.swift
 //  RecycleConnect_IOS
 //
-//  Created by Hanine Bouguerra on 29/11/2023.
+//  Created by Hanine Bouguerra on 12/12/2023.
 //
 
 import SwiftUI
 
-struct UpdatePassword: View {
+struct Update2Password: View {
     
         @State private var isCodeVerified = false
         @State private var showAlert = false
         @State private var alertMessage = ""
         @State private var verificationCode: String = ""
         @StateObject var userViewModel = UserViewModel()
-     @State private var showNewScreen = false
+        @State private var showNewScreen = false
     var body: some View {
         VStack{
             Image("changePass")
@@ -22,23 +22,47 @@ struct UpdatePassword: View {
                 .scaledToFill()
                 .frame(width: 200, height: 200)
                 .padding(.bottom, 1)
-                .padding(.top ,180)
+                .padding(.top ,120)
                 
           
             .padding(.leading, 4)
             .padding(.bottom, 60)
             HStack{
-                Text("Veuillez entrer le code d'abord ! ")
+                Text("Entrer votre nouveau mot de passe ! ")
                     .fontWeight(.bold)
                     .font(.system(size: 20))
                 
                 Spacer()
             }
-            .padding(.leading, 35)
+            .padding(.leading, 30)
             .padding(.bottom, 15)
             
             TextField("", text: $verificationCode,
-                      prompt: Text("*  *  *  *  *  *  *  *")
+                      prompt: Text("Nouveau mot de passe")
+                
+            )
+            .disableAutocorrection(true)
+            .frame(width: 300, height: 50)
+            .padding(.leading, 20)
+            .overlay(
+                RoundedRectangle(cornerRadius: 50)
+                    .stroke(Color(Fonts.darkGreen),
+                            lineWidth: 1.5)
+            )
+            .padding(.bottom, 30)
+           
+            HStack{
+                Text("Confirmer votre mot de passe !")
+                    .fontWeight(.bold)
+                    .font(.system(size: 20))
+                
+                Spacer()
+            }
+            .padding(.leading, 30)
+            .padding(.bottom, 15)
+            
+            TextField("", text: $verificationCode,
+                      prompt: Text("Confirmer mot de passe")
                 
             )
             .disableAutocorrection(true)
@@ -104,5 +128,5 @@ struct UpdatePassword: View {
  }
 
 #Preview {
-    UpdatePassword()
+    Update2Password()
 }

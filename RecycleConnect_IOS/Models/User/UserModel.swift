@@ -24,7 +24,7 @@ struct User: Codable {
     let telephone: Int
     let role: String
     let __v: Int
-    
+  // let resetCode :String
     enum CodingKeys: String, CodingKey {
         case _id, username, email, address, password, telephone, role, __v
     }
