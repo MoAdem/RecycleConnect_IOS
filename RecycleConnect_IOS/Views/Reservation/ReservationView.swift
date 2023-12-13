@@ -36,9 +36,6 @@ struct ReservationView: View {
                                 .padding([.horizontal, .top], 16)
 
                             Button("Ajouter au panier") {
-                                // Ajouter la réservation avec le commentaire
-                                // (Supposons que vous utilisez ReservationService.shared.addReservation)
-
                                 ReservationService.shared.addReservation(commentaire: commentaire) { result in
                                     switch result {
                                     case .success:
@@ -46,7 +43,6 @@ struct ReservationView: View {
                                         showAlert = true
                                     case .failure(let error):
                                         print("Erreur lors de l'ajout du commentaire : \(error.localizedDescription)")
-                                        // Gérer l'erreur, par exemple, afficher une alerte à l'utilisateur
                                     }
                                 }
                             }
@@ -70,7 +66,6 @@ struct ReservationView: View {
                     title: Text("Ajout au panier"),
                     message: Text("Votre article a été ajouté au panier."),
                     dismissButton: .default(Text("OK")) {
-                        // Après avoir appuyé sur OK, vous pouvez activer la navigation
                         isPanierViewActive = true
                     }
                 )
@@ -94,3 +89,4 @@ struct ReservationView_Previews: PreviewProvider {
         ReservationView()
     }
 }
+
