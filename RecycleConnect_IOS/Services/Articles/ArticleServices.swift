@@ -192,7 +192,76 @@ class ArticleServices {
                 data.append(stringData)
             }
         }
+    
 
+    static func UpdateArticle(
+            articleId: String,
+            NomArticle: String,
+            DescriptionArticle: String,
+            EtatArticle: String,
+            Categorie: String,
+            PhotoArticle: Data,
+            completion: @escaping (Result<article, NetworkError>) -> Void
+        ) {
+            guard let url = URL(string: "http://localhost:5000/api/articles/\(articleId)") else {
+                completion(.failure(NetworkError.invalidURL))
+                return
+            }
+        
+            var request = URLRequest(url: url)
+            request.httpMethod = "PUT"
+
+            let boundary = UUID().uuidString
+            request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+
+            var body = Data()
+            
+            // Append image data to the body
+            appendToBody("--\(boundary)\r\n", data: &body)
+            appendToBody("Content-Disposition: form-data; name=\"PhotoArticle\"; filename=\"photo.jpg\"\r\n", data: &body)
+            appendToBody("Content-Type: image/jpeg\r\n\r\n", data: &body)
+            body.append(PhotoArticle)
+            print("photo", PhotoArticle)
+            appendToBody("\r\n", data: &body)
+
+            appendToBody("--\(boundary)\r\n", data: &body)
+            appendToBody("Content-Disposition: form-data; name=\"NomArticle\"\r\n\r\n", data: &body)
+            appendToBody("\(NomArticle)\r\n", data: &body)
+
+
+            appendToBody("--\(boundary)\r\n", data: &body)
+            appendToBody("Content-Disposition: form-data; name=\"DescriptionArticle\"\r\n\r\n", data: &body)
+            appendToBody("\(DescriptionArticle)\r\n", data: &body)
+
+
+            appendToBody("--\(boundary)\r\n", data: &body)
+            appendToBody("Content-Disposition: form-data; name=\"EtatArticle\"\r\n\r\n", data: &body)
+            appendToBody("\(EtatArticle)\r\n", data: &body)
+
+
+            appendToBody("--\(boundary)\r\n", data: &body)
+            appendToBody("Content-Disposition: form-data; name=\"CategorieId\"\r\n\r\n", data: &body)
+            appendToBody("\(Categorie)\r\n", data: &body)
+
+            appendToBody("--\(boundary)--\r\n", data: &body)
+
+            request.httpBody = body
+
+            URLSession.shared.dataTask(with: request) { data, response, error in
+                guard let data = data, error == nil else {
+                    completion(.failure(.serverError(error?.localizedDescription ?? "Unknown error")))
+                    return
+                }
+                do {
+                    let decoder = JSONDecoder()
+                    let article = try decoder.decode(article.self, from: data)
+                    completion(.success(article))
+                } catch {
+                    print("Decoding error: \(error)")
+                    completion(.failure(.decodingError))
+                }
+            }.resume()
+        }
 
 
 

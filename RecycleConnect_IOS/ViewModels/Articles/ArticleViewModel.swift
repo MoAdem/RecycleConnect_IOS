@@ -78,10 +78,33 @@ class ArticleViewModel: ObservableObject {
             ) { result in
                 switch result {
                 case .success(let article):
-                    // Handle success, you may want to show an alert or navigate to a new view
                     print("Article created: \(article)")
                 case .failure(let error):
-                    // Handle error, you may want to show an alert
+                    print("Error creating article: \(error)")
+                }
+            }
+        }
+    
+    
+    
+    func UpdateArticle(articleId: String) {
+            guard let photoData = PhotoArticleData else {
+                print("No photo selected")
+                return
+            }
+
+            ArticleServices.UpdateArticle(
+                articleId: articleId,
+                NomArticle: NomArticle,
+                DescriptionArticle: DescriptionArticle,
+                EtatArticle: EtatArticle,
+                Categorie: Categorie,
+                PhotoArticle: photoData
+            ) { result in
+                switch result {
+                case .success(let article):
+                    print("Article created: \(article)")
+                case .failure(let error):
                     print("Error creating article: \(error)")
                 }
             }

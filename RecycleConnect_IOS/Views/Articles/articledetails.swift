@@ -15,9 +15,10 @@ struct articledetails: View {
         var body: some View {
             ZStack {
                 Color(.white)
-                
+                                
                 VStack {
                     Spacer()
+                    
                     URLImage(article.PhotoArticle, content: { image in
                         image
                             .resizable()
