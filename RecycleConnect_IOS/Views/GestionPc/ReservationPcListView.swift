@@ -18,21 +18,20 @@ struct ReservationPcListView: View {
                         ReservationPcCardView(reservationPc: reservationPc, viewModel: viewModel)
                             .listRowInsets(EdgeInsets(top: 5, leading: 5, bottom: 4, trailing: 4))
                             .onTapGesture {
-                                // Handle tap on the card if needed
                             }
-                        
                             .id(index)
-                        
                     }
                 }
+            
                 .listStyle(InsetListStyle())
                 .listRowBackground(Color.clear)
                 .onAppear {
                     viewModel.getReservationPcsFromServer()
+                    
                 }
-            }
+           }
                 
-            }//.navigationBarBackButtonHidden(true)
+            }
         
     }
 }

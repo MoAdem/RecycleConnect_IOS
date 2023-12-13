@@ -28,8 +28,10 @@ struct PcListView: View {
             }
             .listStyle(InsetListStyle())
             .listRowBackground(Color.clear)
-            .navigationTitle("Points de Collecte")
-            .navigationBarTitleDisplayMode(.inline)
+            //.navigationTitle("Points de Collecte")
+            //.navigationBarTitleDisplayMode(.inline)
+            .navigationBarBackButtonHidden(false)
+            
         }
     }
 }

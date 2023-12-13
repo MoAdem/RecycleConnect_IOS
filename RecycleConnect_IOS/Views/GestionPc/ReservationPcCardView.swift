@@ -12,31 +12,40 @@ struct ReservationPcCardView: View {
     @ObservedObject var viewModel: ReservationPcViewModel
 
     var body: some View {
+        
         HStack(spacing: 7) {
             VStack(alignment: .leading, spacing: 9) {
-                Text("Votre commande a été ajoutée dans cette Point Collecte  ")
-                    .font(.system(size: 15))
-                    .fontWeight(.medium)
-                    .frame(maxWidth: .infinity, alignment: .center)
+                HStack {
+                    Text("Votre commande a été affectée dans le Point Collecte  '\(reservationPc.nomR)'")
+                        .font(.system(size: 15))
+                        .fontWeight(.medium)
+                        .frame(maxWidth: .infinity, alignment: .leading)
 
-                Text(reservationPc.nomR)
+                    Image(systemName: "checkmark.circle.fill") // Symbole de validation
+                        .font(.system(size: 20))
+                        .foregroundColor(.green)
+                        .padding(.leading, 4) // Espacement entre le texte et l'icône
+                }
+            
+
+              /*  Text(reservationPc.nomR)
                     .font(.body)
                     .foregroundColor(.black)
-                    .frame(maxWidth: .infinity, alignment: .center)
+                    .frame(maxWidth: .infinity, alignment: .center)*/
 
-                Text(reservationPc.idPc)
+               /* Text(reservationPc.idPc)
                     .font(.body)
                     .foregroundColor(.black)
-                    .frame(maxWidth: .infinity, alignment: .center)
+                    .frame(maxWidth: .infinity, alignment: .center)*/
             }
             .padding(16)
         }
         .background(Color.white)
         .cornerRadius(8)
-        .overlay(
+        /*.overlay(
             RoundedRectangle(cornerRadius: 8)
                 .stroke(Color(red: 0.05, green: 0.54, blue: 0.48), lineWidth: 2)
-        )
+        )*/
 
         .shadow(radius: 4)
         .padding(8)
@@ -54,6 +63,8 @@ struct ReservationPcCardView: View {
         }
     }
 }
+
+
 /*
 import SwiftUI
 

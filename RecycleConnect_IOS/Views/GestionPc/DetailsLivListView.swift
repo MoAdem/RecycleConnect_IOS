@@ -8,6 +8,7 @@ import SwiftUI
 
 struct DetailsLivListView: View {
     @ObservedObject var livraisonViewModel = LivraisonViewModel()
+    
 
     var body: some View {
         List(livraisonViewModel.livraisons) { livraison in
@@ -19,8 +20,8 @@ struct DetailsLivListView: View {
         .onAppear {
             livraisonViewModel.getLivraisonsFromServer()
         }
-        .navigationTitle("Details Livraison")
-        .navigationBarTitleDisplayMode(.inline)
+        //.navigationTitle("Details Livraison")
+        //.navigationBarTitleDisplayMode(.inline)
 
     }
 }

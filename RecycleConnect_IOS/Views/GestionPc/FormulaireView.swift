@@ -129,10 +129,12 @@ struct LivraisonFormView: View {
             }
             .background(
      
-                NavigationLink(destination: DetailsLivListView(), isActive: $livraisonViewModel.isNavigationActive) {
-                    EmptyView()
-                }
+                NavigationLink(destination: DetailsLivListView(), isActive: $livraisonViewModel.isNavigationActive ,
+                    label: {
+                    //EmptyView()
+                }).hidden()
             )
+            
             /*.navigationBarTitle("Livraison Details", displayMode: .inline)
             .navigationBarItems(trailing:
                 Button(action: {
@@ -144,12 +146,12 @@ struct LivraisonFormView: View {
         }
     }
 }
-
+/*
 struct LivraisonFormView_Previews: PreviewProvider {
     static var previews: some View {
         LivraisonFormView(isEditing: .constant(false))
     }
-}
+}*/
 
 /*
 import SwiftUI

@@ -72,7 +72,7 @@ struct DetailsLivCardView: View {
         .padding(8)
         .swipeActions {
             Button("Supprimer", systemImage: "trash") {
-                // Action de suppression
+             
                 viewModel.deleteLivraisonFromServer(livraisonID: livraison.id)
             }
             .tint(.red)
@@ -82,7 +82,8 @@ struct DetailsLivCardView: View {
             }
             .tint(Color(red: 0.05, green: 0.54, blue: 0.48))
         }
-        .background(
+        
+        /*background(
             NavigationLink(
                 destination: LivraisonFormView(livraison: livraison, isEditing: $isEditing),
                 isActive: $isEditing
@@ -90,7 +91,18 @@ struct DetailsLivCardView: View {
                 EmptyView()
             }
             .hidden()
+        )*/
+        .background(
+            NavigationLink(
+                destination: LivraisonFormView(livraison: livraison, isEditing: $isEditing),
+                isActive: $isEditing,
+                label: {
+                    EmptyView()
+                })
+                .hidden()
         )
+        
+
     }
 }
 
