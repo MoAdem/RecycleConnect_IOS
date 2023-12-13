@@ -11,46 +11,47 @@ import SwiftUI
 
 struct EventListView: View {
     
-    @State private var events: [Events] = []
-    @State private var isShowingDetailView = false
+    @StateObject var eventViewModel = EventViewModel()
+    @State private var searchTerm = ""
+    
+    var filteredEvents: [Events] {
+        guard !searchTerm.isEmpty else {return eventViewModel.events}
+        return eventViewModel.events.filter { $0.nameEvent.localizedStandardContains(searchTerm)}
+    }
         
     var body: some View {
         ZStack{
             NavigationView {
-                List(events, id: \._id) { event in
+                List(filteredEvents, id: \._id) { event in
                     EventListCell(event: event)
-                        .listRowSeparator(.hidden)
                         .onTapGesture {
-                            isShowingDetailView = true
+                            eventViewModel.isShowingDetailView = true
+                            eventViewModel.selectedEvent = event
                         }
                 }
                 .navigationTitle("Events")
                 .listStyle(.plain)
+                .searchable(text: $searchTerm, prompt: "search events")
             }
             .onAppear() {
-                getEvents()
+                eventViewModel.getEvents()
             }
-            .blur(radius: isShowingDetailView ? 20 : 0)
-            if isShowingDetailView {
-                EventDetailView(event: MockData.sampleEvent, isShowingDetailView: $isShowingDetailView)
+            .blur(radius: eventViewModel.isShowingDetailView ? 20 : 0)
+            if eventViewModel.isShowingDetailView {
+                EventDetailView(event: eventViewModel.selectedEvent!, isShowingDetailView: $eventViewModel.isShowingDetailView)
             }
+            if eventViewModel.isLoding{
+                LodingView()
+            }
+
             
+        }
+        .alert(item: $eventViewModel.alertItem) { alertitem in
+            Alert(title: alertitem.title,message: alertitem.message, dismissButton: alertitem.dismissButton)
         }
 
     }
-    func getEvents() {
-        EventsServices.shared.getEvents { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let events):
-                    self.events = events
-                case .failure(let error):
-                    print(error.localizedDescription)
-                
-                }
-            }
-        }
-    }
+
 }
 
 #if DEBUG

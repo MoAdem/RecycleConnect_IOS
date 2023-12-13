@@ -6,10 +6,25 @@ struct EventDetailView: View {
 
     var body: some View {
         VStack {
-            Image("event1")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(maxWidth: .infinity, maxHeight: 180)
+            AsyncImage(url: URL(string: event.PhotoEvent)) { phase in
+                switch phase{
+                case .empty:
+                    EmptyView()
+                case .success(let image):
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(maxWidth: .infinity, maxHeight: 180) // Adjust as needed
+                case .failure:
+                    Image("event1")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(maxWidth: .infinity, maxHeight: 180)
+                    
+                @unknown default:
+                    EmptyView()
+                }
+            }
 
             Spacer() // Add Spacer to fill available space
 

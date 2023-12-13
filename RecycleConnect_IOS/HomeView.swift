@@ -1,21 +1,36 @@
-//
-//  HomeView.swift
-//  OrogEvents
-//
-//  Created by Med adem Torkhani   on 27/11/2023.
-//
-
 import SwiftUI
 
 struct HomeView: View {
     var body: some View {
-        NavigationView{
-            Text("Home View")
-                .navigationTitle("Home")
+        NavigationView {
+            VStack {
+                NavigationLink(destination: OrgEventsView()) {
+                    Text("My Events")
+                        .padding()
+                        .background(Color.colorGreen)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                }
+                .padding()
+                NavigationLink(destination: AddEventView()) {
+                    Text("Add Event")
+                        .padding()
+                        .background(Color.colorGreen)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                }
+                    .navigationTitle("Home")
+                
+            }
         }
     }
 }
 
-#Preview {
-    HomeView()
+struct HomeView_Previews: PreviewProvider {
+    static var previews: some View {
+        HomeView()
+    }
 }
+
+
+
