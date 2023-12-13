@@ -22,6 +22,10 @@ struct NavView: View {
                 NavigationLink(destination: MappView()) {
                     Text("Go to Mapp")
                 }
+                NavigationLink(destination: ReservationView()) {
+                    Text("Go to Res")
+                }
+                
             }
             // .navigationTitle("Navigation Example")
         }
