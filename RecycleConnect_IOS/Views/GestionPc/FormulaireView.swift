@@ -32,7 +32,7 @@ struct LivraisonFormView: View {
     }
 
     var body: some View {
-        NavigationView {
+       // NavigationView {
             VStack {
                 Spacer()
 
@@ -143,7 +143,7 @@ struct LivraisonFormView: View {
                     Text("Annuler")
                 }
             )*/
-        }
+        //}
     }
 }
 /*

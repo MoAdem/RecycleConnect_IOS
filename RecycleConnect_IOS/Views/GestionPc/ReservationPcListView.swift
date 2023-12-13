@@ -10,7 +10,7 @@ struct ReservationPcListView: View {
     @ObservedObject var viewModel = ReservationPcViewModel()
 
     var body: some View {
-        NavigationView {
+      // NavigationView {
             ZStack{
                 List {
                     ForEach(viewModel.reservationPcs.indices, id: \.self) { index in
@@ -31,9 +31,9 @@ struct ReservationPcListView: View {
                 }
            }
                 
-            }
+           }
         
-    }
+    //}
 }
 /*   .navigationTitle("Reservation PC")
    .navigationBarTitleDisplayMode(.inline)

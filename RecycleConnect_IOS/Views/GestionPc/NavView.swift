@@ -29,7 +29,7 @@ struct NavView: View {
 
 
             }
-        }
+        } 
     }
 }
 

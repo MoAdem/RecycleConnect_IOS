@@ -12,7 +12,7 @@ struct PcListView: View {
     @ObservedObject var reservationViewModel = ReservationPcViewModel() // Ajout de la viewModel pour les réservations
 
     var body: some View {
-        NavigationView {
+        //NavigationView {
             List(viewModel.pcs) { pc in
                 Button(action: {
                     // Action à effectuer lors du clic sur PcCardView
@@ -30,10 +30,10 @@ struct PcListView: View {
             .listRowBackground(Color.clear)
             //.navigationTitle("Points de Collecte")
             //.navigationBarTitleDisplayMode(.inline)
-            .navigationBarBackButtonHidden(false)
+           
             
         }
-    }
+    //}
 }
 
 struct PcListView_Previews: PreviewProvider {

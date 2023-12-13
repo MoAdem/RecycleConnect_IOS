@@ -13,6 +13,7 @@ struct ReservationPcCardView: View {
 
     var body: some View {
         
+        
         HStack(spacing: 7) {
             VStack(alignment: .leading, spacing: 9) {
                 HStack {

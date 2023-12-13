@@ -13,19 +13,24 @@ struct AnnotationItem: Identifiable {
 }
 
 struct MappView: View {
+    
+    
     @State private var mapRegion: MKCoordinateRegion
     let annotations: [AnnotationItem]
-
+    
     init(mapRegion: MKCoordinateRegion, annotations: [AnnotationItem]) {
         self._mapRegion = State(initialValue: mapRegion)
         self.annotations = annotations
     }
-
+    
     var body: some View {
+        //NavigationView{
+        
         Map(coordinateRegion: $mapRegion, showsUserLocation: true, annotationItems: annotations) { annotationItem in
             MapPin(coordinate: annotationItem.annotation.coordinate, tint: .red)
         }
     }
+//}
 }
 
 
