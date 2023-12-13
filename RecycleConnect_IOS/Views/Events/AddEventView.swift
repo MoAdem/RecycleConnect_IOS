@@ -15,6 +15,8 @@ struct AddEventView: View {
     @State private var adressEvent = ""
     @State private var PhotoEvent: UIImage?
     @State private var photopickerItem: PhotosPickerItem?
+    @State private var isEventSaved = false
+    @Environment(\.presentationMode) var presentationMode
     @State private var startEvent = Date()
     @StateObject var eventViewModel = EventViewModel()
     var body: some View {
@@ -71,17 +73,19 @@ struct AddEventView: View {
                                 start: startEvent,
                                 photo: base64String
                             )
+                            isEventSaved = true
+                            
+                            //return to previous view
+                            presentationMode.wrappedValue.dismiss()
                         } else {
                             // Handle the case where PhotoEvent is nil or couldn't be converted to data
                             print("Error converting image to data.")
                         }
                     }
 
-                    .alert(item: $eventViewModel.alertItem) { alertitem in
-                                Alert(title: alertitem.title,message: alertitem.message, dismissButton: alertitem.dismissButton)
-                            }
                 }
             }
+            
         }
         .accentColor(Color.colorGreen)
     }

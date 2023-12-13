@@ -10,7 +10,7 @@ import Foundation
 final class EventsServices {
     static let shared = EventsServices()
 
-    static let baseUrl = "http://172.18.15.71:5000/"
+    static let baseUrl = "https://recycleconnect.onrender.com/"
     static let getalleventsUrl = baseUrl + "api/events/"
     static let deleteeventUrl = baseUrl + "api/events/delete/:id"
     static let addevetUrl = baseUrl + "api/events/create"
