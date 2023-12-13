@@ -4,6 +4,7 @@ struct PanierView: View {
     @State private var isLivraisonSelected = true
     @State private var showAlert = false
 
+    @State private var isEditing = false
     @State private var articles: [article] = [
         article(id: "1", PhotoArticle: URL(string: "https://example.com/image1.jpg")!, NomArticle: "Article 1", DescriptionArticle: "Description de l'article 1", EtatArticle: "Good", Categorie: "Category 1", __v: 1, isSelected: false),
         article(id: "2", PhotoArticle: URL(string: "https://example.com/image2.jpg")!, NomArticle: "Article 2", DescriptionArticle: "Description de l'article 2", EtatArticle: "Excellent", Categorie: "Category 2", __v: 2, isSelected: false),
@@ -19,7 +20,7 @@ struct PanierView: View {
                     .padding(40)
                     .padding(.bottom, 16)
                     .foregroundColor(Color(hex: "0C8A7B"))
-
+                
                 List {
                     ForEach(articles) { article in
                         ArticleRow(article: article, onDelete: {
@@ -32,11 +33,11 @@ struct PanierView: View {
                     .onDelete(perform: deletePanierItems)
                 }
                 .listStyle(PlainListStyle())
-
+                
                 HStack {
                     Text("Méthode de Récupération : ")
                         .font(.headline)
-
+                    
                     Image("voit")
                         .resizable()
                         .frame(width: 30, height: 30)
@@ -47,9 +48,9 @@ struct PanierView: View {
                         .onTapGesture {
                             isLivraisonSelected = true
                         }
-
+                    
                     Spacer()
-
+                    
                     Image(systemName: "building.2.fill")
                         .resizable()
                         .frame(width: 30, height: 30)
@@ -62,28 +63,28 @@ struct PanierView: View {
                         }
                 }
                 .padding(.top, 16)
-
-             /*   NavigationLink(destination: isLivraisonSelected ? AnyView(LivraisonFormView(, isEditing: <#Binding<Bool>#>)) : AnyView(PcListView()), isActive: $showAlert) {
+                
+                NavigationLink(destination: isLivraisonSelected ? AnyView(LivraisonFormView(isEditing: $isEditing)) : AnyView(PcListView()), isActive: $showAlert) {
                     EmptyView()
-                }
-                .hidden()*/
-
-                Button("Valider la commande") {
-                    if articles.isEmpty {
-                        showAlert = true
-                    } else {
-                        showAlert = true
+                    
+                        .hidden()
+                    
+                    Button("Valider la commande") {
+                        if articles.isEmpty {
+                            showAlert = true
+                        } else {
+                            showAlert = true
+                        }
                     }
-                }
-                .buttonStyle(DynamicButtonStyle(color: "0C8A7B", shape: .capsule))
-                .foregroundColor(.white)
-                .padding(.top, 16)
-                /*.alert(isPresented: $showAlert) {
-                    Alert(title: Text("Panier Vide"), message: Text("Ajoutez des articles à votre panier avant de valider la commande."), dismissButton: .default(Text("OK")))
-                }*/
-
-                Spacer()
-            }
+                    .buttonStyle(DynamicButtonStyle(color: "0C8A7B", shape: .capsule))
+                    .foregroundColor(.white)
+                    .padding(.top, 16)
+                    /*.alert(isPresented: $showAlert) {
+                     Alert(title: Text("Panier Vide"), message: Text("Ajoutez des articles à votre panier avant de valider la commande."), dismissButton: .default(Text("OK")))
+                     }*/
+                    
+                    Spacer()
+                }}
             .padding(16)
             .background(Color.white.edgesIgnoringSafeArea(.all))
             .navigationBarTitle("", displayMode: .inline)

@@ -25,9 +25,11 @@ struct NavView: View {
                     Text ("Go to Details Livraison")
                 }
                 NavigationLink(destination: ReservationPcListView()){
-                    Text ("Go to Reservation")
+                    Text ("Go to Reservation pc")
                 }
-
+                NavigationLink(destination: ReservationView()){
+                    Text ("Go to reservation & panier")
+                }
 
             }
         }

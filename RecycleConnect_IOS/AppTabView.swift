@@ -24,6 +24,10 @@ struct AppTabView: View {
                 .tabItem {
                     Label("Profile", systemImage: "person.crop.circle")
                 }
+            NewsListView()
+                .tabItem {
+                    Label("News", systemImage: "newspaper.fill")
+                }
            /* categorielist()
                 .tabItem {
                     Label("Categories", systemImage: "calendar")
