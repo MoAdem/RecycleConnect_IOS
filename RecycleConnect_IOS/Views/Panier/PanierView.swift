@@ -63,10 +63,10 @@ struct PanierView: View {
                 }
                 .padding(.top, 16)
 
-                NavigationLink(destination: isLivraisonSelected ? AnyView(LivraisonFormView()) : AnyView(PcListView()), isActive: $showAlert) {
+             /*   NavigationLink(destination: isLivraisonSelected ? AnyView(LivraisonFormView(, isEditing: <#Binding<Bool>#>)) : AnyView(PcListView()), isActive: $showAlert) {
                     EmptyView()
                 }
-                .hidden()
+                .hidden()*/
 
                 Button("Valider la commande") {
                     if articles.isEmpty {

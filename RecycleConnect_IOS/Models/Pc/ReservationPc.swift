@@ -5,20 +5,39 @@
 //  Created by Marsaoui Mariem on 29/11/2023.
 //
 
+
 import Foundation
 
-struct ReservationPc: Identifiable {
-    let id = UUID()
-    let Nom_R: String
-    let id_Pc: String
+struct ReservationPc: Identifiable, Codable {
+    var id: String?
+    let nomR: String
+    let idPc: String
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "_id"
+        case nomR = "Nom_R"
+        case idPc = "id_Pc"
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decodeIfPresent(String.self, forKey: .id)
+        nomR = try container.decode(String.self, forKey: .nomR)
+        idPc = try container.decode(String.self, forKey: .idPc)
+    }
+
+    init(nomR: String, idPc: String) {
+        self.id
+        self.nomR = nomR
+        self.idPc = idPc
+    }
 }
 
-let sampleReservationPcs: [ReservationPc] = [
-    ReservationPc(Nom_R: "Commande 1", id_Pc: "Point Collecte 1"),
-    ReservationPc(Nom_R: "Commande 2", id_Pc: "Point Collecte 2"),
-]
-
-
-
+extension ReservationPc {
+    static func decode(from data: Data) throws -> [ReservationPc] {
+        let decoder = JSONDecoder()
+        return try decoder.decode([ReservationPc].self, from: data)
+    }
+}
 
 

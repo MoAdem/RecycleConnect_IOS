@@ -5,33 +5,34 @@
 //  Created by Marsaoui Mariem on 29/11/2023.
 //
 
+
 import SwiftUI
 
 struct NavView: View {
+    @State private var isEditing = false
+
     var body: some View {
         NavigationView {
             VStack(spacing: 20) {
                 NavigationLink(destination: PcListView()) {
-                    Text("Go to Pc")
+                    Text("Go to Point Collecte")
                 }
 
-                NavigationLink(destination: LivraisonFormView()) {
+                NavigationLink(destination: LivraisonFormView(isEditing: $isEditing)) {
                     Text("Go to Formulaire")
                 }
+                NavigationLink(destination: DetailsLivListView()){
+                    Text ("Go to Details Livraison")
+                }
+                NavigationLink(destination: ReservationPcListView()){
+                    Text ("Go to Reservation")
+                }
 
-                NavigationLink(destination: MappView()) {
-                    Text("Go to Mapp")
-                }
-                NavigationLink(destination: ReservationView()) {
-                    Text("Go to Res")
-                }
-                
+
             }
-            // .navigationTitle("Navigation Example")
         }
     }
 }
-
 
 
 struct NavView_Previews: PreviewProvider {
@@ -39,4 +40,3 @@ struct NavView_Previews: PreviewProvider {
         NavView()
     }
 }
-
