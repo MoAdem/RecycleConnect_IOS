@@ -3,6 +3,13 @@ import SwiftUI
 struct EventDetailView: View {
     let event: Events
     @Binding var isShowingDetailView: Bool
+    @ObservedObject var viewModel: EventViewModel
+
+        init(event: Events, isShowingDetailView: Binding<Bool>, viewModel: EventViewModel) {
+            self.event = event
+            self._isShowingDetailView = isShowingDetailView
+            self.viewModel = viewModel
+        }
 
     var body: some View {
         VStack {
@@ -35,18 +42,17 @@ struct EventDetailView: View {
                         .padding(.bottom, 5)
                         .padding(.leading)
                     Spacer()
-                    HStack(spacing : 20){
-                        Text("Going:")
-                            .font(Font.custom("Roboto", size: 13))
-                            .foregroundColor(Color(red: 0.51, green: 0.54, blue: 0.54))
-                            .padding(.top, 0)
-        
-                        Text("Intrested:")
-                            .font(Font.custom("Roboto", size: 13))
-                            .foregroundColor(Color(red: 0.51, green: 0.54, blue: 0.54))
-                            .padding(.top, 0)
-                        
-                    }
+                    HStack(spacing: 19) {
+                                    Text("Going: \(event.going.count)")
+                                        .font(Font.custom("Roboto", size: 13))
+                                        .foregroundColor(Color(red: 0.51, green: 0.54, blue: 0.54))
+                                        .padding(.top, 0)
+
+                                    Text("Interested: \(event.interested.count)")
+                                        .font(Font.custom("Roboto", size: 13))
+                                        .foregroundColor(Color(red: 0.51, green: 0.54, blue: 0.54))
+                                        .padding(.top, 0)
+                                }
                     .padding(.trailing, 40)
 
 
@@ -91,39 +97,41 @@ struct EventDetailView: View {
             Spacer()
             HStack{
                 Button(action: {
-                     print("Interested button tapped")
-                 }) {
-                     Label("Interested", systemImage: "heart.fill")
-                         .font(.custom("Roboto", size: 15).weight(.semibold))
-                         .padding(.horizontal, 5)
-                         .padding(.vertical, 5)
-                         .background(Color.white)
-                         .foregroundColor(Color.colorGreen)
-                         .cornerRadius(8)
-                         .overlay(
-                             RoundedRectangle(cornerRadius: 8)
-                                 .stroke(Color.colorGreen, lineWidth: 1)
-                         )
-                 }
+                                viewModel.markInterested(eventId: event._id)
+                            }) {
+                                Label("Interested", systemImage: "heart.fill")
+                                    .font(.custom("Roboto", size: 15).weight(.semibold))
+                                    .padding(.horizontal, 5)
+                                    .padding(.vertical, 5)
+                                    .background(Color.white)
+                                    .foregroundColor(Color.colorGreen)
+                                    .cornerRadius(8)
+                                    .frame(maxWidth: 120, maxHeight: 30)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 8)
+                                            .stroke(Color.colorGreen, lineWidth: 1)
+                                    )
+                            }
 
+                            Button(action: {
+                                viewModel.markGoing(eventId: event._id)
+                            }) {
+                                Label("Going", systemImage: "checkmark.square.fill")
+                                    .font(.custom("Roboto", size: 15).weight(.semibold))
+                                    .padding(.horizontal, 5)
+                                    .padding(.vertical, 5)
+                                    .background(Color.white)
+                                    .foregroundColor(Color.colorGreen)
+                                    .cornerRadius(8)
+                                    .frame(maxWidth: 120 , maxHeight: 30)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 8)
+                                            .stroke(Color.colorGreen, lineWidth: 1)
+                                    )
+                            }
+                        }
+                        .padding(.bottom, 20)
 
-                 Button(action: {
-                     print("Going button tapped")
-                 }) {
-                     Label("Going", systemImage: "checkmark.square.fill")
-                         .font(.custom("Roboto", size: 15).weight(.semibold))
-                         .padding(.horizontal, 5)
-                         .padding(.vertical, 5)
-                         .background(Color.white)
-                         .foregroundColor(Color.colorGreen)
-                         .cornerRadius(8)
-                         .overlay(
-                             RoundedRectangle(cornerRadius: 8)
-                                 .stroke(Color.colorGreen, lineWidth: 1)
-                         )
-                 }
-            }
-            .padding(.bottom, 20)
 
         }
         .frame(width: 320, height: 525)
@@ -140,6 +148,11 @@ struct EventDetailView: View {
 
 struct DetailEventView_Previews: PreviewProvider {
     static var previews: some View {
-        EventDetailView(event: MockData.sampleEvent, isShowingDetailView: .constant(true))
+        let viewModel = EventViewModel()
+        viewModel.events = [MockData.sampleEvent]
+        
+        return EventDetailView(event: MockData.sampleEvent, isShowingDetailView: .constant(true), viewModel: viewModel)
+            .environmentObject(viewModel)
     }
+    
 }

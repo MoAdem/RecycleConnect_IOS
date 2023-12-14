@@ -86,6 +86,41 @@ final class EventViewModel: ObservableObject {
         }
     }
 
+    func markInterested(eventId: String) {
+        isLoding = true
+        EventsServices.shared.markInterested(eventId: eventId) { [self] result in
+            DispatchQueue.main.async {
+                isLoding = false
+                switch result {
+                case .success(let updatedEvent):
+                    if let index = events.firstIndex(where: { $0._id == updatedEvent._id }) {
+                        events[index] = updatedEvent
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
+    }
+
+    func markGoing(eventId: String) {
+        isLoding = true
+        EventsServices.shared.markGoing(eventId: eventId) { [self] result in
+            DispatchQueue.main.async {
+                isLoding = false
+                switch result {
+                case .success(let updatedEvent):
+                    if let index = events.firstIndex(where: { $0._id == updatedEvent._id }) {
+                        events[index] = updatedEvent
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
+    }
+
+
 
 
 

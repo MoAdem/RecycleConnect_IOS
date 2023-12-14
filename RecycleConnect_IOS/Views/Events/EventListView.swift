@@ -38,7 +38,7 @@ struct EventListView: View {
             }
             .blur(radius: eventViewModel.isShowingDetailView ? 20 : 0)
             if eventViewModel.isShowingDetailView {
-                EventDetailView(event: eventViewModel.selectedEvent!, isShowingDetailView: $eventViewModel.isShowingDetailView)
+                EventDetailView(event: eventViewModel.selectedEvent!, isShowingDetailView: $eventViewModel.isShowingDetailView , viewModel: eventViewModel)
             }
             if eventViewModel.isLoding{
                 LodingView()

@@ -135,6 +135,88 @@ final class EventsServices {
         }
         task.resume()
     }
+    
+
+    func markInterested(eventId: String, completion: @escaping (Result<Events, EVError>) -> Void) {
+        guard let url = URL(string: "\(EventsServices.baseUrl)api/events/\(eventId)/interested") else {
+            completion(.failure(.invalidURL))
+            return
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST" 
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let _ = error {
+                completion(.failure(.unableToComplete))
+                return
+            }
+
+            guard let response = response as? HTTPURLResponse else {
+                completion(.failure(.invalidResponse))
+                return
+            }
+
+            guard response.statusCode == 200 else {
+                completion(.failure(.invalidData))
+                return
+            }
+
+            // If the server returns the updated event data, you may need to decode it
+            if let data = data {
+                do {
+                    let decoder = JSONDecoder()
+                    let decodedResponse = try decoder.decode(Events.self, from: data)
+                    completion(.success(decodedResponse))
+                } catch {
+                    completion(.failure(.invalidData))
+                }
+            }
+        }
+
+        task.resume()
+    }
+
+    func markGoing(eventId: String, completion: @escaping (Result<Events, EVError>) -> Void) {
+        guard let url = URL(string: "\(EventsServices.baseUrl)api/events/\(eventId)/going") else {
+            completion(.failure(.invalidURL))
+            return
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST" 
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let _ = error {
+                completion(.failure(.unableToComplete))
+                return
+            }
+
+            guard let response = response as? HTTPURLResponse else {
+                completion(.failure(.invalidResponse))
+                return
+            }
+
+            guard response.statusCode == 200 else {
+                completion(.failure(.invalidData))
+                return
+            }
+
+            // If the server returns the updated event data, you may need to decode it
+            if let data = data {
+                do {
+                    let decoder = JSONDecoder()
+                    let decodedResponse = try decoder.decode(Events.self, from: data)
+                    completion(.success(decodedResponse))
+                } catch {
+                    completion(.failure(.invalidData))
+                }
+            }
+        }
+
+        task.resume()
+    }
+
+    
 
 
 
