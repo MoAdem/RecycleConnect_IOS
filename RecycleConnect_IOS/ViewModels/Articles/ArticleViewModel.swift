@@ -18,6 +18,10 @@ class ArticleViewModel: ObservableObject {
         @Published var EtatArticle: String = ""
         @Published var Categorie: String = ""
         @Published var PhotoArticleData: Data?
+        @Published var searchQuery: String = ""
+       @Published var searchResult: article?
+       @Published var sortedArticles: [article] = []
+
 
 
 
@@ -87,7 +91,7 @@ class ArticleViewModel: ObservableObject {
     
     
     
-    func UpdateArticle(articleId: String) {
+    /*func UpdateArticle(articleId: String) {
             guard let photoData = PhotoArticleData else {
                 print("No photo selected")
                 return
@@ -108,7 +112,35 @@ class ArticleViewModel: ObservableObject {
                     print("Error creating article: \(error)")
                 }
             }
-        }
+        }*/
+    
+    func SearchArticle() {
+           ArticleServices.shared.SearchArticleByNom(nomArticle: searchQuery) { result in
+               switch result {
+               case .success(let article):
+                   DispatchQueue.main.async {
+                       self.searchResult = article
+                   }
+               case .failure(let error):
+                   print("Error searching article: \(error)")
+               }
+           }
+       }
+
+
+       func SortArticles() {
+           ArticleServices.shared.SortArticlesByNomAsc { result in
+               switch result {
+               case .success(let articles):
+                   DispatchQueue.main.async {
+                       self.sortedArticles = articles
+                   }
+               case .failure(let error):
+                   print("Error sorting articles: \(error)")
+               }
+           }
+       }
+
     
 
     

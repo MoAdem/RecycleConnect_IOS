@@ -12,6 +12,7 @@ struct articlereview: View {
     @ObservedObject private var reviewViewModel = ReviewViewModel()
     @State private var newRating: Double = 0
     @State private var newComment: String = "Saisir un nouveau commentaire"
+    @State private var isReviewSubmitted: Bool = false
     
     
     var body: some View {
@@ -37,7 +38,6 @@ struct articlereview: View {
                     .padding(.bottom)
                     .contextMenu {
                         Button(action: {
-                            // Handle delete action
                             reviewViewModel.DeleteReview(reviewId: review.id)
                         }) {
                             Text("Delete")
@@ -60,7 +60,7 @@ struct articlereview: View {
                 .font(.headline)
             HStack {
                 ForEach(1..<6) { star in
-                    Image(systemName: star <= Int(newRating) ? "star.fill" : "star")
+                    Image(systemName: star <= $reviewViewModel.Note ? "star.fill" : "star")
                         .foregroundColor(Color(red: 0.05, green: 0.54, blue: 0.48))
                         .font(.system(size: 25))
                         .frame(width: 35, height: 35)
@@ -69,7 +69,7 @@ struct articlereview: View {
                         }
                 }
             }
-            TextEditor(text: $newComment)
+            TextEditor(text: $reviewViewModel.Avis)
                 .padding(5)
                 .cornerRadius(8)
                 .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color(red: 0.05, green: 0.54, blue: 0.48), lineWidth: 2))
@@ -77,8 +77,21 @@ struct articlereview: View {
             
         }
         .padding()
-    }
-}
+        Button(action: {
+            reviewViewModel.Article="657a504a0bfed04fce065e9a"
+            reviewViewModel.CreateReview()
+                    }) {
+                        Text("Submit Review")
+                            .foregroundColor(.white)
+                            .padding()
+                            .background(Color(red: 0.05, green: 0.54, blue: 0.48))
+                            .cornerRadius(8)
+                    }
+                    .alert(isPresented: $isReviewSubmitted) {
+                        Alert(title: Text("Review Submitted"), message: Text("Your review has been submitted successfully."), dismissButton: .default(Text("OK")))
+                    }
+                }
+                    }
 
 
     
