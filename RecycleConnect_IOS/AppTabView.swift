@@ -20,18 +20,19 @@ struct AppTabView: View {
                 .tabItem {
                     Label("Events", systemImage: "calendar")
                 }
-            ProfileView(user: User(_id: "", username: "", email: "", address: "", password: "", telephone: 5658742, role: "", __v: 0))
-                .tabItem {
-                    Label("Profile", systemImage: "person.crop.circle")
-                }
+            
             NewsListView()
                 .tabItem {
                     Label("News", systemImage: "newspaper.fill")
                 }
-           categorielist()
+            ProfileView(user: User(_id: "", username: "", email: "", address: "", password: "", telephone: 5658742, role: "", __v: 0))
+                .tabItem {
+                    Label("Profile", systemImage: "person.crop.circle")
+                }
+           /*categorielist()
                 .tabItem {
                     Label("Categories", systemImage: "calendar")
-                }
+                }*/
             
         }
         .accentColor(Color("ColorGreen"))

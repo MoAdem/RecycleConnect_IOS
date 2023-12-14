@@ -21,8 +21,13 @@ struct articlelist: View {
                     VStack {
                         HStack {
                             Image(systemName: "magnifyingglass")
-                            TextField("Rechercher un article", text: $searchText)
-                                .frame(width: 270)
+                            TextField("Rechercher un article",
+                                      text: $searchText, onCommit: {
+                                       articleViewModel.searchQuery = searchText
+                                       articleViewModel.SearchArticle()
+                                                    })
+
+                                .frame(width: 240)
                                 .foregroundColor(.primary)
                         }
                         .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
@@ -70,9 +75,9 @@ struct articlelist: View {
             .onAppear {
                 articleViewModel.GetAllArticles()
             }
-            .onChange(of: articleViewModel.articles) {
+            /*.onChange(of: articleViewModel.articles) {
                 articleViewModel.GetAllArticles()
-            }
+            }*/
         }
 
 

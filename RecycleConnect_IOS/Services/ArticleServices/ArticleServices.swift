@@ -195,7 +195,7 @@ class ArticleServices {
         }
     
 
-    static func UpdateArticle(
+   /* static func UpdateArticle(
             articleId: String,
             NomArticle: String,
             DescriptionArticle: String,
@@ -262,19 +262,68 @@ class ArticleServices {
                     completion(.failure(.decodingError))
                 }
             }.resume()
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
+        }*/
+    func SearchArticleByNom(nomArticle: String, completion: @escaping (Result<article, Error>) -> Void) {
+          // let encodedNomArticle = nomArticle.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+           let url = URL(string: "http://localhost:5000/api/articles/search/\(nomArticle)")!
+           
+           var request = URLRequest(url: url)
+           request.httpMethod = "GET"
+           
+           URLSession.shared.dataTask(with: request) { data, response, error in
+               if let error = error {
+                   completion(.failure(error))
+                   return
+               }
+               
+               guard let data = data else {
+                   completion(.failure(NetworkError.decodingError))
+                   return
+               }
+               
+               do {
+                   let result = try JSONDecoder().decode([String: article].self, from: data)
+                   if let article = result["article"] {
+                       completion(.success(article))
+                   } else {
+                       completion(.failure(NetworkError.decodingError))
+                   }
+               } catch {
+                   completion(.failure(error))
+               }
+           }.resume()
+       }
+    
+       
+       func SortArticlesByNomAsc(completion: @escaping (Result<[article], Error>) -> Void) {
+           let url = URL(string: "\(baseURL)/sort")!
+           
+           var request = URLRequest(url: url)
+           request.httpMethod = "GET"
+           
+           URLSession.shared.dataTask(with: request) { data, response, error in
+               if let error = error {
+                   completion(.failure(error))
+                   return
+               }
+               
+               guard let data = data else {
+                   completion(.failure(NetworkError.decodingError))
+                   return
+               }
+               
+               do {
+                   let result = try JSONDecoder().decode([String: [article]].self, from: data)
+                   if let articles = result["articles"] {
+                       completion(.success(articles))
+                   } else {
+                       completion(.failure(NetworkError.decodingError))
+                   }
+               } catch {
+                   completion(.failure(error))
+               }
+           }.resume()
+       }
+    
 
 }

@@ -57,71 +57,72 @@ struct ResetPassword: View {
         @State private var isUpdatePasswordPresent = false
 
     var body: some View {
-        VStack{
-            Image("")
-                .resizable()
-                .scaledToFill()
-                .frame(width: 200, height: 200)
-                .padding(.bottom, 1)
-                .padding(.top ,1)
-                
-            HStack{
-                Text("Veuillez entrer votre adresse mail")
-                    .font(.system(size: 20))
-                    .fontWeight(.bold)
-                Spacer()
-            }
-            .padding(.leading, 35)
-            .padding(.bottom, 2)
-            HStack{
-                Text("Un code vous sera envoyé! ")
-                    .fontWeight(.bold)
-                    .font(.system(size: 20))
-                    .foregroundStyle(Color(Fonts.darkGreen))
-                
-                Spacer()
-            }
-            .padding(.leading, 35)
-            .padding(.bottom, 15)
-            
-            Image("reset")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 200)
-                .padding(.bottom, 30)
-                .padding(.top , 40)
-                .padding(.leading, 1)
-           
-            .padding(.leading, 35)
-            TextField("", text: $email,
-                      prompt: Text("Adresse mail")
-                
-            )
-            .disableAutocorrection(true)
-            .frame(width: 300, height: 50)
-            .padding(.leading, 20)
-            .overlay(
-                RoundedRectangle(cornerRadius: 50)
-                    .stroke(Color(Fonts.darkGreen),
-                            lineWidth: 1.5)
-            )
-            .padding(.bottom, 30)
-            if let error = emailError {
-                Text(error)
-                    .foregroundColor(.red)
+        NavigationView {
+            VStack{
+                Image("")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 200, height: 200)
                     .padding(.bottom, 1)
+                    .padding(.top ,1)
                 
-            }
-            
-            HStack {
-                Button{
-                    isResetPasswordPresented.toggle()
-                    validInput()
-                    sendPasswordReset()
+                HStack{
+                    Text("Veuillez entrer votre adresse mail")
+                        .font(.system(size: 20))
+                        .fontWeight(.bold)
+                    Spacer()
+                }
+                .padding(.leading, 35)
+                .padding(.bottom, 2)
+                HStack{
+                    Text("Un code vous sera envoyé! ")
+                        .fontWeight(.bold)
+                        .font(.system(size: 20))
+                        .foregroundStyle(Color(Fonts.darkGreen))
+                    
+                    Spacer()
+                }
+                .padding(.leading, 35)
+                .padding(.bottom, 15)
+                
+                Image("reset")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 200)
+                    .padding(.bottom, 30)
+                    .padding(.top , 40)
+                    .padding(.leading, 1)
+                
+                    .padding(.leading, 35)
+                TextField("", text: $email,
+                          prompt: Text("Adresse mail")
+                          
+                )
+                .disableAutocorrection(true)
+                .frame(width: 300, height: 50)
+                .padding(.leading, 20)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 50)
+                        .stroke(Color(Fonts.darkGreen),
+                                lineWidth: 1.5)
+                )
+                .padding(.bottom, 30)
+                if let error = emailError {
+                    Text(error)
+                        .foregroundColor(.red)
+                        .padding(.bottom, 1)
                     
                 }
                 
-            label: {
+                HStack {
+                    Button{
+                        isResetPasswordPresented.toggle()
+                        validInput()
+                        sendPasswordReset()
+                        
+                    }
+                    
+                label: {
                     ZStack{
                         RoundedRectangle(cornerRadius: 50)
                             .frame(width: 150, height: 40)
@@ -132,20 +133,21 @@ struct ResetPassword: View {
                             .font(.system(size: 18))
                     }
                     .alert(isPresented: $showAlert) {
-                        switch resetPasswordStatus  {
-                        case .resetSent:
+                        switch alertMessage {
+                        case "Code envoyé avec succès!":
                             return Alert(
                                 title: Text("Réinitialiser mot de passe"),
                                 message: Text(alertMessage),
                                 dismissButton: .default(
-                                              Text("OK"),
-                                              action: {
-                                                  nextView = .UpdatePassword
-                                                  presentNextView = true
-                                              }
-                                          )
-                                      )
-                        case .error:
+                                    Text("OK"),
+                                    action: {
+                                        isUpdatePasswordPresent = true
+                                    }
+                                )
+                            )
+                        case "":
+                            return Alert(title: Text(""), message: Text(""), dismissButton: .default(Text("")))
+                        default:
                             return Alert(
                                 title: Text("Erreur"),
                                 message: Text(alertMessage),
@@ -153,38 +155,16 @@ struct ResetPassword: View {
                                     Text("OK")
                                 )
                             )
-                        default:
-                            return Alert(title: Text(""), message: Text(""), dismissButton: .default(Text("")))
                         }
                     }
                 }
-                .padding(.leading, 130)
-                Spacer()
-            }
-            Spacer()
-        }
-        .ignoresSafeArea()
-        .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, maxHeight: .infinity)
-        .background(
-                   NavigationLink("", destination: UpdatePassword(), isActive: $isResetCodeSent)
-                       .opacity(0)
-                       .buttonStyle(PlainButtonStyle())
-               )
-               .onChange(of: showAlert) { newShowAlert in
-                   if !newShowAlert && alertMessage == "Code envoyé avec succès!" {
-                       presentNextView = true
-                   }
-               }
-               .alert(isPresented: $showAlert) {
-                   Alert(
-                       title: Text("Renitialiser mot de passe"),
-                       message: Text(alertMessage),
-                       dismissButton: .default(
-                           Text("OK")
-                       )
-                   )
-               }
-           
+                .background(
+                    NavigationLink("", destination: UpdatePassword(), isActive: $isUpdatePasswordPresent)
+                        .opacity(0)
+                        .buttonStyle(PlainButtonStyle())
+                )
+                }
+            }}
     }
     private func sendPasswordReset() {
         guard emailError == nil && !email.isEmpty else {

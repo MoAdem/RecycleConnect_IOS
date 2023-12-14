@@ -95,7 +95,7 @@ class ReviewServices {
             let parameters: [String: Any] = [
                 "Note": note,
                 "Avis": avis,
-                "ArticleId": articleId
+                "Article": articleId
             ]
 
             var request = URLRequest(url: url)
