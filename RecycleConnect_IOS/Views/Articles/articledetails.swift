@@ -11,6 +11,7 @@ import URLImage
 struct articledetails: View {
     @StateObject private var articleViewModel = ArticleViewModel()
         var article: article
+    @State private var isReservationViewPresented: Bool = false
 
         var body: some View {
             ZStack {
@@ -47,13 +48,17 @@ struct articledetails: View {
                     .padding(.bottom, 10)
                     
                     Button(action: {
-                    }) {
-                        Text("Réserver")
+                        isReservationViewPresented.toggle()
+                    })
+                    {       Text("Réserver")
                             .frame(maxWidth: .infinity)
                             .foregroundColor(Color(.white))
                             .padding(10)
                             .background(Color(red: 0.05, green: 0.54, blue: 0.48))
                             .cornerRadius(10)
+                    }
+                    .sheet(isPresented: $isReservationViewPresented) {
+                        ReservationView()
                     }
                     .padding(.bottom, 100)
                     .padding(.leading, 10)
