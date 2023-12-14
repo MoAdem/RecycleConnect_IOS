@@ -1,14 +1,14 @@
 import SwiftUI
 
-struct PanierView: View {
+/*struct PanierView: View {
     @State private var isLivraisonSelected = true
     @State private var showAlert = false
 
     @State private var isEditing = false
     @State private var articles: [article] = [
         article(id: "1", PhotoArticle: URL(string: "https://example.com/image1.jpg")!, NomArticle: "Article 1", DescriptionArticle: "Description de l'article 1", EtatArticle: "Good", Categorie: "Category 1", __v: 1, isSelected: false),
-        article(id: "2", PhotoArticle: URL(string: "https://example.com/image2.jpg")!, NomArticle: "Article 2", DescriptionArticle: "Description de l'article 2", EtatArticle: "Excellent", Categorie: "Category 2", __v: 2, isSelected: false),
-        article(id: "3", PhotoArticle: URL(string: "https://example.com/image3.jpg")!, NomArticle: "Article 3", DescriptionArticle: "Description de l'article 3", EtatArticle: "Average", Categorie: "Category 3", __v: 3, isSelected: false)
+        article(id: "2", PhotoArticle: URL(string: "https://example.com/image2.jpg")!, NomArticle: "Article 2", DescriptionArticle: "Description de l'article 2", EtatArticle: "Excellent", Categorie: "Category 2", __v: 0, isSelected: false),
+        article(id: "3", PhotoArticle: URL(string: "https://example.com/image3.jpg")!, NomArticle: "Article 3", DescriptionArticle: "Description de l'article 3", EtatArticle: "Average", Categorie: "Category 3", __v: 0, isSelected: false)
     ]
 
     var body: some View {
@@ -189,3 +189,4 @@ enum ButtonShape {
             PanierView()
         }
     }
+*/

@@ -17,7 +17,7 @@ struct article : Identifiable, Codable , Equatable
     var EtatArticle : String
     var Categorie : String?
     var __v : Int
-    var isSelected :Bool
+    
     enum CodingKeys: String, CodingKey {
             case id = "_id"
             case PhotoArticle = "PhotoArticle"
@@ -26,7 +26,6 @@ struct article : Identifiable, Codable , Equatable
             case EtatArticle = "EtatArticle"
             case Categorie = "Categorie"
             case __v = "__v"
-        case isSelected
         }
     
     

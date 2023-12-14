@@ -12,7 +12,7 @@ class ArticleViewModel: ObservableObject {
     @Published var articles: [article] = []
     @Published var article: article?
     
-        @Published var id: String = ""
+    @Published var id: String = ""
         @Published var NomArticle: String = ""
         @Published var DescriptionArticle: String = ""
         @Published var EtatArticle: String = ""
@@ -63,25 +63,54 @@ class ArticleViewModel: ObservableObject {
 
 
     
-    func CreateArticle(completion: @escaping (Result<article, ArticleServices.NetworkError>) -> Void) {
+    func CreateArticle() {
             guard let photoData = PhotoArticleData else {
-                completion(.failure(.photoNotProvided))
+                print("No photo selected")
                 return
             }
 
-
-            ArticleServices.shared.CreateArticle(
-                //id: id,
+            ArticleServices.CreateArticle(
                 NomArticle: NomArticle,
                 DescriptionArticle: DescriptionArticle,
                 EtatArticle: EtatArticle,
-                CategorieId: Categorie,
-                PhotoArticleData: photoData
+                Categorie: Categorie,
+                PhotoArticle: photoData
             ) { result in
-                DispatchQueue.main.async {
-                    completion(result)
+                switch result {
+                case .success(let article):
+                    print("Article created: \(article)")
+                case .failure(let error):
+                    print("Error creating article: \(error)")
                 }
             }
         }
     
+    
+    
+    func UpdateArticle(articleId: String) {
+            guard let photoData = PhotoArticleData else {
+                print("No photo selected")
+                return
+            }
+
+            ArticleServices.UpdateArticle(
+                articleId: articleId,
+                NomArticle: NomArticle,
+                DescriptionArticle: DescriptionArticle,
+                EtatArticle: EtatArticle,
+                Categorie: Categorie,
+                PhotoArticle: photoData
+            ) { result in
+                switch result {
+                case .success(let article):
+                    print("Article created: \(article)")
+                case .failure(let error):
+                    print("Error creating article: \(error)")
+                }
+            }
+        }
+    
+
+    
 }
+

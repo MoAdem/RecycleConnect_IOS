@@ -5,6 +5,8 @@
 //  Created by Marsaoui Mariem on 30/11/2023.
 //
 
+
+
 import SwiftUI
 
 enum SignUpViewStack{
@@ -139,4 +141,3 @@ struct SignUpView: View {
 #Preview {
     SignUpView()
 }
-

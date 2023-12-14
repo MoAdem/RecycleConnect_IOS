@@ -2,7 +2,7 @@
 //  categorieform.swift
 //  RecycleConnect_IOS
 //
-//  Created by Marsaoui Mariem on 29/11/2023.
+//  Created by Marsaoui Mariem on 28/11/2023.
 //
 
 import SwiftUI
@@ -66,7 +66,6 @@ struct categorieform: View {
         }
     }
 }
-
 
 #Preview {
     categorieform()

@@ -9,150 +9,114 @@ import SwiftUI
 
 
 struct ProfileView: View {
-    var body: some View {
-        NavigationView {
-            ScrollView {
-                VStack(alignment: .leading, spacing: 15) {
-                    HStack {
-                        Image("admin")
-                            .resizable()
-                            .frame(width: 100, height: 100)
-                            .cornerRadius(50)
-                        
-                        VStack(alignment: .leading, spacing: 5) {
-                            Text("Hanine bouguerra")
-                                .font(.title)
-                                .bold()
-                            
-                            Text("bouguerra.hanine@gmail.com")
-                                .font(.subheadline)
-                                .foregroundColor(.gray)
-                        }
-                    }
-                    .padding(.bottom, 30)
-                    
-                    NavigationLink(destination: Text("Change profile")) {
-                        Text("Changer profile")
-                            .font(.headline)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .foregroundColor(Color(Fonts.black))
-                            .background(Color(.systemGray6))
-                            .cornerRadius(8)
-                    }
-                    .background(Image("pro").resizable().scaledToFit().frame(
-                        width: 25, height:25).padding(.leading, 20), alignment: .leading)
-                    .buttonStyle(PlainButtonStyle())
-                    
-                    NavigationLink(destination: Text("Order History Page")) {
-                        Text("Méthodes de paiement")
-                            .font(.headline)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(Color(.systemGray6))
-                            .cornerRadius(8)
-                    }
-                    .background(Image("payment").resizable().scaledToFit().frame(
-                        width: 25, height:25).padding(.leading, 20), alignment: .leading)
-                    .buttonStyle(PlainButtonStyle())
-                    
-                    NavigationLink(destination: DetailsLivListView()) {
-                        Text("Details Livraison")
-                            .font(.headline)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(Color(.systemGray6))
-                            .cornerRadius(8)
-                    }
-                    .background(Image("delivery").resizable().scaledToFit().frame(
-                        width: 25, height:25).padding(.leading, 20), alignment: .leading)
-                    .buttonStyle(PlainButtonStyle())
-                    
-                    NavigationLink(destination: ReservationPcListView()) {
-                        Text("Details Reservation point collecte")
-                            .font(.headline)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(Color(.systemGray6))
-                            .cornerRadius(8)
-                    }
+    @StateObject var viewModel = UserViewModel()
+    var user: User
 
-                    .background(Image("delivery").resizable().scaledToFit().frame(
-                        width: 25, height:25).padding(.leading, 20), alignment: .leading)
-                    .buttonStyle(PlainButtonStyle())
+    var body: some View {
+        VStack(alignment: .leading, spacing: 15) {
+            VStack {
+                if let loggedInUsername = viewModel.loggedInUsername,
+                   let loggedInUserEmail = viewModel.loggedInUserEmail {
+                    Text("Username: \(loggedInUsername)")
+                    Text("Email: \(loggedInUserEmail)")
                     
-                    NavigationLink(destination: Text("Support Center Page")) {
-                        Text("Centre Support ")
-                            .font(.headline)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(Color(.systemGray6))
-                            .cornerRadius(8)
-                    }
-                    .buttonStyle(PlainButtonStyle())
-                    .background(Image("support").resizable().scaledToFit().frame(
-                        width: 25, height:25).padding(.leading, 20), alignment: .leading)
-                    NavigationLink(destination: AddEventView()) {
-                        Text("Add Events")
-                            .font(.headline)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(Color(.systemGray6))
-                            .cornerRadius(8)
-                    }
-                    .buttonStyle(PlainButtonStyle())
-                    .background(Image("support").resizable().scaledToFit().frame(
-                        width: 25, height:25).padding(.leading, 20), alignment: .leading)
-                    NavigationLink(destination: OrgEventsView()) {
-                        Text("My Events")
-                            .font(.headline)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(Color(.systemGray6))
-                            .cornerRadius(8)
-                    }
-                    .buttonStyle(PlainButtonStyle())
-                    .background(Image("support").resizable().scaledToFit().frame(
-                        width: 25, height:25).padding(.leading, 20), alignment: .leading)
-                    NavigationLink(destination: Text("Legal Policy Page")) {
-                        Text("Legal Policy")
-                            .font(.headline)
-                            .padding()
-                        
-                            .frame(maxWidth: .infinity)
-                            .background(Color(.systemGray6))
-                            .cornerRadius(8)
-                    }     .background(Image("legal").resizable().scaledToFit().frame(
-                        width: 25, height:25).padding(.leading, 20), alignment: .leading)
-                    .buttonStyle(PlainButtonStyle())
-                    .padding(.bottom, 20)
-                    
-                    Button(action: {
-                        //action button
-                    }) {
-                        HStack {
-                            Text("Se déconnecter")
-                                .foregroundColor(Color(Fonts.darkGreen))
-                                .fontWeight(.semibold)
-                                .font(.system(size: 18))
-                            
-                                .background(Image("log").resizable().scaledToFit().frame(
-                                    width: 25, height:25).padding(.leading, 140), alignment: .leading)
+                } else {
+                    ProgressView()
+                        .onAppear {
+                            if let loggedInUserID = viewModel.loggedInUserID {
+                                viewModel.fetchUser(_id: loggedInUserID)
+                            }
                         }
-                    }
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .cornerRadius(8)
-                    .buttonStyle(PlainButtonStyle())
                 }
             }
-        }
-    }
-}
+            .padding()
+            NavigationLink(destination: Text("Change profile")) {
+                Text("Changer profile")
+                    .font(.headline)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .foregroundColor(Color(Fonts.black))
+                    .background(Color(.systemGray6))
+                    .cornerRadius(8)
+            }
+            .background(Image("pro").resizable().scaledToFit().frame(
+                width: 25, height:25).padding(.leading, 20), alignment: .leading)
+            .buttonStyle(PlainButtonStyle())
+            
+            NavigationLink(destination: Text("Order History Page")) {
+                Text("Méthodes de paiement")
+                    .font(.headline)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color(.systemGray6))
+                    .cornerRadius(8)
+            }
+            .background(Image("payment").resizable().scaledToFit().frame(
+                width: 25, height:25).padding(.leading, 20), alignment: .leading)
+            .buttonStyle(PlainButtonStyle())
+            
+            NavigationLink(destination: Text("Delivery Address Page")) {
+                Text("Adresse livraison")
+                    .font(.headline)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color(.systemGray6))
+                    .cornerRadius(8)
+            }
+            .background(Image("delivery").resizable().scaledToFit().frame(
+                width: 25, height:25).padding(.leading, 20), alignment: .leading)
+            .buttonStyle(PlainButtonStyle())
+            
+            NavigationLink(destination: Text("Support Center Page")) {
+                Text("Centre Support ")
+                    .font(.headline)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color(.systemGray6))
+                    .cornerRadius(8)
+            }
+            .buttonStyle(PlainButtonStyle())
+            .background(Image("support").resizable().scaledToFit().frame(
+                width: 25, height:25).padding(.leading, 20), alignment: .leading)
+            NavigationLink(destination: Text("Legal Policy Page")) {
+                Text("Legal Policy")
+                    .font(.headline)
+                    .padding()
+                
+                    .frame(maxWidth: .infinity)
+                    .background(Color(.systemGray6))
+                    .cornerRadius(8)
+            }     .background(Image("legal").resizable().scaledToFit().frame(
+                width: 25, height:25).padding(.leading, 20), alignment: .leading)
+            .buttonStyle(PlainButtonStyle())
+            .padding(.bottom, 20)
+
+            Button(action: {
+                                //action button
+                                         }) {
+                                            HStack {
+                                                 Text("Se déconnecter")
+                                                     .foregroundColor(Color(Fonts.darkGreen))
+                                                     .fontWeight(.semibold)
+                                                     .font(.system(size: 18))
+                                                 
+                                                     .background(Image("log").resizable().scaledToFit().frame(
+                                                         width: 25, height:25).padding(.leading, 140), alignment: .leading)
+                                            }
+                                         }
+                                         .padding()
+                                         .frame(maxWidth: .infinity)
+                                         .cornerRadius(8)
+                                         .buttonStyle(PlainButtonStyle())
+                                         .onAppear {
+                                             viewModel.fetchUser(_id:user._id )
+                                                     }
+                                                 }
+                                             }
+                   }
 
 
 #Preview {
-    ProfileView()
+    ProfileView(user: User(_id: "", username: "", email: "", address: "", password: "", telephone: 5658742, role: "", __v: 0))
 }
-
 
