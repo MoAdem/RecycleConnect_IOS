@@ -7,7 +7,7 @@
 
 
 import SwiftUI
-
+/*
 struct NavView: View {
     @State private var isEditing = false
 
@@ -42,3 +42,4 @@ struct NavView_Previews: PreviewProvider {
         NavView()
     }
 }
+*/

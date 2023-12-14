@@ -71,14 +71,14 @@ struct ReservationView: View {
                 )
             }
             .background(
-               /* NavigationLink(
+                NavigationLink(
                     destination: PanierView(),
                     isActive: $isPanierViewActive,
                     label: {
                         EmptyView()
                     }
                 )
-                .hidden()*/
+                .hidden()
             )
         }
     }

@@ -1,20 +1,20 @@
 import SwiftUI
 
-/*struct PanierView: View {
+struct PanierView: View {
     @State private var isLivraisonSelected = true
     @State private var showAlert = false
 
     @State private var isEditing = false
     @State private var articles: [article] = [
-        article(id: "1", PhotoArticle: URL(string: "https://example.com/image1.jpg")!, NomArticle: "Article 1", DescriptionArticle: "Description de l'article 1", EtatArticle: "Good", Categorie: "Category 1", __v: 1, isSelected: false),
-        article(id: "2", PhotoArticle: URL(string: "https://example.com/image2.jpg")!, NomArticle: "Article 2", DescriptionArticle: "Description de l'article 2", EtatArticle: "Excellent", Categorie: "Category 2", __v: 0, isSelected: false),
-        article(id: "3", PhotoArticle: URL(string: "https://example.com/image3.jpg")!, NomArticle: "Article 3", DescriptionArticle: "Description de l'article 3", EtatArticle: "Average", Categorie: "Category 3", __v: 0, isSelected: false)
+        article(id: "1", PhotoArticle: URL(string: "https://example.com/image1.jpg")!, NomArticle: "Article 1", DescriptionArticle: "Description de l'article 1", EtatArticle: "Good", Categorie: "Category 1", __v: 1),
+        article(id: "2", PhotoArticle: URL(string: "https://example.com/image2.jpg")!, NomArticle: "Article 2", DescriptionArticle: "Description de l'article 2", EtatArticle: "Excellent", Categorie: "Category 2", __v: 0),
+        article(id: "3", PhotoArticle: URL(string: "https://example.com/image3.jpg")!, NomArticle: "Article 3", DescriptionArticle: "Description de l'article 3", EtatArticle: "Average", Categorie: "Category 3", __v: 0 )
     ]
 
     var body: some View {
-        NavigationView {
+       // NavigationView {
             VStack {
-                Text("Article Sélectionné: \(articles.filter { $0.isSelected }.count)")
+                Text("Article Sélectionné")
                     .font(.title)
                     .fontWeight(.bold)
                     .padding(40)
@@ -88,7 +88,7 @@ import SwiftUI
             .padding(16)
             .background(Color.white.edgesIgnoringSafeArea(.all))
             .navigationBarTitle("", displayMode: .inline)
-        }
+        //}
         .navigationViewStyle(StackNavigationViewStyle())
     }
 
@@ -105,7 +105,7 @@ import SwiftUI
 
     private func toggleSelection(for article: article) {
         if let index = articles.firstIndex(where: { $0.id == article.id }) {
-            articles[index].isSelected.toggle()
+            
         }
     }
 }
@@ -120,15 +120,12 @@ struct ArticleRow: View {
             Image(systemName: "photo") // Replace with your image
                 .resizable()
                 .frame(width: 50, height: 50) // Adjust the size as needed
-
+            
             Text(article.NomArticle)
                 .font(.headline)
                 .padding(.top, 4)
-
-            Text(article.isSelected ? "Selected" : "Not Selected")
-                .font(.caption)
-                .foregroundColor(article.isSelected ? Color.green : Color.red)
-                .padding(.bottom, 4)
+            
+            
         }
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -145,11 +142,8 @@ struct ArticleRow: View {
         .onTapGesture {
             onTap()
         }
-        .rotation3DEffect(
-            .degrees(article.isSelected ? 10 : 0),
-            axis: (x: 0.5, y: 10.0, z: 0.5)
-        )
-        .animation(.spring())
+        
+  
     }
 }
 
@@ -189,4 +183,4 @@ enum ButtonShape {
             PanierView()
         }
     }
-*/
+
