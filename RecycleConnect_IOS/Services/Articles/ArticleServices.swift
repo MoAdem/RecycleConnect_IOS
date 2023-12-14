@@ -11,7 +11,8 @@ import SwiftUI
 class ArticleServices {
     static let shared = ArticleServices()
         
-        let baseURL = "http://localhost:5000/api/articles"
+       //let baseURL = "https://recycleconnect.onrender.com/api/articles"
+    let baseURL = "http://localhost:5000/api/articles"
         
         enum NetworkError: Error {
             case invalidURL
@@ -23,46 +24,46 @@ class ArticleServices {
         
     
     func GetAllArticles(completion: @escaping (Result<[article], Error>) -> Void) {
-            guard let url = URL(string: baseURL) else {
-                completion(.failure(NetworkError.invalidURL))
-                return
+                guard let url = URL(string: baseURL) else {
+                    completion(.failure(NetworkError.invalidURL))
+                    return
+                }
+            
+                var request = URLRequest(url: url)
+                request.httpMethod = "GET"
+
+
+                URLSession.shared.dataTask(with: request) { data, response, error in
+                    if let error = error {
+                        print("Error: \(error.localizedDescription)")
+                        completion(.failure(error))
+                        return
+                    }
+
+
+                    guard let data = data else {
+                        print("No data received")
+                        completion(.failure(NetworkError.decodingError))
+                        return
+                    }
+
+
+                    if let jsonString = String(data: data, encoding: .utf8) {
+                        print("Received Articles JSON string: \(jsonString)")
+                    } else {
+                        print("Received data is not a valid UTF-8 string.")
+                    }
+
+
+                    do {
+                        let articles = try JSONDecoder().decode([article].self, from: data)
+                        completion(.success(articles))
+                    } catch {
+                        print("Decoding error: \(error)")
+                        completion(.failure(error))
+                    }
+                }.resume()
             }
-        
-            var request = URLRequest(url: url)
-            request.httpMethod = "GET"
-
-
-            URLSession.shared.dataTask(with: request) { data, response, error in
-                if let error = error {
-                    print("Error: \(error.localizedDescription)")
-                    completion(.failure(error))
-                    return
-                }
-
-
-                guard let data = data else {
-                    print("No data received")
-                    completion(.failure(NetworkError.decodingError))
-                    return
-                }
-
-
-                if let jsonString = String(data: data, encoding: .utf8) {
-                    //print("Received Articles JSON string: \(jsonString)")
-                } else {
-                    print("Received data is not a valid UTF-8 string.")
-                }
-
-
-                do {
-                    let articles = try JSONDecoder().decode([article].self, from: data)
-                    completion(.success(articles))
-                } catch {
-                    print("Decoding error: \(error)")
-                    completion(.failure(error))
-                }
-            }.resume()
-        }
 
 
 

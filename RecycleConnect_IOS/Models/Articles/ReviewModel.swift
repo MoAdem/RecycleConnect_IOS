@@ -10,10 +10,10 @@ import Foundation
 struct review : Identifiable, Codable , Equatable
 //, Hashable
 {
-    var id : String?
-    var Note : String
+    var id : String
+    var Note : Int
     var Avis : String
-    var Article : String
+    var Article : String?
     var __v : Int
     
     enum CodingKeys: String, CodingKey {

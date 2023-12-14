@@ -46,7 +46,7 @@ class ReviewServices {
             
             
             if let jsonString = String(data: data, encoding: .utf8) {
-                //print("Received Reviews JSON string: \(jsonString)")
+                print("Received Reviews JSON string: \(jsonString)")
             } else {
                 print("Received data is not a valid UTF-8 string.")
             }
@@ -87,7 +87,7 @@ class ReviewServices {
     }
     
     
-    func createReview(note: Int, avis: String, articleId: String, completion: @escaping (Result<review, NetworkError>) -> Void) {
+    func CreateReview(note: Int, avis: String, articleId: String, completion: @escaping (Result<review, NetworkError>) -> Void) {
         guard let url = URL(string: baseURL) else {
             completion(.failure(NetworkError.invalidURL))
             return
@@ -111,7 +111,6 @@ class ReviewServices {
 
 
             URLSession.shared.dataTask(with: request) { data, response, error in
-                // Handle the response here
                 guard let httpResponse = response as? HTTPURLResponse,
                       (200...299).contains(httpResponse.statusCode) else {
                     completion(.failure(NetworkError.decodingError))

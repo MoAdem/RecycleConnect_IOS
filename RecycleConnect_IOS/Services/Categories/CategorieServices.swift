@@ -12,6 +12,7 @@ class CategorieServices {
     static let shared = CategorieServices()
         
         let baseURL = "http://localhost:5000/api/categories"
+    //let baseURL = "https://recycleconnect.onrender.com/api/categories"
         
         enum NetworkError: Error {
             case invalidURL
