@@ -24,7 +24,7 @@ struct articlelist: View {
                             TextField("Rechercher un article",
                                       text: $searchText, onCommit: {
                                        articleViewModel.searchQuery = searchText
-                                       articleViewModel.SearchArticle()
+                                       articleViewModel.SearchArticleByNom()
                                                     })
 
                                 .frame(width: 240)
@@ -41,7 +41,7 @@ struct articlelist: View {
 
 
                     LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
-                        ForEach(articleViewModel.articles) { article in
+                        ForEach(articleViewModel.searchArticles) { article in
                             NavigationLink(destination: articledetails(article: article)) {
                                 ArticleItemView(article: article, onDelete: { onDelete(article) })
                             }

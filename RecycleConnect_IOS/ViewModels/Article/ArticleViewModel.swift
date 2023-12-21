@@ -19,7 +19,7 @@ class ArticleViewModel: ObservableObject {
         @Published var Categorie: String = ""
         @Published var PhotoArticleData: Data?
         @Published var searchQuery: String = ""
-       @Published var searchResult: article?
+       @Published var searchArticles: [article] = []
        @Published var sortedArticles: [article] = []
 
 
@@ -114,18 +114,34 @@ class ArticleViewModel: ObservableObject {
             }
         }*/
     
-    func SearchArticle() {
-           ArticleServices.shared.SearchArticleByNom(nomArticle: searchQuery) { result in
-               switch result {
-               case .success(let article):
-                   DispatchQueue.main.async {
-                       self.searchResult = article
-                   }
-               case .failure(let error):
-                   print("Error searching article: \(error)")
-               }
-           }
-       }
+    func SearchArticleByNom() {
+            if searchQuery.isEmpty {
+                ArticleServices.shared.GetAllArticles{ result in
+                    switch result {
+                    case .success(let articles):
+                        DispatchQueue.main.async {
+                            self.articles = articles
+                        }
+                    case .failure(let error):
+                        print("Error fetching articles: \(error.localizedDescription)")
+                    }
+                }
+            } else {
+                ArticleServices.shared.searchArticleByNom(nomArticle: searchQuery) { result in
+                    switch result {
+                    case .success(let articles):
+                        DispatchQueue.main.async {
+                            self.searchArticles = articles
+                            print("searched vm", articles)
+                        }
+                    case .failure(let error):
+                        print("Error searching articles: \(error)")
+                    }
+                }
+            }
+        }
+
+
 
 
        func SortArticles() {

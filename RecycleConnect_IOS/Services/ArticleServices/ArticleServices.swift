@@ -263,36 +263,45 @@ class ArticleServices {
                 }
             }.resume()
         }*/
-    func SearchArticleByNom(nomArticle: String, completion: @escaping (Result<article, Error>) -> Void) {
-          // let encodedNomArticle = nomArticle.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-           let url = URL(string: "http://localhost:5000/api/articles/search/\(nomArticle)")!
-           
-           var request = URLRequest(url: url)
-           request.httpMethod = "GET"
-           
-           URLSession.shared.dataTask(with: request) { data, response, error in
-               if let error = error {
-                   completion(.failure(error))
-                   return
-               }
-               
-               guard let data = data else {
-                   completion(.failure(NetworkError.decodingError))
-                   return
-               }
-               
-               do {
-                   let result = try JSONDecoder().decode([String: article].self, from: data)
-                   if let article = result["article"] {
-                       completion(.success(article))
-                   } else {
-                       completion(.failure(NetworkError.decodingError))
-                   }
-               } catch {
-                   completion(.failure(error))
-               }
-           }.resume()
-       }
+    func searchArticleByNom(nomArticle: String, completion: @escaping (Result<[article], Error>) -> Void) {
+        let url = URL(string: "http://localhost:5000/api/articles/search/\(nomArticle)")!
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(NetworkError.decodingError))
+                return
+            }
+            
+            if let jsonString = String(data: data, encoding: .utf8) {
+                print("Searched Articles JSON string: \(jsonString)")
+            } else {
+                print("Received data is not a valid UTF-8 string.")
+            }
+            
+            do {
+                let decodedData = try JSONDecoder().decode(ArticlesResponse.self, from: data)
+                let articles = decodedData.articles
+                completion(.success(articles))
+            } catch {
+                print("Decoding error: \(error)")
+                completion(.failure(error))
+            }
+        }.resume()
+    }
+
+
+    struct ArticlesResponse: Codable {
+        let articles: [article]
+    }
+
     
        
        func SortArticlesByNomAsc(completion: @escaping (Result<[article], Error>) -> Void) {
