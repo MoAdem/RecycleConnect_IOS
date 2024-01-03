@@ -10,15 +10,24 @@ import SwiftUI
 
 struct Update2Password: View {
     
-        @State private var isCodeVerified = false
-        @State private var showAlert = false
-        @State private var alertMessage = ""
-        @State private var verificationCode: String = ""
-        @StateObject var userViewModel = UserViewModel()
-        @State private var showNewScreen = false
+      @State private var newPassword = ""
+      @State private var confirmPassword = ""
+      @State private var isCodeVerified = false
+      @State private var showAlert = false
+      @State private var alertMessage = ""
+    @State private var isResetPasswordPresented = false
+
+      @State private var nextView: ViewStack? = nil
+
+      @StateObject var userViewModel = UserViewModel()
+
+      enum ViewStack {
+          case SignInView
+      }
+    
     var body: some View {
         VStack{
-            Image("changePass")
+            Image("reset")
                 .resizable()
                 .scaledToFill()
                 .frame(width: 200, height: 200)
@@ -38,7 +47,7 @@ struct Update2Password: View {
             .padding(.leading, 30)
             .padding(.bottom, 15)
             
-            TextField("", text: $verificationCode,
+            TextField("", text: $newPassword,
                       prompt: Text("Nouveau mot de passe")
                 
             )
@@ -62,7 +71,7 @@ struct Update2Password: View {
             .padding(.leading, 30)
             .padding(.bottom, 15)
             
-            TextField("", text: $verificationCode,
+            TextField("", text: $confirmPassword,
                       prompt: Text("Confirmer mot de passe")
                 
             )
@@ -79,7 +88,7 @@ struct Update2Password: View {
             
             HStack {
                 Button{
-                    validateAndVerifyCode()
+                    validateAndChangePassword()
 
                 } label: {
                     ZStack{
@@ -92,9 +101,11 @@ struct Update2Password: View {
                             .font(.system(size: 18))
                     }
                     
-                    .alert(isPresented: $showAlert) {
-                               Alert(title: Text("Réinitialiser mot de passe"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
-                           }
+                   .alert(isPresented: $showAlert) {
+                        Alert(title: Text("Réinitialiser mot de passe"), message: Text(alertMessage), dismissButton: .default(Text("OK"), action: {
+                            nextView = .SignInView
+                        }))
+                    }
                 }
                 .padding(.leading, 130)
                 Spacer()
@@ -102,31 +113,59 @@ struct Update2Password: View {
             Spacer()
         }
         .ignoresSafeArea()
-        .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, maxHeight: .infinity)
-    }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(
+                    NavigationLink(
+                        destination: Update2Password(),
+                        isActive: $isResetPasswordPresented,
+                        label: { EmptyView() }
+                    )
+                    .onChange(of: nextView) { value in
+                        if value != nil {
+                            isResetPasswordPresented = true
+                        }
+                    }
+                )
+            }
   
-    private func validateAndVerifyCode() {
-         if verificationCode.isEmpty {
-             alertMessage = "Please enter both password and verification code."
-             showAlert = true
-             return
-         }
-
-         userViewModel.verifyResetCode(resetCode: verificationCode, email: "Bouguerrahanine4@gmail.com") { success in
-             DispatchQueue.main.async {
-                 if success {
-                     isCodeVerified = true
-                     alertMessage = "Code verified.Now you can change your password ! "
-                     showAlert = true
-                     showNewScreen = true
-                 } else {
-                     alertMessage = "Incorrect verification code."
-                     showAlert = true
+    private func validateAndChangePassword() {
+        if newPassword.isEmpty || confirmPassword.isEmpty{
+            alertMessage = "Les champs ne doivent pas etre vides"
+            showAlert = true
+            return
+        }
+        userViewModel.changePassword(email: "Bouguerrahanine4@gmail.com", newPassword: newPassword, confirmPassword: confirmPassword) { result in
+                 DispatchQueue.main.async {
+                     switch result {
+                     case .success(let message):
+                         isCodeVerified = true
+                         alertMessage = message
+                         showAlert = true
+                         nextView = .SignInView
+                     case .failure(let error):
+                         alertMessage = "Veuillez changer votre mot de pass ! "
+                         showAlert = true
+                     }
                  }
              }
          }
      }
+/*
+ userViewModel.forgotPassword(email: email) { result in
+     switch result {
+     case .success(let message):
+         print("Password reset code sent: \(message)")
+         showAlert = true
+         alertMessage = "Code envoyé avec succès!"
+         nextView = .UpdatePassword
+
+     case .failure(let error):
+         print("Error sending password reset code: Réessayer")
+         showAlert = true
+         alertMessage = "Envoi de code a échoué: Réessayer "
+     }
  }
+ */
 
 #Preview {
     Update2Password()

@@ -137,8 +137,7 @@ class UserViewModel: ObservableObject {
             }
         }.resume()
     }
-    //reset password
-    
+    //send email
     func forgotPassword(email: String, completion: @escaping (Result<String, Error>) -> Void) {
         guard let url = URL(string: "http://localhost:5000/api/user/reset") else {
             completion(.failure(NSError(domain: "Invalid URL", code: 0, userInfo: nil)))
@@ -168,6 +167,40 @@ class UserViewModel: ObservableObject {
             completion(.failure(error))
         }
     }
+    
+    // change password
+    func changePassword(email: String, newPassword : String, confirmPassword: String ,completion: @escaping (Result<String, Error>) -> Void) {
+        guard let url = URL(string: "http://localhost:5000/api/user/forgot") else {
+            completion(.failure(NSError(domain: "Invalid URL", code: 0, userInfo: nil)))
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let parameters: [String: Any] = [
+            "email": email ,
+            "newPassword": newPassword ,
+            "confirmPassword" : confirmPassword
+        ]
+        
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: parameters)
+            
+            URLSession.shared.dataTask(with: request) { data, response, error in
+                if let error = error {
+                    completion(.failure(error))
+                } else if let data = data {
+                    let responseString = String(data: data, encoding: .utf8) ?? ""
+                    completion(.success(responseString))
+                }
+            }.resume()
+        } catch {
+            completion(.failure(error))
+        }
+    }
+    
     
     //get user by id
     func fetchUser(_id: String) {

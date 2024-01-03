@@ -10,7 +10,7 @@ import Foundation
 final class NewsServices {
     static let shared = NewsServices()
 
-    static let baseUrl = "https://recycleconnect.onrender.com/"
+    static let baseUrl = "http://localhost:5000/"
     static let getallnewsUrl = baseUrl + "api/news/"
 
     private init() {}

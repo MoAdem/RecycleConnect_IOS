@@ -32,6 +32,7 @@ class ArticleViewModel: ObservableObject {
             case .success(let articles):
                 DispatchQueue.main.async {
                     self.articles = articles
+                    print("article vm", articles)
                 }
             case .failure(let error):
                 print("Error fetching articles: \(error.localizedDescription)")
@@ -114,8 +115,8 @@ class ArticleViewModel: ObservableObject {
             }
         }*/
     
-    func SearchArticleByNom() {
-            if searchQuery.isEmpty {
+    /*func SearchArticleByNom() {
+           /* if searchQuery.isEmpty {
                 ArticleServices.shared.GetAllArticles{ result in
                     switch result {
                     case .success(let articles):
@@ -126,7 +127,7 @@ class ArticleViewModel: ObservableObject {
                         print("Error fetching articles: \(error.localizedDescription)")
                     }
                 }
-            } else {
+            } else {*/
                 ArticleServices.shared.searchArticleByNom(nomArticle: searchQuery) { result in
                     switch result {
                     case .success(let articles):
@@ -138,8 +139,8 @@ class ArticleViewModel: ObservableObject {
                         print("Error searching articles: \(error)")
                     }
                 }
-            }
-        }
+       //     }
+        }*/
 
 
 

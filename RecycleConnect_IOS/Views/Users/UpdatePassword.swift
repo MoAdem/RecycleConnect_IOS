@@ -9,15 +9,21 @@ import SwiftUI
 
 struct UpdatePassword: View {
     
-        @State private var isCodeVerified = false
+    @State private var isCodeVerified = false
         @State private var showAlert = false
+        @State private var isResetPasswordPresented = false
         @State private var alertMessage = ""
         @State private var verificationCode: String = ""
+        @State private var nextView: ViewStack? = nil
+
+        enum ViewStack {
+            case Update2Password
+        }
+        
         @StateObject var userViewModel = UserViewModel()
-     @State private var showNewScreen = false
     var body: some View {
         VStack{
-            Image("changePass")
+            Image("reset")
                 .resizable()
                 .scaledToFill()
                 .frame(width: 200, height: 200)
@@ -55,7 +61,8 @@ struct UpdatePassword: View {
             HStack {
                 Button{
                     validateAndVerifyCode()
-
+                    
+                    isResetPasswordPresented.toggle()
                 } label: {
                     ZStack{
                         RoundedRectangle(cornerRadius: 50)
@@ -68,17 +75,32 @@ struct UpdatePassword: View {
                     }
                     
                     .alert(isPresented: $showAlert) {
-                               Alert(title: Text("Réinitialiser mot de passe"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
-                           }
-                }
+                                            Alert(title: Text("Réinitialiser mot de passe"), message: Text(alertMessage), dismissButton: .default(Text("OK"), action: {
+                                                nextView = .Update2Password
+                                            }))
+                                        }
+                                    }
                 .padding(.leading, 130)
                 Spacer()
             }
             Spacer()
         }
         .ignoresSafeArea()
-        .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, maxHeight: .infinity)
-    }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(
+                    NavigationLink(
+                        destination: Update2Password(),
+                        isActive: $isResetPasswordPresented,
+                        label: { EmptyView() }
+                    )
+                    .onChange(of: nextView) { value in
+                        if value != nil {
+                            isResetPasswordPresented = true
+                        }
+                    }
+                )
+            }
+
   
     private func validateAndVerifyCode() {
          if verificationCode.isEmpty {
@@ -87,21 +109,23 @@ struct UpdatePassword: View {
              return
          }
 
-         userViewModel.verifyResetCode(resetCode: verificationCode, email: "Bouguerrahanine4@gmail.com") { success in
-             DispatchQueue.main.async {
-                 if success {
-                     isCodeVerified = true
-                     alertMessage = "Code verified.Now you can change your password ! "
-                     showAlert = true
-                     showNewScreen = true
-                 } else {
-                     alertMessage = "Incorrect verification code."
-                     showAlert = true
-                 }
-             }
-         }
-     }
- }
+        userViewModel.verifyResetCode(resetCode: verificationCode, email: "Bouguerrahanine4@gmail.com") { success in
+                  DispatchQueue.main.async {
+                      if success {
+                          isCodeVerified = true
+                          alertMessage = "Code verified. Now you can change your password!"
+                          showAlert = true
+                          nextView = .Update2Password
+                      } else {
+                          alertMessage = "Incorrect verification code."
+                          showAlert = true
+                      }
+                  }
+              }
+          }
+      }
+
+ 
 
 #Preview {
     UpdatePassword()
